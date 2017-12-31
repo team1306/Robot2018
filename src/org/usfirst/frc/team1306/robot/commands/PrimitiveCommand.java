@@ -1,9 +1,10 @@
-package org.usfirst.frc.team1306.lib.util;
+package org.usfirst.frc.team1306.robot.commands;
 
-import org.usfirst.frc.team1306.lib.util.CommandParameters.CommandType;
-import org.usfirst.frc.team1306.lib.util.CommandParameters.FinishedType;
+import org.usfirst.frc.team1306.lib.util.PrimCommandParams;
+import org.usfirst.frc.team1306.lib.util.PrimCommandParams.CommandType;
+import org.usfirst.frc.team1306.lib.util.PrimCommandParams.FinishedType;
 import org.usfirst.frc.team1306.robot.OI;
-import org.usfirst.frc.team1306.robot.commands.CommandBase;
+import org.usfirst.frc.team1306.robot.subsystems.PrimitiveSubsystem;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
@@ -18,11 +19,11 @@ import edu.wpi.first.wpilibj.Timer;
 public class PrimitiveCommand extends CommandBase {
 	
 	private PrimitiveSubsystem mechanism;
-	private CommandParameters params;
+	private PrimCommandParams params;
 	private Timer timer;
 	
 	/** Creates a new PrimitiveCommand for a given subsystem and given parameters */
-	public PrimitiveCommand(PrimitiveSubsystem s, CommandParameters p) {
+	public PrimitiveCommand(PrimitiveSubsystem s, PrimCommandParams p) {
 		mechanism = s;
 		params = p;
 		

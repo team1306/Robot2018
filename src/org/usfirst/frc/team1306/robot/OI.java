@@ -1,11 +1,11 @@
 package org.usfirst.frc.team1306.robot;
 
-import org.usfirst.frc.team1306.lib.util.CommandParameters;
-import org.usfirst.frc.team1306.lib.util.CommandParameters.CommandType;
-import org.usfirst.frc.team1306.lib.util.CommandParameters.FinishedType;
-import org.usfirst.frc.team1306.lib.util.PrimitiveCommand;
+import org.usfirst.frc.team1306.lib.util.PrimCommandParams;
+import org.usfirst.frc.team1306.lib.util.PrimCommandParams.CommandType;
+import org.usfirst.frc.team1306.lib.util.PrimCommandParams.FinishedType;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.commands.FireGamePiece;
+import org.usfirst.frc.team1306.robot.commands.PrimitiveCommand;
 import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -61,11 +61,11 @@ public class OI {
 //		Button secondaryDPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
 		
 		pbuttonA.whenPressed(new FireGamePiece());
-		pbuttonB.whenPressed(new PrimitiveCommand(CommandBase.geartake, new CommandParameters(CommandType.PUSH,FinishedType.INSTANT)));
-		pbuttonY.whenPressed(new PrimitiveCommand(CommandBase.geartake, new CommandParameters(CommandType.PULL,FinishedType.INSTANT)));
-		pbuttonX.toggleWhenPressed(new PrimitiveCommand(CommandBase.intake, new CommandParameters(CommandType.SPIN,FinishedType.TOGGLED)));
+		pbuttonB.whenPressed(new PrimitiveCommand(CommandBase.geartake, new PrimCommandParams(CommandType.PUSH,FinishedType.INSTANT)));
+		pbuttonY.whenPressed(new PrimitiveCommand(CommandBase.geartake, new PrimCommandParams(CommandType.PULL,FinishedType.INSTANT)));
+		pbuttonX.toggleWhenPressed(new PrimitiveCommand(CommandBase.intake, new PrimCommandParams(CommandType.SPIN,FinishedType.TOGGLED)));
 	
-		pbuttonLB.toggleWhenPressed(new PrimitiveCommand(CommandBase.geartake, new CommandParameters(CommandType.SPIN,FinishedType.TOGGLED)));
+		pbuttonLB.toggleWhenPressed(new PrimitiveCommand(CommandBase.geartake, new PrimCommandParams(CommandType.SPIN,FinishedType.TOGGLED)));
 	}
 	
 	public enum Controller {P,S}; //Controller (primary or secondary)

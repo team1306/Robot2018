@@ -31,4 +31,16 @@ public class Constants {
 	public final static double FPS_TO_RPM_CONVERSION = (12/WHEEL_CIRCUMFERENCE) * 60; //Converts feet/sec into rot/min
 	public final static double IPS_TO_RPM_CONVERSION = (1/WHEEL_CIRCUMFERENCE) * 60; //Converts inch/sec into rot/min
 	public final static double ENCODER_INCHES_CONVERSION = (1 / (ENCODER_CODES_REV*4)) * WHEEL_CIRCUMFERENCE; //Converts encoder position to distance drivetrain has traveled
+	
+	/** VelocitySubsystem Constants */
+	public final static double RS7_VEL_ADJ = 1.0;
+	public final static double CTRE_MAG_VEL_ADJ = 1.0;
+	
+	/** PositionalSubsystem Constants */
+	public final static double CTRE_MAG_POS_ADJ = 1.0;
+	public final static double ROT_WITHIN_RANGE = 0.02;
+	public final static double ROT_VEL = 0.2; //Max rotation velocity (in rotations/sec)
+	public final static double ROT_ACCEL = 0.2; //Max rotation acceleration (in rotations/sec)
+	public final static double ROT_JERK = 0.8; //Max rotation jerk (in rotations/sec)
+	public final static double ROT_TIME = 2; //Max amount of time a turn can take
 }

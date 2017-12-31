@@ -1,9 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands;
 
 import org.usfirst.frc.team1306.lib.util.PIDParameters;
-import org.usfirst.frc.team1306.lib.util.PrimitiveSubsystem;
-import org.usfirst.frc.team1306.lib.util.PrimitiveSubsystem.SpeedController;
-import org.usfirst.frc.team1306.lib.util.VelocitySubsystem;
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.RobotMap;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings;
@@ -11,6 +8,10 @@ import org.usfirst.frc.team1306.robot.drivetrain.Settings.Device;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.DriveMode;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.TalonType;
 import org.usfirst.frc.team1306.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team1306.robot.subsystems.PrimitiveSubsystem;
+import org.usfirst.frc.team1306.robot.subsystems.VelocitySubsystem;
+import org.usfirst.frc.team1306.robot.subsystems.PrimitiveSubsystem.SpeedController;
+
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
 

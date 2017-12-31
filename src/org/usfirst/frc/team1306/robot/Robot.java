@@ -12,12 +12,11 @@ import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand;
 import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand.AutoMode;
 
 /**
- * @Project_Fwoosh
- * Framework Which Occasionally Offers Significant Help
+ * @Robot2018
  * 
- * Basic framework for robot code which will hopefully contain most of the subsystems we will use in the next FRC season. 
+ * Robot project running on BadgerBOTs Team 1306's 2018 robot, ?.
  * 
- * @author Jackson Goth
+ * @authors
  */
 public class Robot extends IterativeRobot {
 

@@ -1,6 +1,8 @@
-package org.usfirst.frc.team1306.lib.util;
+package org.usfirst.frc.team1306.robot.subsystems;
 
 import java.util.ArrayList;
+import org.usfirst.frc.team1306.lib.util.PIDParameters;
+import org.usfirst.frc.team1306.robot.Constants;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
@@ -14,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * 
  * This subsystem's purpose is meant to speed up the process of creating and modifying subsytems that use TalonSRX velocity control with encoders.
  * This will hopefully condense a few subsytems down into one common class with the same functionality and reduce the time it takes to program those mechanisms.
+ * This is meant to replace mechanisms like a flywheel or other things that may require speed control.
  * 
  * @author Jackson Goth
  */
@@ -22,7 +25,8 @@ public class VelocitySubsystem extends Subsystem {
 	private Command defaultCommand;
 	private ArrayList<CANTalon> talons;
 	private boolean enabled = true;
-	private double f, p, i, d;
+	private FeedbackDevice device;
+	private double p; //,f,i,d;
 	private String mechanism;
 	
 	public VelocitySubsystem(PIDParameters params, String name) {
@@ -30,10 +34,10 @@ public class VelocitySubsystem extends Subsystem {
 		defaultCommand = null;
 		talons = new ArrayList<CANTalon>();
 		
-		f = params.f;
+		//f = params.f;
 		p = params.p;
-		i = params.i;
-		d = params.d;
+		//i = params.i;
+		//d = params.d;
 	}
 	
 	public VelocitySubsystem(PIDParameters params, Command dCommand, String name) {
@@ -41,15 +45,16 @@ public class VelocitySubsystem extends Subsystem {
 		defaultCommand = dCommand;
 		talons = new ArrayList<CANTalon>();
 		
-		f = params.f;
+		//f = params.f;
 		p = params.p;
-		i = params.i;
-		d = params.d;
+		//i = params.i;
+		//d = params.d;
 	}
 	
 	/** Spins all motors within subsytem at given speed */
 	public void spinAll(double speed) {
 		if(talons.size() > 0 && enabled) {
+			speed += (speed - (getEncoderVelocity() * getEncoderAdj())) * p;
 			talons.get(0).set(speed);
 		}
 	}
@@ -82,13 +87,11 @@ public class VelocitySubsystem extends Subsystem {
 		}
 	}
 	
-	/** 
-	 * Set's up the encoder parameter for this subsytem, this assumes QuadEncoders are RS7 encoders
-	 * and all other encoders used will be versaplanetary encoders.
-	 */
+	/** Set's up the encoder parameter for this subsytem, this assumes QuadEncoders are RS7 encoders and all other encoders used will be versaplanetary encoders. */
 	public void setTalonParams(FeedbackDevice device) {
 		if(talons.size() > 0) {
 			talons.get(0).setFeedbackDevice(device);
+			this.device = device;
 			if(device.equals(FeedbackDevice.QuadEncoder)) {
 				talons.get(0).configEncoderCodesPerRev(12); //Only QuadEncoders (RS7 encoders) need this line
 			}
@@ -96,10 +99,6 @@ public class VelocitySubsystem extends Subsystem {
 			talons.get(0).configPeakOutputVoltage(+12.0f, -12.0f);
 			talons.get(0).SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_10Ms); //Lowest possible measurement period
 			talons.get(0).SetVelocityMeasurementWindow(20); //Lowest possible measurement window
-			talons.get(0).setF(f);
-			talons.get(0).setP(p);
-			talons.get(0).setI(i);
-			talons.get(0).setD(d);	
 		}
 	}
 	
@@ -117,22 +116,36 @@ public class VelocitySubsystem extends Subsystem {
 		}
 	}
 	
-	/** Gets the current encoder position */
-	public void getEncoderPosition() {
-		try {
-			SmartDashboard.putNumber(mechanism + " Sensor Position",talons.get(0).getEncPosition());
-		} catch(Exception e) {
-			SmartDashboard.putString("ERROR:","Can't get encoder position from " + mechanism);
+	/** Get's velocity adjustment for encoder to put an encoder velocity into useable units */
+	public double getEncoderAdj() {
+		if(device.equals(FeedbackDevice.QuadEncoder)) {
+			return getEncoderVelocity() * Constants.RS7_VEL_ADJ;
+		} else if(device.equals(FeedbackDevice.CtreMagEncoder_Relative)) {
+			return getEncoderVelocity() * Constants.CTRE_MAG_VEL_ADJ;
+		} else {
+			SmartDashboard.putString("ERROR:",mechanism + " can't convert encoder velocity to actual velocity!");
+			return 0.0;
 		}
 	}
 	
-	/** Gets the current encoder velocity */
-	public void getSensorVelocity() {
+	/** Gets the current encoder position */
+	public double getEncoderPosition() {
 		try {
-			SmartDashboard.putNumber(mechanism + " Sensor Position",talons.get(0).getEncVelocity());
+			SmartDashboard.putNumber(mechanism + " Encoder Position",talons.get(0).getEncPosition());
+			return talons.get(0).getEncPosition();
+		} catch(Exception e) {
+			SmartDashboard.putString("ERROR:","Can't get encoder position from " + mechanism);
+		} return 0.0;
+	}
+	
+	/** Gets the current encoder velocity */
+	public double getEncoderVelocity() {
+		try {
+			SmartDashboard.putNumber(mechanism + " Encoder Velocity",talons.get(0).getEncVelocity());
+			return talons.get(0).getEncVelocity();
 		} catch(Exception e) {
 			SmartDashboard.putString("ERROR:","Can't get encoder velocity from " + mechanism);
-		}
+		} return 0.0;
 	}
 	
 	/** Sets the default command if one was provided */
