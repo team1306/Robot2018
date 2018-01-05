@@ -3,7 +3,6 @@ package org.usfirst.frc.team1306.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
@@ -84,7 +83,5 @@ public class Robot extends IterativeRobot {
 
 	/** This function is called continuosly during test mode which is started through the driverstation */
 	@Override
-	public void testPeriodic() {
-		LiveWindow.run();
-	}
+	public void testPeriodic() { }
 }

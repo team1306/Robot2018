@@ -2,9 +2,9 @@ package org.usfirst.frc.team1306.robot.drivetrain;
 
 import java.util.ArrayList;
 import org.usfirst.frc.team1306.lib.util.PIDParameters;
-import com.ctre.CANTalon;
-import com.ctre.CANTalon.FeedbackDevice;
-import com.ctre.CANTalon.TalonControlMode;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 /**
  * @DriveSide
@@ -18,76 +18,58 @@ import com.ctre.CANTalon.TalonControlMode;
  */
 public class DriveSide {
 
-	private CANTalon master; //The 'Master' talon that all others will imitate
+	private TalonSRX master; //The 'Master' talon that all others will imitate
 	
 	/** Initializes the new DriveSide using a given array filled with this side's corresponding talons */
-	public DriveSide(ArrayList<CANTalon> t) {
-		ArrayList<CANTalon> talons = new ArrayList<CANTalon>();
+	public DriveSide(ArrayList<TalonSRX> t) {
+		ArrayList<TalonSRX> talons = new ArrayList<TalonSRX>();
 		talons = t;  //All talons for this side of the drivetrain
 		
 		if(talons.size() > 0) {
 			master = talons.get(0); //First talon in array is the master talon
-			master.changeControlMode(TalonControlMode.PercentVbus);
-			master.set(0.0);
-			master.enable();
+			master.set(ControlMode.PercentOutput,0.0);
 			
 			for(int i = 1; i < talons.size(); i++) { //Sets every other talon as a follower of the master talon
-				talons.get(i).changeControlMode(TalonControlMode.Follower);
-				talons.get(i).set(master.getDeviceID());
-				talons.get(i).enable();
+				talons.get(i).follow(master);
 			}
 		}
 	}
 	
-	/** Changes the control mode of the master talon */
-	public void changeControlMode(TalonControlMode mode) {
-		master.changeControlMode(mode);
-	}
-	
 	/** Has this side of the drivetrain spin at the given speed */
-	public void set(double speed) {
-		master.set(speed);
+	public void set(ControlMode mode, double speed) {
+		master.set(mode,speed);
 	}
 
 	/** Initializes the drivetrain encoders */
 	public void initEncoders() {
-		master.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		master.configEncoderCodesPerRev(256); //256 codes per rev for grayhill encoders
-		master.configNominalOutputVoltage(+0.0f, -0.0f);
-		master.configPeakOutputVoltage(+12.0f, -12.0f);
-		master.setEncPosition(0);
+		master.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,0);
+		master.configNominalOutputForward(0,0);
+		master.configNominalOutputReverse(0,0);
+		master.configPeakOutputForward(12,0);
+		master.configPeakOutputReverse(-12,0);
+		master.setSelectedSensorPosition(0,0,0);
 	}
 	
 	/** Sets up the PIDF control values */
 	public void setPIDParams(PIDParameters params) {
-		master.setF(params.f);
-		master.setP(params.p);
-		master.setI(params.i);
-		master.setD(params.d);
-	}
-	
-	/** Reverses motor output from the loop output, (ex. if true a loop output of 1 would turn the motor at -1) */
-	public void flipLoopOutput(boolean flipped) {
-		master.reverseOutput(flipped);
-	}
-	
-	/** Reverses encoder output (ex. if true an encoder output of 200 would read -200) */
-	public void flipEncoderOutput(boolean flipped) {
-		master.reverseSensor(flipped);
-	}
-	
-	/** Returns the current position from the encoder */
-	public double getEncoderPos() {
-		return master.getEncPosition();
+		master.config_kF(0,params.f,0);
+		master.config_kP(0,params.p,0);
+		master.config_kI(0,params.i,0);
+		master.config_kD(0,params.d,0);
 	}
 	
 	/** Resets the encoder reading back to zero */
 	public void resetEncoderPos() {
-		master.setEncPosition(0);
+		master.setSelectedSensorPosition(0,0,0);
+	}
+	
+	/** Returns the current position from the encoder */
+	public double getEncoderPos() {
+		return master.getSelectedSensorPosition(0);
 	}
 	
 	/** Returns the current velocity from the encoder */
 	public double getEncoderVel() {
-		return master.getEncVelocity();
+		return master.getSelectedSensorVelocity(0);
 	}
 }

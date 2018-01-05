@@ -2,7 +2,7 @@ package org.usfirst.frc.team1306.robot.drivetrain;
 
 import java.util.ArrayList;
 import org.usfirst.frc.team1306.robot.subsystems.Gyro;
-import com.ctre.CANTalon;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 /**
  * @Settings
@@ -16,19 +16,19 @@ import com.ctre.CANTalon;
 public class Settings {
 
 	public Gyro gyro;
-	public ArrayList<CANTalon> leftSide, rightSide; //Talons on each side of drivetrain
+	public ArrayList<TalonSRX> leftSide, rightSide; //Talons on each side of drivetrain
 	public boolean encodersPresent = false; //If we need to initialize encoders
 	public DriveMode driveMode; //ArcadeDrive, TankDrive, OutreachDrive?
 	
 	public Settings() {
-		leftSide = new ArrayList<CANTalon>();
-		rightSide = new ArrayList<CANTalon>();
+		leftSide = new ArrayList<TalonSRX>();
+		rightSide = new ArrayList<TalonSRX>();
 		
 		driveMode = DriveMode.ARCADE; //Default control mode is arcade.
 	}
 	
 	/** Adds a new talon to a specified driveside with a specified type (master or slave) */
-	public void add(CANTalon talon, TalonType type) {
+	public void add(TalonSRX talon, TalonType type) {
 		if(type.equals(TalonType.LEFT_MASTER)) {
 			leftSide.add(0,talon);
 		} else if(type.equals(TalonType.LEFT_SLAVE)) {

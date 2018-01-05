@@ -5,7 +5,7 @@ import org.usfirst.frc.team1306.robot.drivetrain.Drive;
 import org.usfirst.frc.team1306.robot.drivetrain.DriveSide;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.DriveMode;
-import com.ctre.CANTalon.TalonControlMode;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -41,32 +41,24 @@ public class Drivetrain extends Subsystem {
 
 	/** Drives the robot in 'PercentVBus' mode (-1.0-1.0) by giving the left and right motors potentially different speeds */
 	public void driveVBus(double leftVal, double rightVal) {
-		leftMotors.changeControlMode(TalonControlMode.PercentVbus);
-		rightMotors.changeControlMode(TalonControlMode.PercentVbus);
-		
 		if(Constants.DRIVETRAIN_ENABLED) {
-			leftMotors.set(leftVal);
-			rightMotors.set(-rightVal); 
+			leftMotors.set(ControlMode.PercentOutput,leftVal);
+			rightMotors.set(ControlMode.PercentOutput,-rightVal); 
 		}
 	}
 	
-	/** Drives the robot in 'Speed' mode by giving left and right side motors potentially different speeds */
+	/** Drives the robot in 'Velocity' mode by giving left and right side motors potentially different speeds */
 	public void driveSpeed(double leftVal, double rightVal) {
-		leftMotors.changeControlMode(TalonControlMode.Speed);
-		rightMotors.changeControlMode(TalonControlMode.Speed);
-		
 		if(Constants.DRIVETRAIN_ENABLED) {
-			leftMotors.set(leftVal);
-			rightMotors.set(-rightVal); 
+			leftMotors.set(ControlMode.Velocity,leftVal);
+			rightMotors.set(ControlMode.Velocity,-rightVal); 
 		}
 	}
 	
 	/** Stops turning all drive-motors */
 	public void stop() {
-		leftMotors.changeControlMode(TalonControlMode.PercentVbus);
-		rightMotors.changeControlMode(TalonControlMode.PercentVbus);
-		leftMotors.set(0.0);
-		rightMotors.set(0.0);
+		leftMotors.set(ControlMode.PercentOutput,0.0);
+		rightMotors.set(ControlMode.PercentOutput,0.0);
 	}
 	
 	/** Set's position of both encoders back to zero */
