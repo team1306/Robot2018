@@ -1,7 +1,9 @@
 package org.usfirst.frc.team1306.robot.drivetrain;
 
 import java.util.ArrayList;
+
 import org.usfirst.frc.team1306.robot.subsystems.Gyro;
+
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 /**

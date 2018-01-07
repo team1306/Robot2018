@@ -1,26 +1,28 @@
 package org.usfirst.frc.team1306.robot;
 
+import org.usfirst.frc.team1306.robot.commands.CommandBase;
+import org.usfirst.frc.team1306.robot.commands.SmartDashboardUpdate;
+import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand;
+import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand.AutoMode;
+import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand.StartingPosition;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team1306.robot.commands.CommandBase;
-import org.usfirst.frc.team1306.robot.commands.SmartDashboardUpdate;
-import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand;
-import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand.AutoMode;
 
 /**
  * @Robot2018
  * 
- * Robot project running on BadgerBOTs Team 1306's 2018 robot, ?.
+ * Robot code running on BadgerBOTs Team 1306's Power UP robot, ?.
  * 
  * @authors
  */
 public class Robot extends IterativeRobot {
 
 	private Command autonomousCommand;
-	private SendableChooser<Command> chooser = new SendableChooser<>();
+	private SendableChooser<AutoMode> type = new SendableChooser<>();
+	private SendableChooser<StartingPosition> position = new SendableChooser<>();
 	
 	/**
 	 * This function is run when the robot is first started up and we use it for
@@ -33,10 +35,18 @@ public class Robot extends IterativeRobot {
 		CommandBase.init(); //Initializes all Subsystems
 		//CameraServer.getInstance().startAutomaticCapture("usb",0); //Camera 1
 		
-		chooser.addObject("Follow Path", new AutonomousCommand(AutoMode.FOLLOW_PATH));
-		chooser.addObject("NewAuto", new AutonomousCommand(AutoMode.TESTING));
-		chooser.addDefault("Do Nothing", new AutonomousCommand(AutoMode.DO_NOTHING));
-		SmartDashboard.putData("Auto mode", chooser);
+		type.addObject("SwitchRP", AutoMode.PLACE_SWITCH_SPLIT);
+		type.addObject("SwitchRP", AutoMode.PLACE_SWITCH_STRAIGHT);
+		type.addObject("SwitchRP", AutoMode.AUTO_RUN);
+		type.addObject("SwitchRP", AutoMode.DO_NOTHING);
+		
+		position.addObject("SwitchRP", StartingPosition.EXCHANGE_LEFT);
+		position.addObject("SwitchRP", StartingPosition.EXCHANGE_RIGHT);
+		position.addObject("SwitchRP", StartingPosition.PORTAL_LEFT);
+		position.addObject("SwitchRP", StartingPosition.PORTAL_RIGHT);
+		
+		SmartDashboard.putData("Autonomous-Type:", type);
+		SmartDashboard.putData("Autonomous-Position:", position);
 		
 		new SmartDashboardUpdate().start();
 	}
@@ -51,7 +61,7 @@ public class Robot extends IterativeRobot {
 	/** This function is called once each time the robot enters autonomous */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+		autonomousCommand = new AutonomousCommand(type.getSelected(),position.getSelected());
 
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
