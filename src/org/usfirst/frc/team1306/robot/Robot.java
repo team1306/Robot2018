@@ -35,15 +35,15 @@ public class Robot extends IterativeRobot {
 		CommandBase.init(); //Initializes all Subsystems
 		//CameraServer.getInstance().startAutomaticCapture("usb",0); //Camera 1
 		
-		type.addObject("SwitchRP", AutoMode.PLACE_SWITCH_SPLIT);
-		type.addObject("SwitchRP", AutoMode.PLACE_SWITCH_STRAIGHT);
-		type.addObject("SwitchRP", AutoMode.AUTO_RUN);
-		type.addObject("SwitchRP", AutoMode.DO_NOTHING);
+		type.addObject("Switch RP", AutoMode.PLACE_SWITCH_SPLIT);
+		type.addObject("Switch Straight", AutoMode.PLACE_SWITCH_STRAIGHT);
+		type.addObject("Baseline", AutoMode.AUTO_RUN);
+		type.addObject("Do Nothing", AutoMode.DO_NOTHING);
 		
-		position.addObject("SwitchRP", StartingPosition.EXCHANGE_LEFT);
-		position.addObject("SwitchRP", StartingPosition.EXCHANGE_RIGHT);
-		position.addObject("SwitchRP", StartingPosition.PORTAL_LEFT);
-		position.addObject("SwitchRP", StartingPosition.PORTAL_RIGHT);
+		position.addObject("Left of Exchange", StartingPosition.EXCHANGE_LEFT);
+		position.addObject("Right of Exchange", StartingPosition.EXCHANGE_RIGHT);
+		position.addObject("Left Portal", StartingPosition.PORTAL_LEFT);
+		position.addObject("Right Portal", StartingPosition.PORTAL_RIGHT);
 		
 		SmartDashboard.putData("Autonomous-Type:", type);
 		SmartDashboard.putData("Autonomous-Position:", position);

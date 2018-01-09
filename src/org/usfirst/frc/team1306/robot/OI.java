@@ -4,7 +4,6 @@ import org.usfirst.frc.team1306.lib.util.PrimCommandParams;
 import org.usfirst.frc.team1306.lib.util.PrimCommandParams.CommandType;
 import org.usfirst.frc.team1306.lib.util.PrimCommandParams.FinishedType;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-import org.usfirst.frc.team1306.robot.commands.FireGamePiece;
 import org.usfirst.frc.team1306.robot.commands.PrimitiveCommand;
 import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -33,12 +32,12 @@ public class OI {
 		secondaryController = new XboxController(RobotMap.SECONDARY_PORT);
 		
 		//Declares and maps buttons to xbox controller buttons for primary controller
-		Button pbuttonA = new JoystickButton(primaryController, ControllerButton.A.value);
-		Button pbuttonB = new JoystickButton(primaryController, ControllerButton.B.value);
+		//Button pbuttonA = new JoystickButton(primaryController, ControllerButton.A.value);
+//		Button pbuttonB = new JoystickButton(primaryController, ControllerButton.B.value);
 		Button pbuttonX = new JoystickButton(primaryController, ControllerButton.X.value);
 		Button pbuttonY = new JoystickButton(primaryController, ControllerButton.Y.value);
 //		Button pbuttonRB = new JoystickButton(primaryController, ControllerButton.RB.value);
-		Button pbuttonLB = new JoystickButton(primaryController, ControllerButton.LB.value); 
+//		Button pbuttonLB = new JoystickButton(primaryController, ControllerButton.LB.value); 
 //		Button pbuttonStart = new JoystickButton(primaryController, ControllerButton.START.value);
 //		Button pbuttonBack = new JoystickButton(primaryController, ControllerButton.BACK.value);
 //		Button primaryDPadUp = new DPadPress(primaryController, DPadDirection.UP);
@@ -60,12 +59,8 @@ public class OI {
 //		Button secondaryDPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
 //		Button secondaryDPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
 		
-		pbuttonA.whenPressed(new FireGamePiece());
-		pbuttonB.whenPressed(new PrimitiveCommand(CommandBase.geartake, new PrimCommandParams(CommandType.PUSH,FinishedType.INSTANT)));
-		pbuttonY.whenPressed(new PrimitiveCommand(CommandBase.geartake, new PrimCommandParams(CommandType.PULL,FinishedType.INSTANT)));
-		pbuttonX.toggleWhenPressed(new PrimitiveCommand(CommandBase.intake, new PrimCommandParams(CommandType.SPIN,FinishedType.TOGGLED)));
-	
-		pbuttonLB.toggleWhenPressed(new PrimitiveCommand(CommandBase.geartake, new PrimCommandParams(CommandType.SPIN,FinishedType.TOGGLED)));
+		pbuttonX.toggleWhenPressed(new PrimitiveCommand(CommandBase.intake, new PrimCommandParams(CommandType.SPIN_POS,FinishedType.TOGGLED))); //Take in a power cube
+		pbuttonY.toggleWhenPressed(new PrimitiveCommand(CommandBase.intake, new PrimCommandParams(CommandType.SPIN_NEG,1,FinishedType.TIME))); //Spit out of intake
 	}
 	
 	public enum Controller {P,S}; //Controller (primary or secondary)

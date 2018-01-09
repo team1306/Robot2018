@@ -38,7 +38,7 @@ public class AutonomousCommand extends CommandGroup {
 			
 		} else if(mode.equals(AutoMode.PLACE_SWITCH_STRAIGHT)) {
 			
-			if(switchLocation.equals("L")) {
+			if(switchLocation.equals("L") ) {
 				
 			} else if(switchLocation.equals("R")) {
 				

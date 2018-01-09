@@ -42,8 +42,10 @@ public class PrimitiveCommand extends CommandBase {
 
 	@Override
 	protected void execute() {
-		if(params.commandType.equals(CommandType.SPIN)) {
+		if(params.commandType.equals(CommandType.SPIN_POS)) {
 			mechanism.spinAllMotors(mechanism.motorSpeed);
+		} else if(params.commandType.equals(CommandType.SPIN_NEG)) {
+			mechanism.spinAllMotors(-mechanism.motorSpeed);
 		} else if(params.commandType.equals(CommandType.PUSH)) {
 			mechanism.pushOut();
 		} else if(params.commandType.equals(CommandType.PULL)) {

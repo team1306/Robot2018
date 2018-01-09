@@ -40,6 +40,6 @@ public class PrimCommandParams {
 		time = t;
 	}
 	
-	public enum CommandType {SPIN,PUSH,PULL};
+	public enum CommandType {SPIN_POS,SPIN_NEG,PUSH,PULL};
 	public enum FinishedType {WHILE_HELD,TOGGLED,INSTANT,TIME}
 }
