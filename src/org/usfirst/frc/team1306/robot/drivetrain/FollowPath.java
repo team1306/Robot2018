@@ -54,7 +54,7 @@ public class FollowPath extends CommandBase {
 		
 		double angleError = (drivetrain.gyro.getAngle() - initAngle) * Constants.GYRO_ERROR_MULTIPLIER;
 		
-		drivetrain.driveSpeed((leftAdjSpeed*Constants.IPS_TO_RPM_CONVERSION)-angleError,(rightAdjSpeed*Constants.IPS_TO_RPM_CONVERSION)+angleError);
+		drivetrain.driveVelocity((leftAdjSpeed*Constants.IPS_TO_RPM_CONVERSION)-angleError,(rightAdjSpeed*Constants.IPS_TO_RPM_CONVERSION)+angleError);
 	}
 
 	@Override

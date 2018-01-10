@@ -5,6 +5,8 @@ import org.usfirst.frc.team1306.robot.drivetrain.Drive;
 import org.usfirst.frc.team1306.robot.drivetrain.DriveSide;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.DriveMode;
+import org.usfirst.frc.team1306.robot.drivetrain.SpeedAdjust.Speed;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -20,6 +22,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Drivetrain extends Subsystem {
 
 	private DriveSide leftMotors, rightMotors; //Sides of the drivetrain (each behaves like a TalonSRX)
+	private Speed speed = Speed.FAST; //Default adjustment is 100% of input
 	private DriveMode mode; //Initial manual drive-mode to use (Tank-drive, arcade, etc.)
 	public Gyro gyro; //Main gyro object other classes with reference
 	
@@ -40,19 +43,26 @@ public class Drivetrain extends Subsystem {
 	}
 
 	/** Drives the robot in 'PercentVBus' mode (-1.0-1.0) by giving the left and right motors potentially different speeds */
-	public void driveVBus(double leftVal, double rightVal) {
+	public void drivePercentOutput(double leftVal, double rightVal) {
 		if(Constants.DRIVETRAIN_ENABLED) {
+			if(speed.equals(Speed.SLOW)) { leftVal *= 0.6; rightVal *= 0.6; }
 			leftMotors.set(ControlMode.PercentOutput,leftVal);
 			rightMotors.set(ControlMode.PercentOutput,-rightVal); 
 		}
 	}
 	
 	/** Drives the robot in 'Velocity' mode by giving left and right side motors potentially different speeds */
-	public void driveSpeed(double leftVal, double rightVal) {
+	public void driveVelocity(double leftVal, double rightVal) {
 		if(Constants.DRIVETRAIN_ENABLED) {
+			if(speed.equals(Speed.SLOW)) { leftVal *= 0.5; rightVal *= 0.5; }
 			leftMotors.set(ControlMode.Velocity,leftVal);
 			rightMotors.set(ControlMode.Velocity,-rightVal); 
 		}
+	}
+	
+	/** Adjusts speed up or down for various tasks (up for long dist, down for precision) */
+	public void adjust(Speed s) {
+		speed = s;
 	}
 	
 	/** Stops turning all drive-motors */
