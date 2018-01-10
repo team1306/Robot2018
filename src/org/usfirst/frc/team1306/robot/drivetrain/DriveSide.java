@@ -1,12 +1,10 @@
 package org.usfirst.frc.team1306.robot.drivetrain;
 
 import java.util.ArrayList;
-
 import org.usfirst.frc.team1306.lib.util.PIDParameters;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 
 /**
  * @DriveSide
@@ -20,19 +18,19 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
  */
 public class DriveSide {
 
-	private TalonSRX master; //The 'Master' talon that all others will imitate
+	private BaseMotorController master; //The 'Master' controller that all others will imitate
 	
-	/** Initializes the new DriveSide using a given array filled with this side's corresponding talons */
-	public DriveSide(ArrayList<TalonSRX> t) {
-		ArrayList<TalonSRX> talons = new ArrayList<TalonSRX>();
-		talons = t;  //All talons for this side of the drivetrain
+	/** Initializes the new DriveSide using a given array filled with this side's corresponding controllers */
+	public DriveSide(ArrayList<BaseMotorController> c) {
+		ArrayList<BaseMotorController> controllers = new ArrayList<BaseMotorController>();
+		controllers = c;  //All controllers for this side of the drivetrain
 		
-		if(talons.size() > 0) {
-			master = talons.get(0); //First talon in array is the master talon
+		if(controllers.size() > 0) {
+			master = controllers.get(0); //First controller in array is the master controller
 			master.set(ControlMode.PercentOutput,0.0);
 			
-			for(int i = 1; i < talons.size(); i++) { //Sets every other talon as a follower of the master talon
-				talons.get(i).follow(master);
+			for(int i = 1; i < controllers.size(); i++) { //Sets every other controller as a follower of the master controller
+				controllers.get(i).follow(master);
 			}
 		}
 	}

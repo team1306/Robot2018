@@ -5,12 +5,13 @@ import org.usfirst.frc.team1306.robot.RobotMap;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.Device;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.DriveMode;
-import org.usfirst.frc.team1306.robot.drivetrain.Settings.TalonType;
+import org.usfirst.frc.team1306.robot.drivetrain.Settings.ControllingType;
 import org.usfirst.frc.team1306.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1306.robot.subsystems.PrimitiveSubsystem;
 import org.usfirst.frc.team1306.robot.subsystems.PrimitiveSubsystem.SpeedController;
 import org.usfirst.frc.team1306.robot.subsystems.VelocitySubsystem;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -34,10 +35,10 @@ public abstract class CommandBase extends Command {
 		
 		/* Drivetrain configuration which tells the subsystem how many Talon SRXs are present, if encoders and gyro are present, and what driving mode the driver wants */
 		driveConfig = new Settings();
-		driveConfig.add(new TalonSRX(RobotMap.LEFT_TALON_1_PORT),TalonType.LEFT_MASTER);
-		driveConfig.add(new TalonSRX(RobotMap.RIGHT_TALON_1_PORT),TalonType.RIGHT_MASTER);
-		driveConfig.add(new TalonSRX(RobotMap.LEFT_TALON_2_PORT),TalonType.LEFT_SLAVE);
-		driveConfig.add(new TalonSRX(RobotMap.RIGHT_TALON_2_PORT),TalonType.RIGHT_SLAVE);
+		driveConfig.add(new TalonSRX(RobotMap.LEFT_TALON_PORT),ControllingType.LEFT_MASTER);
+		driveConfig.add(new TalonSRX(RobotMap.RIGHT_TALON_PORT),ControllingType.RIGHT_MASTER);
+		driveConfig.add(new VictorSPX(RobotMap.LEFT_VICTOR_PORT),ControllingType.LEFT_SLAVE);
+		driveConfig.add(new VictorSPX(RobotMap.RIGHT_VICTOR_PORT),ControllingType.RIGHT_SLAVE);
 		driveConfig.add(Device.ENCODER);
 		driveConfig.add(Device.GYRO); 
 		driveConfig.setDriveMode(DriveMode.ARCADE);
