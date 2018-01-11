@@ -26,6 +26,8 @@ public class RobotMap {
 	
 	/** Intake Ports */
 	public static final int INTAKE_PORT = 1;
+	public static final int RIGHT_INTAKE_PORT = 2;
+	public static final int LEFT_INTAKE_PORT = 3;
 	
 	/** Geartake Ports */
 	public static final int GEARTAKE_PORT = 4;

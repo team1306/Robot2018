@@ -35,6 +35,8 @@ public class Constants {
 	/** VelocitySubsystem Constants */
 	public final static double RS7_VEL_ADJ = 1.0;
 	public final static double CTRE_MAG_VEL_ADJ = 1.0;
+	public final static double RIGHT_INTAKE_VELOCITY = 0.5;
+	public final static double LEFT_INTAKE_VELOCITY = -0.5;
 	
 	/** PositionalSubsystem Constants */
 	public final static double CTRE_MAG_POS_ADJ = 1.0;

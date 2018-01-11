@@ -5,6 +5,8 @@ import org.usfirst.frc.team1306.lib.util.PrimCommandParams.CommandType;
 import org.usfirst.frc.team1306.lib.util.PrimCommandParams.FinishedType;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.commands.PrimitiveCommand;
+import org.usfirst.frc.team1306.robot.commands.intake.IntakeBlock;
+import org.usfirst.frc.team1306.robot.commands.intake.SpitBlock;
 import org.usfirst.frc.team1306.robot.drivetrain.SpeedAdjust;
 import org.usfirst.frc.team1306.robot.drivetrain.SpeedAdjust.Speed;
 import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
@@ -41,6 +43,8 @@ public class OI {
 		Button pbuttonY = new JoystickButton(primaryController, ControllerButton.Y.value);
 		Button pbuttonRB = new JoystickButton(primaryController, ControllerButton.RB.value);
 		Button pbuttonLB = new JoystickButton(primaryController, ControllerButton.LB.value); 
+		Button pbuttonA = new JoystickButton(primaryController, ControllerButton.A.value);
+		Button pbuttonB = new JoystickButton(primaryController, ControllerButton.B.value);
 //		Button pbuttonStart = new JoystickButton(primaryController, ControllerButton.START.value);
 //		Button pbuttonBack = new JoystickButton(primaryController, ControllerButton.BACK.value);
 //		Button primaryDPadUp = new DPadPress(primaryController, DPadDirection.UP);
@@ -67,6 +71,9 @@ public class OI {
 		
 		pbuttonLB.whenPressed(new SpeedAdjust(Speed.FAST));
 		pbuttonRB.whenPressed(new SpeedAdjust(Speed.SLOW));
+		
+		pbuttonA.toggleWhenPressed(new IntakeBlock());
+		pbuttonB.toggleWhenPressed(new SpitBlock());
 	}
 	
 	public enum Controller {P,S}; //Controller (primary or secondary)
