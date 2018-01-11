@@ -6,7 +6,6 @@ import org.usfirst.frc.team1306.robot.drivetrain.DriveSide;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.DriveMode;
 import org.usfirst.frc.team1306.robot.drivetrain.SpeedAdjust.Speed;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 

@@ -32,11 +32,12 @@ public class Constants {
 	public final static double IPS_TO_RPM_CONVERSION = (1/WHEEL_CIRCUMFERENCE) * 60; //Converts inch/sec into rot/min
 	public final static double ENCODER_INCHES_CONVERSION = (1 / (ENCODER_CODES_REV*4)) * WHEEL_CIRCUMFERENCE; //Converts encoder position to distance drivetrain has traveled
 	
+	/** Intake Constants */
+	public final static double INTAKE_VELOCITY = 0.75;
+	
 	/** VelocitySubsystem Constants */
 	public final static double RS7_VEL_ADJ = 1.0;
 	public final static double CTRE_MAG_VEL_ADJ = 1.0;
-	public final static double RIGHT_INTAKE_VELOCITY = 0.5;
-	public final static double LEFT_INTAKE_VELOCITY = -0.5;
 	
 	/** PositionalSubsystem Constants */
 	public final static double CTRE_MAG_POS_ADJ = 1.0;
