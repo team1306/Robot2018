@@ -5,6 +5,7 @@ import org.usfirst.frc.team1306.lib.util.PIDParameters;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @DriveSide
@@ -37,39 +38,57 @@ public class DriveSide {
 	
 	/** Has this side of the drivetrain spin at the given speed */
 	public void set(ControlMode mode, double speed) {
-		master.set(mode,speed);
+		try { master.set(mode,speed); }
+		catch(Exception e) { SmartDashboard.putString("ERROR:","Drivetrain setting controller to invalid controlmode"); }
 	}
 
 	/** Initializes the drivetrain encoders */
 	public void initEncoders() {
-		master.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,0);
-		master.configNominalOutputForward(0,0);
-		master.configNominalOutputReverse(0,0);
-		master.configPeakOutputForward(12,0);
-		master.configPeakOutputReverse(-12,0);
-		master.setSelectedSensorPosition(0,0,0);
+		try {
+			master.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,0);
+			master.configNominalOutputForward(0,0);
+			master.configNominalOutputReverse(0,0);
+			master.configPeakOutputForward(12,0);
+			master.configPeakOutputReverse(-12,0);
+			master.setSelectedSensorPosition(0,0,0);
+		} catch(Exception e) {
+			SmartDashboard.putString("ERROR:","Drivetrain configuring settings on invalid controller");
+		}
 	}
 	
 	/** Sets up the PIDF control values */
 	public void setPIDParams(PIDParameters params) {
-		master.config_kF(0,params.f,0);
-		master.config_kP(0,params.p,0);
-		master.config_kI(0,params.i,0);
-		master.config_kD(0,params.d,0);
+		try {
+			master.config_kF(0,params.f,0);
+			master.config_kP(0,params.p,0);
+			master.config_kI(0,params.i,0);
+			master.config_kD(0,params.d,0);
+		} catch(Exception e) {
+			SmartDashboard.putString("ERROR:","Drivetrain configuring settings on invalid controller");
+		}
 	}
 	
 	/** Resets the encoder reading back to zero */
 	public void resetEncoderPos() {
-		master.setSelectedSensorPosition(0,0,0);
+		try { master.setSelectedSensorPosition(0,0,0); }
+		catch(Exception e) { SmartDashboard.putString("ERROR:","Drivetrain unable to reset encoder"); }
 	}
 	
 	/** Returns the current position from the encoder */
 	public double getEncoderPos() {
-		return master.getSelectedSensorPosition(0);
+		try { return master.getSelectedSensorPosition(0); }
+		catch(Exception e) {
+			SmartDashboard.putString("ERROR:","Drivetrain unable to access encoder position");
+			return 0;
+		}
 	}
 	
 	/** Returns the current velocity from the encoder */
 	public double getEncoderVel() {
-		return master.getSelectedSensorVelocity(0);
+		try { return master.getSelectedSensorVelocity(0); }
+		catch(Exception e) {
+			SmartDashboard.putString("ERROR:","Drivetrain unable to access encoder velocity");
+			return 0;
+		}
 	}
 }
