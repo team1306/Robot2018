@@ -37,8 +37,8 @@ public class PositionalSubsystem extends Subsystem {
 		master.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
 		master.configNominalOutputForward(0,0);
 		master.configNominalOutputReverse(0,0);
-		master.configPeakOutputForward(12,0);
-		master.configPeakOutputReverse(-12,0);
+		master.configPeakOutputForward(1,0);
+		master.configPeakOutputReverse(-1,0);
 		master.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_10Ms,0);
 		master.configVelocityMeasurementWindow(20,0);
 		
@@ -56,8 +56,8 @@ public class PositionalSubsystem extends Subsystem {
 		master.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
 		master.configNominalOutputForward(0,0);
 		master.configNominalOutputReverse(0,0);
-		master.configPeakOutputForward(12,0);
-		master.configPeakOutputReverse(-12,0);
+		master.configPeakOutputForward(1,0);
+		master.configPeakOutputReverse(-1,0);
 		master.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_10Ms,0);
 		master.configVelocityMeasurementWindow(20,0);
 		

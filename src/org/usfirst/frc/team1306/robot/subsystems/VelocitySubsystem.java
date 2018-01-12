@@ -91,8 +91,8 @@ public class VelocitySubsystem extends Subsystem {
 			this.device = device;
 			talons.get(0).configNominalOutputForward(0,0);
 			talons.get(0).configNominalOutputReverse(0,0);
-			talons.get(0).configPeakOutputForward(12,0);
-			talons.get(0).configPeakOutputReverse(-12,0);
+			talons.get(0).configPeakOutputForward(1,0);
+			talons.get(0).configPeakOutputReverse(-1,0);
 			talons.get(0).configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_10Ms,0);
 			talons.get(0).configVelocityMeasurementWindow(20,0);
 		}

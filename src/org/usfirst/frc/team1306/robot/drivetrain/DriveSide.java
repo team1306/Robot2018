@@ -48,9 +48,9 @@ public class DriveSide {
 			master.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,0);
 			master.configNominalOutputForward(0,0);
 			master.configNominalOutputReverse(0,0);
-			master.configPeakOutputForward(12,0);
-			master.configPeakOutputReverse(-12,0);
-			master.setSelectedSensorPosition(0,0,0);
+			master.configPeakOutputForward(1,0);
+			master.configPeakOutputReverse(-1,0);
+			master.getSensorCollection().setQuadraturePosition(0,0);
 		} catch(Exception e) {
 			SmartDashboard.putString("ERROR:","Drivetrain configuring settings on invalid controller");
 		}

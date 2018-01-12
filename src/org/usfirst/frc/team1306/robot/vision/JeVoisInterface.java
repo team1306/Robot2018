@@ -1,6 +1,5 @@
 package org.usfirst.frc.team1306.robot.vision;
 
-
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode.PixelFormat;
@@ -8,6 +7,10 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
 
+/**
+ * @JeVoisInterfcae
+ * @author Team 1736 Robot Casserole
+ */
 public class JeVoisInterface {
     
     // Serial Port Constants 

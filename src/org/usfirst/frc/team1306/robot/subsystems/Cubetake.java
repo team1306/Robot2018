@@ -6,10 +6,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team1306.robot.Constants;
 
 /**
- * @Cubetake
- * 
- * Subsystem controlling power cube intake, which currently includes a set of wheels on each side.
- * 
+ * @Cubetake - Subsystem controlling the power cube intake, which currently includes a set of wheels on each side.
  * @author Ethan Dong
  */
 public class Cubetake extends Subsystem{
@@ -23,13 +20,17 @@ public class Cubetake extends Subsystem{
 	}
 	
 	public void spinIn() {
-		leftIntakeMotor.set(Constants.INTAKE_VELOCITY);
-		rightIntakeMotor.set(-Constants.INTAKE_VELOCITY);
+		if(Constants.INTAKE_ENABLED) {
+			leftIntakeMotor.set(Constants.INTAKE_VELOCITY);
+			rightIntakeMotor.set(-Constants.INTAKE_VELOCITY);
+		}
 	}
 	
 	public void spinOut() {
-		leftIntakeMotor.set(-Constants.INTAKE_VELOCITY);
-		rightIntakeMotor.set(Constants.INTAKE_VELOCITY);
+		if(Constants.INTAKE_ENABLED) {
+			leftIntakeMotor.set(-Constants.INTAKE_VELOCITY);
+			rightIntakeMotor.set(Constants.INTAKE_VELOCITY);
+		}
 	}
 	
 	public void stop() {

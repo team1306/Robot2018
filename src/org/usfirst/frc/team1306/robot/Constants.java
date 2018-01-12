@@ -1,20 +1,21 @@
 package org.usfirst.frc.team1306.robot;
 
 /**
- * Constants
- * 
- * To store finalized variables all in one place.
- * 
- * @author Jackson Goth and Sam Roquitte
+ * @Constants - To store finalized variables all in one place
+ * @authors Jackson Goth, Sam Roquitte, and Ethan Dong
  */
 public class Constants {
 
 	/** Subsystem Control (Switching to false will disable all output for that subsystem) */
-	public final static boolean DRIVETRAIN_ENABLED = true;		
+	public final static boolean DRIVETRAIN_ENABLED = true;
+	public final static boolean INTAKE_ENABLED = true;
+	public final static boolean ELEVATOR_ENABLED = false;
+	public final static boolean VISION_ENABLED = false;
 	
 	/** SmartDashboard Debug Modes */
 	public static final boolean DRIVETRAIN_DEBUG = true;
 	public static final boolean GYRO_DEBUG = true;
+	public static final boolean VISION_DEBUG = false;
 	
 	/** OI Constants */
 	public final static double DEADBAND = 0.15; //Joystick and trigger deadband
@@ -22,7 +23,7 @@ public class Constants {
 	
 	/** Drivetrain Constants */
 	public final static double BASE_WIDTH = 25.5; //In inches
-	public final static double WHEEL_DIAMETER = 4; //In inches
+	public final static double WHEEL_DIAMETER = 6; //In inches
 	public final static double PROFILE_STEP_TIME = 0.01;
 	public final static double ENCODER_CODES_REV = 256; //256 for grayhill encoders
 	public final static double GYRO_ERROR_MULTIPLIER = 9;
