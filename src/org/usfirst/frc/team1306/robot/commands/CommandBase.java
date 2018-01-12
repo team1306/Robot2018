@@ -3,7 +3,6 @@ package org.usfirst.frc.team1306.robot.commands;
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.RobotMap;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings;
-import org.usfirst.frc.team1306.robot.drivetrain.Settings.Device;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.DriveMode;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.ControllingType;
 import org.usfirst.frc.team1306.robot.subsystems.Drivetrain;
@@ -19,7 +18,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * This class is the abstract for all other commands. This static class contains instances of all the subsystems and the OI class 
  * so that each command that extends this class can have access to the subsystems.
  * 
- * @author Jackson Goth
+ * @authors Jackson Goth, Sam Roquitte, and Ethan Dong
  */
 public abstract class CommandBase extends Command {
 
@@ -38,8 +37,7 @@ public abstract class CommandBase extends Command {
 		driveConfig.add(new TalonSRX(RobotMap.RIGHT_TALON_PORT),ControllingType.RIGHT_MASTER);
 		driveConfig.add(new VictorSPX(RobotMap.LEFT_VICTOR_PORT),ControllingType.LEFT_SLAVE);
 		driveConfig.add(new VictorSPX(RobotMap.RIGHT_VICTOR_PORT),ControllingType.RIGHT_SLAVE);
-		driveConfig.add(Device.ENCODER);
-		driveConfig.add(Device.GYRO); 
+		driveConfig.addEncoders(true);
 		driveConfig.setDriveMode(DriveMode.ARCADE);
 		drivetrain = new Drivetrain(driveConfig);
 

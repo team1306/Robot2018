@@ -10,17 +10,14 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.DriveMode;
 
 /**
- * @Drive
- * 
- * Drives the robot in a specified mode (tank-drive, arcade, etc.) by pulling the status of the triggers and joysticks.
- * 
- * @author Sam Roquitte and Jackson Goth
+ * @Drive - Drives the robot in a specified mode (tank-drive, arcade, etc.)
+ * @authors Sam Roquitte and Jackson Goth
  */
-public class Drive extends CommandBase {
+public class DriveCommand extends CommandBase {
 
-	private DriveMode driveMode;
+	private DriveMode driveMode; //What mode to drive in
 	
-	public Drive(DriveMode mode) {
+	public DriveCommand(DriveMode mode) {
 		requires(drivetrain);
 		driveMode = mode;
 	}

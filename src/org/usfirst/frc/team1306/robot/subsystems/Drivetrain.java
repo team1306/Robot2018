@@ -1,13 +1,16 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
-import org.usfirst.frc.team1306.robot.drivetrain.Drive;
+import org.usfirst.frc.team1306.robot.drivetrain.DriveCommand;
 import org.usfirst.frc.team1306.robot.drivetrain.DriveSide;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.DriveMode;
 import org.usfirst.frc.team1306.robot.drivetrain.SpeedAdjust.Speed;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @Drivetrain
@@ -23,22 +26,23 @@ public class Drivetrain extends Subsystem {
 	private DriveSide leftMotors, rightMotors; //Sides of the drivetrain (each behaves like a TalonSRX)
 	private Speed speed = Speed.FAST; //Default adjustment is 100% of input
 	private DriveMode mode; //Initial manual drive-mode to use (Tank-drive, arcade, etc.)
-	public Gyro gyro; //Main gyro object other classes with reference
+	public AHRS navx; //NavX mxp, the gyroscope we use
 	
 	public Drivetrain(Settings settings) {
 		leftMotors = new DriveSide(settings.leftSide);
 		rightMotors = new DriveSide(settings.rightSide);
 		mode = settings.driveMode; //Which manual drive-mode to use (Tank-drive, arcade, etc.)
 		
-		/* If gyro is present, makes it accessible */
-		if(settings.gyro != null) {
-			gyro = settings.gyro;
-		}
 		/* If encoders are present, initialized them in appropriate driveside */
 		if(settings.encodersPresent) {
 			leftMotors.initEncoders();
 			rightMotors.initEncoders();
 		}
+		
+		try {
+			navx = new AHRS(SPI.Port.kMXP);
+			navx.reset(); //Resets yaw
+		} catch(RuntimeException ex) { SmartDashboard.putString("ERROR:","Cannot initialize the NavX"); }
 	}
 
 	/** Drives the robot in 'PercentVBus' mode (-1.0-1.0) by giving the left and right motors potentially different speeds */
@@ -88,11 +92,33 @@ public class Drivetrain extends Subsystem {
 		else { return rightMotors.getEncoderVel(); }
 	}
 	
-	public enum Side {LEFT,RIGHT};
+	/** Returns total accumulated yaw value in degrees */
+	public double getGyroAngle() {
+		return navx.getAngle();
+	}
+	
+	/**  Returns current yaw value (-180 to 180 degrees only) */
+	public double getGyroYaw() {
+		return navx.getYaw();
+	}
+	
+	/** Returns displacement from navx along a given axis */
+	public double getGyroDisplacement(Axis axis) {
+		if(axis.equals(Axis.X)) {
+			return navx.getDisplacementX();
+		} else if(axis.equals(Axis.Y)) {
+			return navx.getDisplacementY();
+		} else {
+			return navx.getDisplacementZ();
+		}
+	}
+	
+	public enum Side {LEFT,RIGHT}; //Enum used to differentiate between left and right wheels for accessing encoder data
+	public enum Axis {X,Y,Z}; //Enum used to store possible axis to access displacement values
 	
 	/** Starts the manual driving command in a specified drive-mode */
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new Drive(mode));
+		setDefaultCommand(new DriveCommand(mode));
 	}
 }

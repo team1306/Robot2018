@@ -3,15 +3,11 @@ package org.usfirst.frc.team1306.robot.drivetrain;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.pathing.FalconPathPlanner;
-
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * @Follow2DPath
- * 
- * This command drives the robot along a FalconPathPlanner 2D path, using feedback from the gyro and will end after a certain amount of time.
- * 
+ * @Follow2DPath - This command drives the robot along a FalconPathPlanner 2D path, using sensor feedback to correct rotational error.
  * @author Jackson Goth
  */
 public class Follow2DPath extends CommandBase {
@@ -28,7 +24,7 @@ public class Follow2DPath extends CommandBase {
 		path = p;
 		time = t;
 		
-		initAngle = drivetrain.gyro.getAngle();
+		initAngle = drivetrain.getGyroAngle();
 		timer = new Timer();
 	}
 	
@@ -55,7 +51,7 @@ public class Follow2DPath extends CommandBase {
 		} catch(Exception e) { SmartDashboard.putString("ERROR:","2DPath array is out of bounds"); }
 		
 		/** Calculating heading correction, to keep robot properly oriented along path */
-		double gyroCorrection = 0, initCorrection = (path.heading[counter][1] + initAngle - drivetrain.gyro.getAngle()) * 2;
+		double gyroCorrection = 0, initCorrection = (path.heading[counter][1] + initAngle - drivetrain.getGyroAngle()) * 2;
 		try {
 			if(direction.equals(DriveDirection.BACKWARDS)) { gyroCorrection = initCorrection; }   
 			else { gyroCorrection = -initCorrection; }

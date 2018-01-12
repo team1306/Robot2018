@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1306.robot.drivetrain;
 
 import java.util.ArrayList;
-import org.usfirst.frc.team1306.robot.subsystems.Gyro;
 import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -9,15 +8,13 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 /**
  * @Settings
  * 
- * This class manages and stores all the drivetrain settings. It's purpose is so you can modularly add the 
- * gyro, encoders, and new talons with ease. This makes changing out code/electrical components a lot faster 
- * on the fly and keeps everything organized.
+ * This class manages and stores all the drivetrain settings. It's purpose is so you can modularly add encoders and new talons 
+ * with ease. This makes changing out code/electrical components a lot faster on the fly and keeps everything organized.
  * 
  * @author Jackson Goth
  */
 public class Settings {
 
-	public Gyro gyro;
 	public ArrayList<BaseMotorController> leftSide, rightSide; //Controllers on each side of drivetrain
 	public boolean encodersPresent = false; //If we need to initialize encoders
 	public DriveMode driveMode; //ArcadeDrive, TankDrive, OutreachDrive?
@@ -55,13 +52,9 @@ public class Settings {
 		}
 	}
 	
-	/** Adds a new device to the drivetrain (gyro or encoders) */
-	public void add(Device device) {
-		if(device.equals(Device.GYRO)) {
-			gyro = new Gyro();
-		} else if(device.equals(Device.ENCODER)) {
-			encodersPresent = true;
-		}
+	/** Tells the drivetrain each driveside will have encoders  */
+	public void addEncoders(boolean encoders) {
+		encodersPresent = encoders;
 	}
 	
 	/** Sets the drivemode to a given drivemode (Arcade, Tank, Outreach) */
@@ -69,7 +62,6 @@ public class Settings {
 		driveMode = mode;
 	}
 	
-	public enum Device {GYRO, ENCODER}; //Device types
 	public enum ControllingType {LEFT_MASTER, RIGHT_MASTER, LEFT_SLAVE, RIGHT_SLAVE};
 	public enum DriveMode {ARCADE, TANK_DRIVE, OUTREACH};
 }

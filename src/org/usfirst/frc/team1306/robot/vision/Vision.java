@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * @Vision
  * 
- * Object used for connecting to JeVois and pulling data from it. We use the JeVoisInterface written
- * by Team 1736 Robot Casserole for this, so credit goes to them.
+ * Object used for connecting to JeVois and pulling data from it. We use the JeVoisInterface written by 
+ * Team 1736 Robot Casserole for this, so credit goes to them.
  * 
  * @author Jackson Goth
  */

@@ -4,10 +4,7 @@ import org.usfirst.frc.team1306.robot.XboxController;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 
 /**
- * @DPadPress
- * 
- * A trigger used to start commands when something on the D-Pad is pressed.
- * 
+ * @DPadPress - A trigger used to start commands when something on the D-Pad is pressed.
  * @author Finn Voichick
  */
 public class DPadPress extends Trigger {

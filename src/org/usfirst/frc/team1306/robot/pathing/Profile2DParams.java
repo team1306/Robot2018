@@ -1,10 +1,7 @@
 package org.usfirst.frc.team1306.robot.pathing;
 
 /**
- * @PathParams
- * 
- * Parameters for the FalonPathPlanner, time to determine how fast and interval for creating array.
- * 
+ * @PathParams - Parameters for the FalonPathPlanner, time to determine how fast and interval for creating the array.
  * @author Jackson Goth
  */
 public class Profile2DParams {

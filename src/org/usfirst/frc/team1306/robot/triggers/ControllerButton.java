@@ -1,10 +1,7 @@
 package org.usfirst.frc.team1306.robot.triggers;
 
 /**
- * @ControllerButton
- * 
- * An enum containing evey button on an XboxController with the value it can be accessed at.
- * 
+ * @ControllerButton - An enum containing evey button on an XboxController with the value it can be accessed at.
  * @author Jackson Goth
  */
 public enum ControllerButton {

@@ -12,11 +12,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * @Robot2018
- * 
- * Robot code running on BadgerBOTs Team 1306's Power UP robot, ?.
- * 
- * @authors
+ * @Robot2018 - Robot code running on BadgerBOTs Team 1306's Power UP robot, ?.
+ * @authors Jackson Goth, Sam Roquitte, and Ethan Dong
  */
 public class Robot extends IterativeRobot {
 

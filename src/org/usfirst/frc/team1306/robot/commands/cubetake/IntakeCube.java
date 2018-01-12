@@ -3,10 +3,7 @@ package org.usfirst.frc.team1306.robot.commands.cubetake;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 /**
- * @IntakeCube
- * 
- * Command to spin the intake wheels inward, pulling in a power cube.
- * 
+ * @IntakeCube - Command to spin the intake wheels inward; toggled.
  * @author Ethan Dong
  */
 public class IntakeCube extends CommandBase{

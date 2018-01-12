@@ -4,14 +4,10 @@ import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.pathing.Profile;
 import org.usfirst.frc.team1306.robot.subsystems.Drivetrain.Side;
-
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * @FollowPath
- * 
- * This command is meant to drive the robot along a given path/profile and applies a P-loop to how far the drivetrain is off from the path.
- * 
+ * @FollowPath - This command drives the robot along a Profile, and uses sensor feedback to correct positional error.
  * @author Jackson Goth
  */
 public class FollowPath extends CommandBase {
@@ -38,7 +34,7 @@ public class FollowPath extends CommandBase {
 		drivetrain.resetEncoders();
 		
 		counter = 0; //Resets counter that's used to determine position in profile
-		initAngle = drivetrain.gyro.getAngle();
+		initAngle = drivetrain.getGyroAngle();
 	}
 
 	@Override
@@ -52,7 +48,7 @@ public class FollowPath extends CommandBase {
 		double leftAdjSpeed = speed + (leftError * Constants.ENCODER_ERROR_MULTIPLIER);
 		double rightAdjSpeed = speed + (rightError * Constants.ENCODER_ERROR_MULTIPLIER);
 		
-		double angleError = (drivetrain.gyro.getAngle() - initAngle) * Constants.GYRO_ERROR_MULTIPLIER;
+		double angleError = (drivetrain.getGyroAngle() - initAngle) * Constants.GYRO_ERROR_MULTIPLIER;
 		
 		drivetrain.driveVelocity((leftAdjSpeed*Constants.IPS_TO_RPM_CONVERSION)-angleError,(rightAdjSpeed*Constants.IPS_TO_RPM_CONVERSION)+angleError);
 	}

@@ -3,10 +3,7 @@ package org.usfirst.frc.team1306.robot.pathing;
 import java.util.ArrayList;
 
 /**
- * @Profile
- * 
- * Profile for driving straight, using given velocity, acceleration, and jerk parameters.
- * 
+ * @Profile -  Profile for one-dimensional motion-profiling (s-curve), generates an array of points to get to a given distance.
  * @author Jackson Goth
  */
 public class Profile {

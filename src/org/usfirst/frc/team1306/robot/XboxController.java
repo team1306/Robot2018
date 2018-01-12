@@ -3,10 +3,7 @@ package org.usfirst.frc.team1306.robot;
 import edu.wpi.first.wpilibj.Joystick;
 
 /**
- * @XboxController
- * 
- * An Xbox controller. This is a relatively minor extension of Joystick that adds methods specific to the Xbox controller.
- * 
+ * @XboxController - This is a relatively minor extension of Joystick that adds methods specific to the xbox-controller.
  * @author Finn Voichick
  */
 public class XboxController extends Joystick {

@@ -3,10 +3,7 @@ package org.usfirst.frc.team1306.robot.commands.cubetake;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 /**
- * @SpitCube
- * 
- * Command to spin the intake wheels outward, pushout out a power cube.
- * 
+ * @SpitCube - Command to spin the intake wheels outward, toggled.
  * @author Ethan Dong
  */
 public class SpitCube extends CommandBase{
