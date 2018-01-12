@@ -113,8 +113,9 @@ public class VelocitySubsystem extends Subsystem {
 	/** Gets the current encoder position */
 	public double getEncoderPosition() {
 		try {
-			SmartDashboard.putNumber(mechanism + " Encoder Position",talons.get(0).getSelectedSensorPosition(0));
-			return talons.get(0).getSelectedSensorPosition(0);
+			double position = talons.get(0).getSensorCollection().getQuadraturePosition();
+			SmartDashboard.putNumber(mechanism + " Encoder Position",position);
+			return position;
 		} catch(Exception e) {
 			SmartDashboard.putString("ERROR:","Can't get encoder position from " + mechanism);
 		} return 0.0;
@@ -123,8 +124,9 @@ public class VelocitySubsystem extends Subsystem {
 	/** Gets the current encoder velocity */
 	public double getEncoderVelocity() {
 		try {
-			SmartDashboard.putNumber(mechanism + " Encoder Velocity",talons.get(0).getSelectedSensorVelocity(0));
-			return talons.get(0).getSelectedSensorVelocity(0);
+			double velocity = talons.get(0).getSensorCollection().getQuadraturePosition();
+			SmartDashboard.putNumber(mechanism + " Encoder Velocity",velocity);
+			return velocity;
 		} catch(Exception e) {
 			SmartDashboard.putString("ERROR:","Can't get encoder velocity from " + mechanism);
 		} return 0.0;
@@ -133,8 +135,6 @@ public class VelocitySubsystem extends Subsystem {
 	/** Sets the default command if one was provided */
 	@Override
 	protected void initDefaultCommand() {
-		if(defaultCommand != null) {
-			setDefaultCommand(defaultCommand);
-		}
+		if(defaultCommand != null) { setDefaultCommand(defaultCommand); }
 	}
 }

@@ -70,13 +70,13 @@ public class DriveSide {
 	
 	/** Resets the encoder reading back to zero */
 	public void resetEncoderPos() {
-		try { master.setSelectedSensorPosition(0,0,0); }
+		try { master.getSensorCollection().setQuadraturePosition(0,0); }
 		catch(Exception e) { SmartDashboard.putString("ERROR:","Drivetrain unable to reset encoder"); }
 	}
 	
 	/** Returns the current position from the encoder */
 	public double getEncoderPos() {
-		try { return master.getSelectedSensorPosition(0); }
+		try { return master.getSensorCollection().getQuadraturePosition(); }
 		catch(Exception e) {
 			SmartDashboard.putString("ERROR:","Drivetrain unable to access encoder position");
 			return 0;
@@ -85,7 +85,7 @@ public class DriveSide {
 	
 	/** Returns the current velocity from the encoder */
 	public double getEncoderVel() {
-		try { return master.getSelectedSensorVelocity(0); }
+		try { return master.getSensorCollection().getQuadratureVelocity(); }
 		catch(Exception e) {
 			SmartDashboard.putString("ERROR:","Drivetrain unable to access encoder velocity");
 			return 0;

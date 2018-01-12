@@ -130,10 +130,8 @@ public class PrimitiveSubsystem extends Subsystem {
 	/** Sets the default command if one was provided */
 	@Override
 	protected void initDefaultCommand() {
-		if(defaultCommand != null) {
-			setDefaultCommand(defaultCommand);
-		}
+		if(defaultCommand != null) { setDefaultCommand(defaultCommand); }
 	}
 	
-	public enum SpeedController {TALON_SR,VICTOR_SPX,SPARK};
+	public enum SpeedController {TALON_SR,SPARK};
 }

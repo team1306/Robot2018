@@ -24,7 +24,7 @@ public class PositionalSubsystem extends Subsystem {
 
 	private boolean enabled = true;
 	private Command defaultCommand;
-	private TalonSRX talon;
+	private TalonSRX master;
 	private String mechanism;
 	private double p; //,f,i,d;
 	private double degLeft = 0, degRight = 0, degDefault = 0;	
@@ -32,15 +32,15 @@ public class PositionalSubsystem extends Subsystem {
 	public PositionalSubsystem(PIDParameters params, TalonSRX motor, String name) {
 		mechanism = name;
 		defaultCommand = null;
-		talon = motor;
+		master = motor;
 		
-		talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
-		talon.configNominalOutputForward(0,0);
-		talon.configNominalOutputReverse(0,0);
-		talon.configPeakOutputForward(12,0);
-		talon.configPeakOutputReverse(-12,0);
-		talon.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_10Ms,0);
-		talon.configVelocityMeasurementWindow(20,0);
+		master.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
+		master.configNominalOutputForward(0,0);
+		master.configNominalOutputReverse(0,0);
+		master.configPeakOutputForward(12,0);
+		master.configPeakOutputReverse(-12,0);
+		master.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_10Ms,0);
+		master.configVelocityMeasurementWindow(20,0);
 		
 		//f = params.f;
 		p = params.p;
@@ -51,15 +51,15 @@ public class PositionalSubsystem extends Subsystem {
 	public PositionalSubsystem(PIDParameters params, TalonSRX motor, Command dCommand, String name) {
 		mechanism = name;
 		defaultCommand = dCommand;
-		talon = motor;
+		master = motor;
 		
-		talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
-		talon.configNominalOutputForward(0,0);
-		talon.configNominalOutputReverse(0,0);
-		talon.configPeakOutputForward(12,0);
-		talon.configPeakOutputReverse(-12,0);
-		talon.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_10Ms,0);
-		talon.configVelocityMeasurementWindow(20,0);
+		master.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
+		master.configNominalOutputForward(0,0);
+		master.configNominalOutputReverse(0,0);
+		master.configPeakOutputForward(12,0);
+		master.configPeakOutputReverse(-12,0);
+		master.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_10Ms,0);
+		master.configVelocityMeasurementWindow(20,0);
 		
 		//f = params.f;
 		p = params.p;
@@ -74,7 +74,7 @@ public class PositionalSubsystem extends Subsystem {
 				reset();
 			} else {
 				speed += (speed - (getEncoderVelocity() * getEncoderAdj())) * p;
-				talon.set(ControlMode.Velocity,speed);
+				master.set(ControlMode.Velocity,speed);
 			}
 		}
 	}
@@ -103,8 +103,9 @@ public class PositionalSubsystem extends Subsystem {
 	/** Gets the current encoder position */
 	public double getEncoderPosition() {
 		try {
-			SmartDashboard.putNumber(mechanism + " Encoder Position",talon.getSelectedSensorPosition(0));
-			return talon.getSelectedSensorPosition(0);
+			double position = master.getSensorCollection().getQuadraturePosition();
+			SmartDashboard.putNumber(mechanism + " Encoder Position:",position);
+			return position;
 		} catch(Exception e) {
 			SmartDashboard.putString("ERROR:","Can't get encoder position from " + mechanism);
 		} return 0.0;
@@ -113,8 +114,9 @@ public class PositionalSubsystem extends Subsystem {
 	/** Gets the current encoder velocity */
 	public double getEncoderVelocity() {
 		try {
-			SmartDashboard.putNumber(mechanism + " Encoder Velocity",talon.getSelectedSensorVelocity(0));
-			return talon.getSelectedSensorVelocity(0);
+			double velocity = master.getSensorCollection().getQuadratureVelocity();
+			SmartDashboard.putNumber(mechanism + " Encoder Velocity:",velocity);
+			return velocity;
 		} catch(Exception e) {
 			SmartDashboard.putString("ERROR:","Can't get encoder velocity from " + mechanism);
 		} return 0.0;
@@ -122,7 +124,7 @@ public class PositionalSubsystem extends Subsystem {
 	
 	/** Stops turning the motor to hold mechanism in this position */
 	public void stop() {
-		talon.set(ControlMode.PercentOutput,0.0);
+		master.set(ControlMode.PercentOutput,0.0);
 	}
 	
 	/** Disable the subsytem */
@@ -133,8 +135,6 @@ public class PositionalSubsystem extends Subsystem {
 	/** Sets the default command if one was provided */
 	@Override
 	protected void initDefaultCommand() {
-		if(defaultCommand != null) {
-			setDefaultCommand(defaultCommand);
-		}
+		if(defaultCommand != null) { setDefaultCommand(defaultCommand); }
 	}
 }
