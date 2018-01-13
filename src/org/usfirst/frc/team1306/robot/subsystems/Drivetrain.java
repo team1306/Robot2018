@@ -5,7 +5,7 @@ import org.usfirst.frc.team1306.robot.drivetrain.DriveCommand;
 import org.usfirst.frc.team1306.robot.drivetrain.DriveSide;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.DriveMode;
-import org.usfirst.frc.team1306.robot.drivetrain.SpeedAdjust.Speed;
+import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed.Speed;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;

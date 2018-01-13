@@ -2,8 +2,8 @@ package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.cubetake.IntakeCube;
 import org.usfirst.frc.team1306.robot.commands.cubetake.SpitCube;
-import org.usfirst.frc.team1306.robot.drivetrain.SpeedAdjust;
-import org.usfirst.frc.team1306.robot.drivetrain.SpeedAdjust.Speed;
+import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed;
+import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed.Speed;
 import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -60,8 +60,8 @@ public class OI {
 //		Button secondaryDPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
 //		Button secondaryDPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
 		
-		pbuttonLB.whenPressed(new SpeedAdjust(Speed.FAST));
-		pbuttonRB.whenPressed(new SpeedAdjust(Speed.SLOW));
+		pbuttonLB.whenPressed(new AdjustSpeed(Speed.FAST));
+		pbuttonRB.whenPressed(new AdjustSpeed(Speed.SLOW));
 		
 		pbuttonX.toggleWhenPressed(new IntakeCube());
 		pbuttonY.toggleWhenPressed(new SpitCube());

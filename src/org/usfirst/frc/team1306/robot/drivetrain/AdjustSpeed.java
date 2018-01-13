@@ -10,11 +10,11 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
  * 
  * @author Jackson Goth
  */
-public class SpeedAdjust extends CommandBase {
+public class AdjustSpeed extends CommandBase {
 
 	private Speed speed; //Speed to adjust to
 	
-	public SpeedAdjust(Speed s) {
+	public AdjustSpeed(Speed s) {
 		speed = s;
 	}
 	
