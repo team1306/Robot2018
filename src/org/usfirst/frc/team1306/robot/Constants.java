@@ -21,9 +21,12 @@ public class Constants {
 	public final static double DEADBAND = 0.15; //Joystick and trigger deadband
 	public final static double JOYSTICK_MULTIPLIER = 1.0; //Joystick inputs raised to this power
 	
+	/** Autonomous Constants*/
+	public final static double AUTO_PROFILE_TIME = 6; //Seconds
+	
 	/** Drivetrain Constants */
-	public final static double BASE_WIDTH = 24.5; //In inches
-	public final static double WHEEL_DIAMETER = 6; //In inches
+	public final static double TRACK_WIDTH = 24.5; //Inches
+	public final static double WHEEL_DIAMETER = 6; //Inches
 	public final static double PROFILE_STEP_TIME = 0.01;
 	public final static double ENCODER_CODES_REV = 256; //256 for grayhill encoders
 	public final static double GYRO_ERROR_MULTIPLIER = 9;

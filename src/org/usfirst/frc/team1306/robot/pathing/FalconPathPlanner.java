@@ -688,13 +688,14 @@ public class FalconPathPlanner
 		//create waypoint path
 		double[][] waypoints = new double[][]{
 			{0,0},
-			{68.54/12,0},
-			{96.25/12,(48/12)},
+			{33.83/12,0},
+			{67.66/12,-55/12},
+			{101.5/12,-55/12},
 		}; 
 
-		double totalTime = 4; //seconds
+		double totalTime = 5.5; //seconds
 		double timeStep = 0.1; //period of control loop on Rio, seconds
-		double robotTrackWidth = 30/12; //distance between left and right wheels, feet
+		double robotTrackWidth = 24.5/12; //distance between left and right wheels, feet
 
 		final FalconPathPlanner path = new FalconPathPlanner(waypoints);
 		
