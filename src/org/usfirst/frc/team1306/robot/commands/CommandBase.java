@@ -35,8 +35,8 @@ public abstract class CommandBase extends Command {
 		driveConfig = new Settings();
 		driveConfig.add(new TalonSRX(RobotMap.LEFT_TALON_PORT),ControllingType.LEFT_MASTER);
 		driveConfig.add(new TalonSRX(RobotMap.RIGHT_TALON_PORT),ControllingType.RIGHT_MASTER);
-		driveConfig.add(new VictorSPX(RobotMap.LEFT_VICTOR_PORT),ControllingType.LEFT_SLAVE);
-		driveConfig.add(new VictorSPX(RobotMap.RIGHT_VICTOR_PORT),ControllingType.RIGHT_SLAVE);
+		driveConfig.add(new TalonSRX(RobotMap.LEFT_VICTOR_PORT),ControllingType.LEFT_SLAVE);
+		driveConfig.add(new TalonSRX(RobotMap.RIGHT_VICTOR_PORT),ControllingType.RIGHT_SLAVE);
 		driveConfig.addEncoders(true);
 		driveConfig.setDriveMode(DriveMode.ARCADE);
 		drivetrain = new Drivetrain(driveConfig);

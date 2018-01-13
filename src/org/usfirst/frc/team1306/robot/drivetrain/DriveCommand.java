@@ -9,6 +9,8 @@ import org.usfirst.frc.team1306.robot.OI.Trigger;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.DriveMode;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  * @Drive - Drives the robot in a specified mode (tank-drive, arcade, etc.)
  * @authors Sam Roquitte and Jackson Goth
@@ -59,7 +61,6 @@ public class DriveCommand extends CommandBase {
 				}
 			}
 		}
-		
 	}
 
 	@Override

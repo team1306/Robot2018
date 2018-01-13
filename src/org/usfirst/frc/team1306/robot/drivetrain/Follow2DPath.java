@@ -70,12 +70,12 @@ public class Follow2DPath extends CommandBase {
 
 	@Override
 	protected void end() {
-		drivetrain.stop();
+		//drivetrain.stop();
 	}
 
 	@Override
 	protected void interrupted() {
-		end();
+		//end();
 	}
 
 	public enum DriveDirection {FORWARD,BACKWARDS};

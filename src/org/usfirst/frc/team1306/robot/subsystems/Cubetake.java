@@ -21,15 +21,15 @@ public class Cubetake extends Subsystem{
 	
 	public void spinIn() {
 		if(Constants.INTAKE_ENABLED) {
-			leftIntakeMotor.set(Constants.INTAKE_VELOCITY);
-			rightIntakeMotor.set(-Constants.INTAKE_VELOCITY);
+			leftIntakeMotor.set(Constants.INTAKE_VELOCITY/2);
+			rightIntakeMotor.set(-Constants.INTAKE_VELOCITY/2);
 		}
 	}
 	
 	public void spinOut() {
 		if(Constants.INTAKE_ENABLED) {
-			leftIntakeMotor.set(-Constants.INTAKE_VELOCITY);
-			rightIntakeMotor.set(Constants.INTAKE_VELOCITY);
+			leftIntakeMotor.set(-Constants.INTAKE_VELOCITY/2);
+			rightIntakeMotor.set(Constants.INTAKE_VELOCITY/2);
 		}
 	}
 	

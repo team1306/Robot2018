@@ -35,32 +35,44 @@ public class AutonomousCommand extends CommandGroup {
 		
 		Profile2DParams params = new Profile2DParams(Constants.AUTO_PROFILE_TIME,Constants.PROFILE_STEP_TIME,Constants.TRACK_WIDTH/12); //Max profile time, time in-between steps, and track width in feet
 		
-		if(mode.equals(AutoMode.PLACE_SWITCH_SPLIT)) {
+		if(switchLocation.equals("L")) {
+			FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathLeft);
+			path.calculate(params);
 			
-			if(switchLocation.equals("L")) {
-				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathLeft);
-				path.calculate(params);
-				
-				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.5));	
-			} else if(switchLocation.equals("R")) {
-				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathRight);
-				path.calculate(params);
-				
-				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.5));	
-			}
+			addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.5));	
+		} else if(switchLocation.equals("R")) {
+			FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathRight);
+			path.calculate(params);
 			
-		} else if(mode.equals(AutoMode.PLACE_SWITCH_STRAIGHT)) {
-			
-			if(switchLocation.equals("L") ) {
-				
-			} else if(switchLocation.equals("R")) {
-				
-			}
-			
-		} else if(mode.equals(AutoMode.AUTO_RUN)) {
-			
-			addSequential(new FollowPath(new Profile(120,40,60,120,4.75))); //Distance, Velocity, Accel, Jerk, Max Time
-			
-		} else if(mode.equals(AutoMode.DO_NOTHING)) { }
+			addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.5));	
+		}
+		
+//		if(mode.equals(AutoMode.PLACE_SWITCH_SPLIT)) {
+//			
+//			if(switchLocation.equals("L")) {
+//				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathLeft);
+//				path.calculate(params);
+//				
+//				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.5));	
+//			} else if(switchLocation.equals("R")) {
+//				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathRight);
+//				path.calculate(params);
+//				
+//				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.5));	
+//			}
+//			
+//		} else if(mode.equals(AutoMode.PLACE_SWITCH_STRAIGHT)) {
+//			
+//			if(switchLocation.equals("L") ) {
+//				
+//			} else if(switchLocation.equals("R")) {
+//				
+//			}
+//			
+//		} else if(mode.equals(AutoMode.AUTO_RUN)) {
+//			
+//			addSequential(new FollowPath(new Profile(120,40,60,120,4.75))); //Distance, Velocity, Accel, Jerk, Max Time
+//			
+//		} else if(mode.equals(AutoMode.DO_NOTHING)) { }
 	}
 }

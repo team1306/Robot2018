@@ -49,6 +49,8 @@ public class Drivetrain extends Subsystem {
 	public void drivePercentOutput(double leftVal, double rightVal) {
 		if(Constants.DRIVETRAIN_ENABLED) {
 			if(speed.equals(Speed.SLOW)) { leftVal *= 0.6; rightVal *= 0.6; }
+			SmartDashboard.putNumber("leftOutput",leftVal);
+			SmartDashboard.putNumber("rightOutput",rightVal);
 			leftMotors.set(ControlMode.PercentOutput,leftVal);
 			rightMotors.set(ControlMode.PercentOutput,-rightVal); 
 		}
@@ -57,9 +59,12 @@ public class Drivetrain extends Subsystem {
 	/** Drives the robot in 'Velocity' mode by giving left and right side motors potentially different speeds */
 	public void driveVelocity(double leftVal, double rightVal) {
 		if(Constants.DRIVETRAIN_ENABLED) {
-			if(speed.equals(Speed.SLOW)) { leftVal *= 0.5; rightVal *= 0.5; }
-			leftMotors.set(ControlMode.Velocity,leftVal);
-			rightMotors.set(ControlMode.Velocity,-rightVal); 
+			SmartDashboard.putNumber("leftOutput",leftVal);
+			SmartDashboard.putNumber("rightOutput",rightVal);
+			leftMotors.set(ControlMode.PercentOutput,leftVal);
+			rightMotors.set(ControlMode.PercentOutput,-rightVal); 
+//			leftMotors.set(ControlMode.Velocity,leftVal*16);
+//			rightMotors.set(ControlMode.Velocity,-rightVal*16); 
 		}
 	}
 	
