@@ -9,7 +9,6 @@ import org.usfirst.frc.team1306.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1306.robot.subsystems.Cubetake;
 import org.usfirst.frc.team1306.robot.subsystems.VelocitySubsystem;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**

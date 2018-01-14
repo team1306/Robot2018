@@ -1,13 +1,16 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
+import org.usfirst.frc.team1306.lib.util.PIDParameters;
 import org.usfirst.frc.team1306.robot.Constants;
+import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed.Speed;
 import org.usfirst.frc.team1306.robot.drivetrain.DriveCommand;
 import org.usfirst.frc.team1306.robot.drivetrain.DriveSide;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.DriveMode;
-import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed.Speed;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -36,7 +39,9 @@ public class Drivetrain extends Subsystem {
 		/* If encoders are present, initialized them in appropriate driveside */
 		if(settings.encodersPresent) {
 			leftMotors.initEncoders();
+			leftMotors.setPIDParams(new PIDParameters(0.0,0.0,0.0));
 			rightMotors.initEncoders();
+			rightMotors.setPIDParams(new PIDParameters(0.0,0.0,0.0));
 		}
 		
 		try {
