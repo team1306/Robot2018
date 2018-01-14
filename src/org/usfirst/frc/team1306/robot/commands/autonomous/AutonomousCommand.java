@@ -61,6 +61,6 @@ public class AutonomousCommand extends CommandGroup {
 			
 			addSequential(new FollowPath(new Profile(120,40,60,120,4.75))); //Distance, Velocity, Accel, Jerk, Max Time
 			
-		} else if(mode.equals(AutoMode.DO_NOTHING)) { }
+		} else if(mode.equals(AutoMode.DO_NOTHING)) { SmartDashboard.putString("ERROR:","No auto mode selected!"); }
 	}
 }

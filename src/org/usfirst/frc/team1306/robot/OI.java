@@ -1,10 +1,12 @@
 package org.usfirst.frc.team1306.robot;
 
+import org.usfirst.frc.team1306.robot.commands.cubetake.FlipCube;
 import org.usfirst.frc.team1306.robot.commands.cubetake.IntakeCube;
 import org.usfirst.frc.team1306.robot.commands.cubetake.SpitCube;
 import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed;
 import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed.Speed;
 import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -31,7 +33,7 @@ public class OI {
 		secondaryController = new XboxController(RobotMap.SECONDARY_PORT);
 		
 		//Declares and maps buttons to xbox controller buttons for primary controller
-		//Button pbuttonA = new JoystickButton(primaryController, ControllerButton.A.value);
+		Button pbuttonA = new JoystickButton(primaryController, ControllerButton.A.value);
 //		Button pbuttonB = new JoystickButton(primaryController, ControllerButton.B.value);
 		Button pbuttonX = new JoystickButton(primaryController, ControllerButton.X.value);
 		Button pbuttonY = new JoystickButton(primaryController, ControllerButton.Y.value);
@@ -63,6 +65,7 @@ public class OI {
 		pbuttonLB.whenPressed(new AdjustSpeed(Speed.FAST));
 		pbuttonRB.whenPressed(new AdjustSpeed(Speed.SLOW));
 		
+		pbuttonA.toggleWhenPressed(new FlipCube());
 		pbuttonX.toggleWhenPressed(new IntakeCube());
 		pbuttonY.toggleWhenPressed(new SpitCube());
 	}

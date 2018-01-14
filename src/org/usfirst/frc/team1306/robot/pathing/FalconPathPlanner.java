@@ -693,9 +693,9 @@ public class FalconPathPlanner
 			{101.5/12,-55/12},
 		}; 
 
-		double totalTime = 5.5; //seconds
+		double totalTime = 6; //seconds
 		double timeStep = 0.1; //period of control loop on Rio, seconds
-		double robotTrackWidth = 24.5/12; //distance between left and right wheels, feet
+		double robotTrackWidth = 25.5/12; //distance between left and right wheels, feet
 
 		final FalconPathPlanner path = new FalconPathPlanner(waypoints);
 		

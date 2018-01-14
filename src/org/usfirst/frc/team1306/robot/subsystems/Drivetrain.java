@@ -39,9 +39,9 @@ public class Drivetrain extends Subsystem {
 		/* If encoders are present, initialized them in appropriate driveside */
 		if(settings.encodersPresent) {
 			leftMotors.initEncoders();
-			leftMotors.setPIDParams(new PIDParameters(0.0,0.0,0.0));
+			leftMotors.setPIDParams(new PIDParameters(1.4,0.85,0.0));
 			rightMotors.initEncoders();
-			rightMotors.setPIDParams(new PIDParameters(0.0,0.0,0.0));
+			rightMotors.setPIDParams(new PIDParameters(1.4,0.85,0.0));
 		}
 		
 		try {
@@ -66,10 +66,10 @@ public class Drivetrain extends Subsystem {
 		if(Constants.DRIVETRAIN_ENABLED) {
 			SmartDashboard.putNumber("leftOutput",leftVal);
 			SmartDashboard.putNumber("rightOutput",rightVal);
-			leftMotors.set(ControlMode.PercentOutput,leftVal);
-			rightMotors.set(ControlMode.PercentOutput,-rightVal); 
-//			leftMotors.set(ControlMode.Velocity,leftVal*16);
-//			rightMotors.set(ControlMode.Velocity,-rightVal*16); 
+//			leftMotors.set(ControlMode.PercentOutput,leftVal/1023);
+//			rightMotors.set(ControlMode.PercentOutput,-rightVal/1023);
+			leftMotors.set(ControlMode.Velocity,leftVal);
+			rightMotors.set(ControlMode.Velocity,-rightVal); 
 		}
 	}
 	
