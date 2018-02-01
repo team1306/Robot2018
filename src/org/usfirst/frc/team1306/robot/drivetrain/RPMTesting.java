@@ -7,12 +7,16 @@ public class RPMTesting extends CommandBase{
 	private Timer timer;
 	
 	
+	public RPMTesting() {
+		timer = new Timer();
+	}
+	
 	@Override
 	protected void initialize() {
-		requires(drivetrain);
 		
-		timer = new Timer();
-		}
+		timer.reset();
+		timer.start();
+	}
 
 	@Override
 	protected void execute() {
