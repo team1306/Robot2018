@@ -66,8 +66,6 @@ public class Drivetrain extends Subsystem {
 		if(Constants.DRIVETRAIN_ENABLED) {
 			SmartDashboard.putNumber("leftOutput",leftVal);
 			SmartDashboard.putNumber("rightOutput",rightVal);
-//			leftMotors.set(ControlMode.PercentOutput,leftVal/1023);
-//			rightMotors.set(ControlMode.PercentOutput,-rightVal/1023);
 			leftMotors.set(ControlMode.Velocity,leftVal);
 			rightMotors.set(ControlMode.Velocity,-rightVal); 
 		}

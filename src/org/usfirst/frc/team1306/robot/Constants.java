@@ -25,8 +25,8 @@ public class Constants {
 	public final static double AUTO_PROFILE_TIME = 6; //Seconds
 	
 	/** Drivetrain Constants */
-	public final static double TRACK_WIDTH = 25.5; //Inches TODO Change back to 24.5 for real robot
-	public final static double WHEEL_DIAMETER = 4; //Inches TODO Change back to 6 for real robot
+	public final static double TRACK_WIDTH = 24.5; //Inches TODO Change back to 24.5 for real robot
+	public final static double WHEEL_DIAMETER = 6; //Inches TODO Change back to 6 for real robot
 	public final static double PROFILE_STEP_TIME = 0.01;
 	public final static double ENCODER_CODES_REV = 256; //256 for grayhill encoders
 	public final static double GYRO_ERROR_MULTIPLIER = 9;

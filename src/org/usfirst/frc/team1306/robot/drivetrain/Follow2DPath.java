@@ -58,6 +58,8 @@ public class Follow2DPath extends CommandBase {
 			SmartDashboard.putNumber("2DPath-GyroCorrection:",gyroCorrection);
 		} catch(Exception e) { SmartDashboard.putString("ERROR:","2DPath array is out of bounds"); }
 
+		gyroCorrection = 0;
+		
 		/** Drives the robot backwards or forwards along path */
 		if(direction.equals(DriveDirection.BACKWARDS)) { drivetrain.driveVelocity(-(leftSpeed - gyroCorrection),-(rightSpeed + gyroCorrection)); }
 		else { drivetrain.driveVelocity(leftSpeed + gyroCorrection, rightSpeed - gyroCorrection); }
