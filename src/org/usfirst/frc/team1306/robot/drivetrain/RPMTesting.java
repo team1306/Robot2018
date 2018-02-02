@@ -20,7 +20,7 @@ public class RPMTesting extends CommandBase{
 
 	@Override
 	protected void execute() {
-		drivetrain.driveVelocity(500, 500);
+		drivetrain.driveVelocity(213*4, 213*4);
 	}
 
 	@Override

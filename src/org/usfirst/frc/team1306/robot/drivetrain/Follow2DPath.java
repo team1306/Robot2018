@@ -46,9 +46,12 @@ public class Follow2DPath extends CommandBase {
 		/** Getting speed each side of drivetrain should be at */
 		double leftSpeed = 0, rightSpeed = 0;
 		try {
-			leftSpeed = path.smoothLeftVelocity[counter][1] * Constants.FPS_TO_RPM_CONVERSION;
-			rightSpeed = path.smoothRightVelocity[counter][1] * Constants.FPS_TO_RPM_CONVERSION;
+			leftSpeed = path.smoothLeftVelocity[counter][1] * Constants.FPS_TO_RPM_CONVERSION * 60;
+			rightSpeed = path.smoothRightVelocity[counter][1] * Constants.FPS_TO_RPM_CONVERSION * 60;
 		} catch(Exception e) { SmartDashboard.putString("ERROR:","2DPath array is out of bounds"); }
+		
+		leftSpeed *= ((256 * 4) / 600);
+		rightSpeed *= ((256 * 4) / 600);
 		
 		/** Calculating heading correction, to keep robot properly oriented along path */
 		double gyroCorrection = 0, initCorrection = (path.heading[counter][1] + initAngle - drivetrain.getGyroAngle()) * 2;
