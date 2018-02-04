@@ -24,7 +24,7 @@ public class Follow2DPath extends CommandBase {
 		path = p;
 		time = t;
 		
-		initAngle = drivetrain.getGyroAngle();
+		initAngle = 0;drivetrain.getGyroAngle();
 		timer = new Timer();
 	}
 	
@@ -33,6 +33,8 @@ public class Follow2DPath extends CommandBase {
 		/* Resets the timer that will determine when the command will end */
 		timer.reset();
 		timer.start();
+		
+		initAngle = drivetrain.getGyroAngle();
 		
 		drivetrain.resetEncoders();
 		counter = 0; //Resets counter that's used to determine position in profile
@@ -46,22 +48,29 @@ public class Follow2DPath extends CommandBase {
 		/** Getting speed each side of drivetrain should be at */
 		double leftSpeed = 0, rightSpeed = 0;
 		try {
-			leftSpeed = path.smoothLeftVelocity[counter][1] * Constants.FPS_TO_RPM_CONVERSION * 60;
-			rightSpeed = path.smoothRightVelocity[counter][1] * Constants.FPS_TO_RPM_CONVERSION * 60;
+			leftSpeed = path.smoothLeftVelocity[counter][1] * Constants.FPS_TO_RPM_CONVERSION;
+			rightSpeed = path.smoothRightVelocity[counter][1] * Constants.FPS_TO_RPM_CONVERSION;
 		} catch(Exception e) { SmartDashboard.putString("ERROR:","2DPath array is out of bounds"); }
 		
-		leftSpeed *= ((256 * 4) / 600);
-		rightSpeed *= ((256 * 4) / 600);
+		double conversion = ((256 * 4) / 600) * 2;
+		
+		leftSpeed *= conversion;
+		rightSpeed *= conversion;
+		
+		//SmartDashboard.putNumber("Heading:",path.heading[counter][1]);
 		
 		/** Calculating heading correction, to keep robot properly oriented along path */
-		double gyroCorrection = 0, initCorrection = (path.heading[counter][1] + initAngle - drivetrain.getGyroAngle()) * 2;
+		double gyroCorrection = 0;
 		try {
+			double initCorrection = (path.heading[counter][1] + drivetrain.getGyroAngle() - initAngle);
+			SmartDashboard.putNumber("Heading:",path.heading[counter][1]);
 			if(direction.equals(DriveDirection.BACKWARDS)) { gyroCorrection = initCorrection; }   
-			else { gyroCorrection = -initCorrection; }
+			else { gyroCorrection = -(initCorrection*4); }
 			SmartDashboard.putNumber("2DPath-GyroCorrection:",gyroCorrection);
+			
 		} catch(Exception e) { SmartDashboard.putString("ERROR:","2DPath array is out of bounds"); }
 
-		gyroCorrection = 0;
+		//gyroCorrection = 0;
 		
 		/** Drives the robot backwards or forwards along path */
 		if(direction.equals(DriveDirection.BACKWARDS)) { drivetrain.driveVelocity(-(leftSpeed - gyroCorrection),-(rightSpeed + gyroCorrection)); }

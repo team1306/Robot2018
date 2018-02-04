@@ -41,6 +41,7 @@ public class Drivetrain extends Subsystem {
 			leftMotors.initEncoders();
 			leftMotors.setPIDParams(new PIDParameters(1.074,0.0,0.0,0.0));
 			rightMotors.initEncoders();
+			rightMotors.reverseSensor();
 			rightMotors.setPIDParams(new PIDParameters(1.074,0.0,0.0,0.0));
 		}
 		

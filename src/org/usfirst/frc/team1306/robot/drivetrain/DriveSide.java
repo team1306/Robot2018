@@ -57,6 +57,10 @@ public class DriveSide {
 		}
 	}
 	
+	public void reverseSensor() {
+		master.setSensorPhase(true);
+	}
+	
 	/** Sets up the PIDF control values */
 	public void setPIDParams(PIDParameters params) {
 		try {

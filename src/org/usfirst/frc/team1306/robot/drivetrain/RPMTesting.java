@@ -20,7 +20,15 @@ public class RPMTesting extends CommandBase{
 
 	@Override
 	protected void execute() {
-		drivetrain.driveVelocity(213*4, 213*4);
+		
+		double leftSpeed = 250;
+		double rightSpeed = 250;
+		
+		double conversion = ((256 * 4) / 600) * 2;
+		
+		leftSpeed *= conversion;
+		rightSpeed *= conversion;
+		drivetrain.driveVelocity(leftSpeed,rightSpeed);
 	}
 
 	@Override

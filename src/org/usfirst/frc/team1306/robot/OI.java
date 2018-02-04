@@ -1,11 +1,11 @@
 package org.usfirst.frc.team1306.robot;
 
+import org.usfirst.frc.team1306.robot.commands.autonomous.AutoRotate;
 import org.usfirst.frc.team1306.robot.commands.cubetake.FlipCube;
 import org.usfirst.frc.team1306.robot.commands.cubetake.IntakeCube;
 import org.usfirst.frc.team1306.robot.commands.cubetake.SpitCube;
 import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed;
 import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed.Speed;
-import org.usfirst.frc.team1306.robot.drivetrain.RPMTesting;
 import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
 
 import edu.wpi.first.wpilibj.GenericHID;
@@ -66,7 +66,7 @@ public class OI {
 		pbuttonLB.whenPressed(new AdjustSpeed(Speed.FAST));
 		pbuttonRB.whenPressed(new AdjustSpeed(Speed.SLOW));
 		
-		pbuttonB.whenPressed(new RPMTesting());
+		pbuttonB.whenPressed(new AutoRotate(90));
 		
 		pbuttonA.toggleWhenPressed(new FlipCube());
 		pbuttonX.toggleWhenPressed(new IntakeCube());
