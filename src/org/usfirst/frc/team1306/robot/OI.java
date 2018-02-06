@@ -7,7 +7,6 @@ import org.usfirst.frc.team1306.robot.commands.cubetake.SpitCube;
 import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed;
 import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed.Speed;
 import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;

@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class AutoRotate extends CommandBase {
 	
-	private double degrees, initAngle;
+	private double degrees;
 	private Timer timer;
 	
 	public AutoRotate(double d) {
@@ -15,36 +15,18 @@ public class AutoRotate extends CommandBase {
 	
 	@Override
 	protected void initialize() {
-		initAngle = drivetrain.getGyroAngle();
 		timer.reset();
 	}
 
 	@Override
 	protected void execute() {
 		
-		double output;
-		
-//		if(Math.abs(degrees - drivetrain.getGyroAngle()) > 0) {
-//			output = (degrees - drivetrain.getGyroAngle()) + 0.01; 
-//			
-//			
-//		} else {
-//			output = 0;
-//		}
-//		
-//		if(degrees - drivetrain.getGyroAngle() > 0) {
-//			
-//			drivetrain.drivePercentOutput(output,-output);
-//		} else {
-//			drivetrain.drivePercentOutput(-output,output);
-//		}
-		
-		
-		
-		if(degrees - drivetrain.getGyroAngle() > 0) {
-			drivetrain.drivePercentOutput(0.25,-0.25);
-		} else if(degrees - drivetrain.getGyroAngle() < 0) {
-			drivetrain.drivePercentOutput(-0.25,0.25);
+		double proportion = (degrees - drivetrain.getGyroAngle()) / degrees;
+		double output = proportion / 5;
+		if(drivetrain.getGyroAngle() < degrees) {
+			drivetrain.drivePercentOutput((output + 0.2),-(output + 0.2));
+		} else {
+			drivetrain.drivePercentOutput(-(output - 0.2),(output - 0.2));
 		}
 	}
 
