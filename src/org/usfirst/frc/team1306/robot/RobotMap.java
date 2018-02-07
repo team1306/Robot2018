@@ -26,7 +26,6 @@ public class RobotMap {
 	
 	/** Intake Ports */
 	public static final int INTAKE_PORT = 1;
-
 	public static final int RIGHT_CUBETAKE_PORT = 2;
 	public static final int LEFT_CUBETAKE_PORT = 3;
 	public static final int CUBETAKEARM_PORT = 5;
