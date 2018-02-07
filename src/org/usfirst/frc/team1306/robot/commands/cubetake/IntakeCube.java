@@ -8,10 +8,6 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
  */
 public class IntakeCube extends CommandBase{
 	
-	public IntakeCube() {
-		requires(intake);
-	}
-
 	@Override
 	protected void execute() {
 		intake.spinIn();
@@ -20,15 +16,5 @@ public class IntakeCube extends CommandBase{
 	@Override
 	protected boolean isFinished() {
 		return false; //Toggled so doesn't need to ever return true
-	}
-
-	@Override
-	protected void end() {
-		intake.stop();
-	}
-
-	@Override
-	protected void interrupted() {
-		end(); //Should stop the intake if toggled again
 	}
 }
