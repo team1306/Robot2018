@@ -687,22 +687,31 @@ public class FalconPathPlanner
 
 		//create waypoint path
 		double[][] waypoints = new double[][]{
+//			{0,0},
+//			{33.83/12,0},
+//			{67.66/12,-55/12},
+//			{101.5/12,-55/12},
+			
+//			{0,0},
+//			{25.375/12,0},
+//			{50.75/12,-55/12},
+//			{101.5/12,s-55/12},
+			
 			{0,0},
-			{33.83/12,0},
-			{67.66/12,-55/12},
-			{101.5/12,-55/12},
+			{12/12,0},
+			{24/12,0},
 		}; 
 
-		double totalTime = 6; //seconds
+		double totalTime = 2; //seconds
 		double timeStep = 0.1; //period of control loop on Rio, seconds
-		double robotTrackWidth = 25.5/12; //distance between left and right wheels, feet
+		double robotTrackWidth = 24.5/12; //distance between left and right wheels, feet
 
 		final FalconPathPlanner path = new FalconPathPlanner(waypoints);
 		
 		Profile2DParams params = new Profile2DParams(totalTime,timeStep,robotTrackWidth);
 		
 		path.calculate(params);
-
+		
 		System.out.println("Time in ms: " + (System.currentTimeMillis()-start));
 
 		if(!GraphicsEnvironment.isHeadless())

@@ -34,7 +34,7 @@ public class AutonomousCommand extends CommandGroup {
 		SmartDashboard.putString("ScaleLocation:",scaleLocation);
 		
 		Profile2DParams params = new Profile2DParams(Constants.AUTO_PROFILE_TIME,Constants.PROFILE_STEP_TIME,Constants.TRACK_WIDTH/12); //Max profile time, time in-between steps, and track width in feet
-		
+
 		if(mode.equals(AutoMode.PLACE_SWITCH_SPLIT)) {
 			
 			if(switchLocation.equals("L")) {
@@ -47,6 +47,7 @@ public class AutonomousCommand extends CommandGroup {
 				path.calculate(params);
 				
 				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.5));	
+				addSequential(new PlaceAdditionalAutoCube(switchLocation));
 			}
 			
 		} else if(mode.equals(AutoMode.PLACE_SWITCH_STRAIGHT)) {

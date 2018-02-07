@@ -45,8 +45,8 @@ public class DriveSide {
 	/** Initializes the drivetrain encoders */
 	public void initEncoders() {
 		try {
-			master.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,00);
-			master.setSensorPhase(true);
+			master.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,0);
+			master.setSensorPhase(false);
 			master.configNominalOutputForward(0,0);
 			master.configNominalOutputReverse(0,0);
 			master.configPeakOutputForward(1,0);
@@ -57,10 +57,14 @@ public class DriveSide {
 		}
 	}
 	
+	public void reverseSensor() {
+		master.setSensorPhase(true);
+	}
+	
 	/** Sets up the PIDF control values */
 	public void setPIDParams(PIDParameters params) {
 		try {
-			master.config_kF(0,params.f,0);
+			//master.config_kF(0,params.f,0);
 			master.config_kP(0,params.p,0);
 			master.config_kI(0,params.i,0);
 			master.config_kD(0,params.d,0);

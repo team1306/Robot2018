@@ -39,9 +39,10 @@ public class Drivetrain extends Subsystem {
 		/* If encoders are present, initialized them in appropriate driveside */
 		if(settings.encodersPresent) {
 			leftMotors.initEncoders();
-			leftMotors.setPIDParams(new PIDParameters(1.4,0.85,0.0,0.0));
+			leftMotors.setPIDParams(new PIDParameters(1.074,0.0,0.0,0.0));
 			rightMotors.initEncoders();
-			rightMotors.setPIDParams(new PIDParameters(1.4,0.85,0.0,0.0));
+			rightMotors.reverseSensor();
+			rightMotors.setPIDParams(new PIDParameters(1.074,0.0,0.0,0.0));
 		}
 		
 		try {
