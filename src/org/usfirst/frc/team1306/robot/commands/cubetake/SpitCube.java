@@ -26,8 +26,10 @@ public class SpitCube extends CommandBase{
 	
 	@Override
 	protected void initialize() {
-		timer.reset();
-		timer.start();
+		if (check) {
+			timer.reset();
+			timer.start();	
+		}
 	}
 
 	@Override
@@ -37,7 +39,7 @@ public class SpitCube extends CommandBase{
 
 	@Override
 	protected boolean isFinished() {
-		if(check == true) {
+		if(check) {
 			if(timer.hasPeriodPassed(time)) {
 				intake.stop();
 				return true;

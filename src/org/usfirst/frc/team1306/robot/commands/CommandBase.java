@@ -6,6 +6,7 @@ import org.usfirst.frc.team1306.robot.drivetrain.Settings;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.DriveMode;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.ControllingType;
 import org.usfirst.frc.team1306.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team1306.robot.subsystems.Climber;
 import org.usfirst.frc.team1306.robot.subsystems.Cubetake;
 import org.usfirst.frc.team1306.robot.subsystems.VelocitySubsystem;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -26,6 +27,7 @@ public abstract class CommandBase extends Command {
 	protected static Cubetake intake;
 	protected static VelocitySubsystem shooter;
 	protected static Drivetrain drivetrain;
+	protected static Climber climber;
 	protected static OI oi;
 	
 	public static void init() {

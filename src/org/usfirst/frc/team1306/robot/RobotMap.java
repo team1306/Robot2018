@@ -28,12 +28,12 @@ public class RobotMap {
 	public static final int INTAKE_PORT = 1;
 	public static final int RIGHT_CUBETAKE_PORT = 2;
 	public static final int LEFT_CUBETAKE_PORT = 3;
-	public static final int CUBETAKEARM_PORT = 5;
-	public static final int RIGHT_INTAKE_PORT = 2;
-	public static final int LEFT_INTAKE_PORT = 3;
 	public static final int CUBETAKE_CHANNEL_ONE_PORT = 0;
 	public static final int CUBETAKE_CHANNEL_TWO_PORT = 1;
 	
 	/** Geartake Ports */
 	public static final int GEARTAKE_PORT = 4;
+	
+	/** Climber Ports */
+	public static final int CLIMBER_SPARK_PORT = 4;
 }

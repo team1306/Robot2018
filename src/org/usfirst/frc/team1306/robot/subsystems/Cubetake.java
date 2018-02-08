@@ -23,7 +23,6 @@ public class Cubetake extends Subsystem{
 	public Cubetake() {
 		leftIntakeMotor = new Spark(RobotMap.LEFT_CUBETAKE_PORT);
 		rightIntakeMotor = new Spark(RobotMap.RIGHT_CUBETAKE_PORT);
-		talon = new TalonSRX(RobotMap.CUBETAKEARM_PORT);
 		solenoid = new DoubleSolenoid(RobotMap.CUBETAKE_CHANNEL_ONE_PORT, RobotMap.CUBETAKE_CHANNEL_TWO_PORT);
 	}
 	

@@ -1,6 +1,10 @@
 package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.autonomous.AutoRotate;
+import org.usfirst.frc.team1306.robot.commands.climber.Climb;
+import org.usfirst.frc.team1306.robot.commands.cubetake.AdvancedDrop;
+import org.usfirst.frc.team1306.robot.commands.cubetake.CubetakeArmDown;
+import org.usfirst.frc.team1306.robot.commands.cubetake.CubetakeArmUp;
 import org.usfirst.frc.team1306.robot.commands.cubetake.FlipCube;
 import org.usfirst.frc.team1306.robot.commands.cubetake.IntakeCube;
 import org.usfirst.frc.team1306.robot.commands.cubetake.SpitCube;
@@ -49,14 +53,14 @@ public class OI {
 //		Button primaryDPadDown = new DPadPress(primaryController, DPadDirection.DOWN);
 		
 		//Declares and maps buttons to xbox controller buttons for secondary controller
-//		Button sbuttonA = new JoystickButton(secondaryController, ControllerButton.A.value);
+		Button sbuttonA = new JoystickButton(secondaryController, ControllerButton.A.value);
 //		Button sbuttonB = new JoystickButton(secondaryController, ControllerButton.B.value);
 //		Button sbuttonX = new JoystickButton(secondaryController, ControllerButton.X.value);
 //		Button sbuttonY = new JoystickButton(secondaryController, ControllerButton.Y.value);
-//		Button sbuttonRB = new JoystickButton(secondaryController, ControllerButton.RB.value);
-//		Button sbuttonLB = new JoystickButton(secondaryController, ControllerButton.LB.value);
-//		Button sbuttonStart = new JoystickButton(secondaryController,ControllerButton.START.value);
-//		Button sbuttonBack = new JoystickButton(secondaryController, ControllerButton.BACK.value);
+		Button sbuttonRB = new JoystickButton(secondaryController, ControllerButton.RB.value);
+		Button sbuttonLB = new JoystickButton(secondaryController, ControllerButton.LB.value);
+		Button sbuttonStart = new JoystickButton(secondaryController,ControllerButton.START.value);
+		Button sbuttonBack = new JoystickButton(secondaryController, ControllerButton.BACK.value);
 //		Button secondaryDPadUp = new DPadPress(secondaryControlsler, DPadDirection.UP);
 //		Button secondaryDPadRight = new DPadPress(secondaryController, DPadDirection.RIGHT);
 //		Button secondaryDPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
@@ -70,6 +74,12 @@ public class OI {
 		pbuttonA.toggleWhenPressed(new FlipCube());
 		pbuttonX.toggleWhenPressed(new IntakeCube());
 		pbuttonY.toggleWhenPressed(new SpitCube());
+		
+		
+		sbuttonA.whenPressed(new AdvancedDrop());
+		sbuttonRB.toggleWhenPressed(new CubetakeArmDown());
+		sbuttonLB.toggleWhenPressed(new CubetakeArmUp());
+		sbuttonBack.whenPressed(new Climb());
 	}
 	
 	public enum Controller {P,S}; //Controller (primary or secondary)
