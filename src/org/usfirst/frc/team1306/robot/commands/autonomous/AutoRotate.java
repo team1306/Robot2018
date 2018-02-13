@@ -2,32 +2,36 @@ package org.usfirst.frc.team1306.robot.commands.autonomous;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoRotate extends CommandBase {
 	
-	private double degrees;
+	private double d, degrees;
 	private Timer timer;
 	
 	public AutoRotate(double d) {
-		degrees = d + drivetrain.getGyroAngle();
+		this.d = d;
 		timer = new Timer();
 	}
 	
 	@Override
 	protected void initialize() {
 		timer.reset();
+		degrees = d + drivetrain.getGyroAngle();
 	}
 
 	@Override
 	protected void execute() {
 		
 		double proportion = (degrees - drivetrain.getGyroAngle()) / degrees;
-		double output = proportion / 5;
+		SmartDashboard.putNumber("Degreees",degrees);
+		SmartDashboard.putNumber("degrees - drivetrain.getGyroAngle()",(degrees - drivetrain.getGyroAngle()));
+		double output = proportion / 4;
 		if(drivetrain.getGyroAngle() < degrees) {
-			drivetrain.drivePercentOutput((output + 0.2),-(output + 0.2));
+			drivetrain.drivePercentOutput((output + 0.15),-(output + 0.15));
 		} else {
-			drivetrain.drivePercentOutput(-(output - 0.2),(output - 0.2));
-		}
+			drivetrain.drivePercentOutput(-(output + 0.15),(output + 0.15));
+		} //Left == Negative Right == Positive
 	}
 
 	@Override

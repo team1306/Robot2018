@@ -47,6 +47,7 @@ public class Drivetrain extends Subsystem {
 		
 		try {
 			navx = new AHRS(SPI.Port.kMXP);
+			navx.zeroYaw();
 			navx.reset(); //Resets yaw
 		} catch(RuntimeException ex) { SmartDashboard.putString("ERROR:","Cannot initialize the NavX"); }
 	}
