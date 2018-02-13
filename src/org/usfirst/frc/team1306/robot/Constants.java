@@ -8,14 +8,13 @@ public class Constants {
 
 	/** Subsystem Control (Switching to false will disable all output for that subsystem) */
 	public final static boolean DRIVETRAIN_ENABLED = true;
-	public final static boolean INTAKE_ENABLED = true;
+	public final static boolean CUBETAKE_ENABLED = true;
 	public final static boolean ELEVATOR_ENABLED = false;
-	public final static boolean VISION_ENABLED = false;
 	
 	/** SmartDashboard Debug Modes */
 	public static final boolean DRIVETRAIN_DEBUG = true;
 	public static final boolean GYRO_DEBUG = true;
-	public static final boolean VISION_DEBUG = false;
+	public static final boolean CUBETAKE_DEBUG = false;
 	
 	/** OI Constants */
 	public final static double DEADBAND = 0.15; //Joystick and trigger deadband
@@ -25,8 +24,8 @@ public class Constants {
 	public final static double AUTO_PROFILE_TIME = 5; //Seconds
 	
 	/** Drivetrain Constants */
-	public final static double TRACK_WIDTH = 24.5; //Inches TODO Change back to 24.5 for real robot
-	public final static double WHEEL_DIAMETER = 6; //Inches TODO Change back to 6 for real robot
+	public final static double TRACK_WIDTH = 24.5; //Inches
+	public final static double WHEEL_DIAMETER = 6; //Inches
 	public final static double PROFILE_STEP_TIME = 0.1;
 	public final static double ENCODER_CODES_REV = 256; //256 for grayhill encoders
 	public final static double GYRO_ERROR_MULTIPLIER = 9;
@@ -36,8 +35,9 @@ public class Constants {
 	public final static double IPS_TO_RPM_CONVERSION = (1/WHEEL_CIRCUMFERENCE) * 60; //Converts inch/sec into rot/min
 	public final static double ENCODER_INCHES_CONVERSION = (1 / (ENCODER_CODES_REV*4)) * WHEEL_CIRCUMFERENCE; //Converts encoder position to distance drivetrain has traveled
 	
-	/** Intake Constants */
-	public final static double INTAKE_VELOCITY = 0.75;
+	/** Cubetake Constants */
+	public final static double CUBETAKE_SPEED_SLOWER = 0.5;
+	public final static double CUBETAKE_SPEED_FASTER = 0.65;
 	
 	/** VelocitySubsystem Constants */
 	public final static double RS7_VEL_ADJ = 1.0;

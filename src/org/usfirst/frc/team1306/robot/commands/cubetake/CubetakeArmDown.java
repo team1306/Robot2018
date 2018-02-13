@@ -6,7 +6,7 @@ public class CubetakeArmDown extends CommandBase{
 
 	@Override
 	protected void execute() {
-		intake.CubetakeArmDown();
+		intake.actuate();
 	}
 	
 	@Override

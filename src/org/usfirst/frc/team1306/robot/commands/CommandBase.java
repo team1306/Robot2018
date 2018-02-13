@@ -34,9 +34,9 @@ public abstract class CommandBase extends Command {
 		
 		/* Drivetrain configuration which tells the subsystem how many Talon SRXs are present, if encoders and gyro are present, and what driving mode the driver wants */
 		driveConfig = new Settings();
-		driveConfig.add(new TalonSRX(RobotMap.LEFT_TALON_PORT),ControllingType.LEFT_MASTER);
-		driveConfig.add(new TalonSRX(RobotMap.RIGHT_TALON_PORT),ControllingType.RIGHT_MASTER);
-		driveConfig.add(new TalonSRX(RobotMap.LEFT_VICTOR_PORT),ControllingType.LEFT_SLAVE);
+		driveConfig.add(new TalonSRX(RobotMap.LEFT_DRIVETRAIN_TALON),ControllingType.LEFT_MASTER);
+		driveConfig.add(new TalonSRX(RobotMap.RIGHT_DRIVETRAIN_TALON),ControllingType.RIGHT_MASTER);
+		driveConfig.add(new TalonSRX(RobotMap.LEFT_DRIVETRAIN_VICTOR),ControllingType.LEFT_SLAVE);
 		driveConfig.add(new TalonSRX(RobotMap.RIGHT_VICTOR_PORT),ControllingType.RIGHT_SLAVE);
 		driveConfig.addEncoders(true);
 		driveConfig.setDriveMode(DriveMode.ARCADE);

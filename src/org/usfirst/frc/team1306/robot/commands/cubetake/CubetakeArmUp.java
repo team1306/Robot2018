@@ -6,7 +6,7 @@ public class CubetakeArmUp extends CommandBase{
 
 	@Override
 	protected void execute() {
-		intake.CubetakeArmUp();
+		intake.retract();
 	}
 	
 	@Override

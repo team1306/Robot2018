@@ -1,28 +1,32 @@
 package org.usfirst.frc.team1306.robot.subsystems;
-import org.usfirst.frc.team1306.robot.RobotMap;
 
+import org.usfirst.frc.team1306.robot.RobotMap;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+/**
+ * @Climber
+ * 
+ * Subsystem controlling our climbing mechanism, a ___ that pulls us up the side of the scale.
+ * 
+ * @author Ethan Dong
+ */
 public class Climber extends Subsystem{
 
-	private Spark climbMotor;
+	private Spark climberMotor;
 	
 	public Climber() {
-		climbMotor = new Spark(RobotMap.CLIMBER_SPARK_PORT);
+		climberMotor = new Spark(RobotMap.CLIMBER_SPARK);
 	}
 	
-	public void climbUp() {
-		climbMotor.set(0.5);
+	public void pull() {
+		//climbMotor.set(0.5);
 	}
 	
 	public void stop() {
-		climbMotor.set(0.0);
+		climberMotor.set(0);
 	}
 	
 	@Override
-	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-		
-	}
+	protected void initDefaultCommand() { }
 }

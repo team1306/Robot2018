@@ -14,26 +14,22 @@ public class RobotMap {
 	public static final int PRIMARY_PORT = 0;
 	public static final int SECONDARY_PORT = 1;
 	
+	/** Climber Ports */
+	public static final int CLIMBER_SPARK = 2;
+	
+	/** Cubetake Ports */
+	public static final int RIGHT_CUBETAKE_SPARK = 0;
+	public static final int LEFT_CUBETAKE_SPARK = 1;
+	public static final int CUBETAKE_SOLENOID_CHANNEL_ONE = 0;
+	public static final int CUBETAKE_SOLENOID_CHANNEL_TWO = 1;
+	
 	/** Drivetrain Ports */
-	public static final int LEFT_TALON_PORT = 1;
-	public static final int RIGHT_TALON_PORT = 2;
-	public static final int LEFT_VICTOR_PORT = 3;
+	public static final int LEFT_DRIVETRAIN_TALON = 1;
+	public static final int RIGHT_DRIVETRAIN_TALON = 2;
+	public static final int LEFT_DRIVETRAIN_VICTOR = 3;
 	public static final int RIGHT_VICTOR_PORT = 4;
 	
-	/** Shooter Ports */
-	public static final int SHOOTER_LEFT_PORT = 5;
-	public static final int SHOOTER_RIGHT_PORT = 6;
-	
-	/** Intake Ports */
-	public static final int INTAKE_PORT = 1;
-	public static final int RIGHT_CUBETAKE_PORT = 2;
-	public static final int LEFT_CUBETAKE_PORT = 3;
-	public static final int CUBETAKE_CHANNEL_ONE_PORT = 0;
-	public static final int CUBETAKE_CHANNEL_TWO_PORT = 1;
-	
-	/** Geartake Ports */
-	public static final int GEARTAKE_PORT = 4;
-	
-	/** Climber Ports */
-	public static final int CLIMBER_SPARK_PORT = 4;
+	/** Elevator Ports */
+	public static final int ELEVATOR_TALON = 5;
+
 }

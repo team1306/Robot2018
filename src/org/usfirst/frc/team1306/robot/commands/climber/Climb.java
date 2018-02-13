@@ -5,13 +5,16 @@ import org.usfirst.frc.team1306.robot.OI.Controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
 
+/**
+ * @Climb
+ * 
+ * @author Ethan Dong
+ */
 public class Climb extends CommandBase{
 	
 	@Override
 	protected void execute() {
-		if(OI.getButtonStatus(Controller.S, ControllerButton.START)) {
-			climber.climbUp();
-		}
+		climber.pull();
 	}
 
 	@Override

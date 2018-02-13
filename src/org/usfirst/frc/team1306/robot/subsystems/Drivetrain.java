@@ -79,8 +79,8 @@ public class Drivetrain extends Subsystem {
 	
 	/** Stops turning all drive-motors */
 	public void stop() {
-		leftMotors.set(ControlMode.PercentOutput,0.0);
-		rightMotors.set(ControlMode.PercentOutput,0.0);
+		leftMotors.set(ControlMode.PercentOutput,0);
+		rightMotors.set(ControlMode.PercentOutput,0);
 	}
 	
 	/** Set's position of both encoders back to zero */

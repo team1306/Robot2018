@@ -1,6 +1,5 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
-import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.drivetrain.Follow2DPath;
 import org.usfirst.frc.team1306.robot.drivetrain.Follow2DPath.DriveDirection;
 import org.usfirst.frc.team1306.robot.pathing.FalconPathPlanner;
@@ -25,7 +24,6 @@ public class PlaceAdditionalAutoCube extends CommandGroup {
 			addSequential(new Follow2DPath(path,DriveDirection.BACKWARDS,2.5));
 			addSequential(new AutoRotate(90));
 			addSequential(new Follow2DPath(path,DriveDirection.FORWARD,2.5));
-		}
-		
+		}	
 	}
 }
