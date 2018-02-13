@@ -1,8 +1,8 @@
 package org.usfirst.frc.team1306.robot;
 
-import org.usfirst.frc.team1306.robot.commands.cubetake.CubetakeArmDown;
-import org.usfirst.frc.team1306.robot.commands.cubetake.CubetakeArmUp;
-import org.usfirst.frc.team1306.robot.commands.cubetake.IntakeCube;
+import org.usfirst.frc.team1306.robot.commands.cubetake.ActuateArms;
+import org.usfirst.frc.team1306.robot.commands.cubetake.RetractArms;
+import org.usfirst.frc.team1306.robot.commands.cubetake.Collect;
 import org.usfirst.frc.team1306.robot.commands.cubetake.ScoreCube;
 import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed;
 import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed.Speed;
@@ -61,14 +61,14 @@ public class OI {
 //		Button secondaryDPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
 		
 		pbuttonA.whenPressed(new ScoreCube());
-		pbuttonX.toggleWhenPressed(new IntakeCube());
+		pbuttonX.toggleWhenPressed(new Collect());
 		pbuttonLB.whenPressed(new AdjustSpeed(Speed.FAST));
 		pbuttonRB.whenPressed(new AdjustSpeed(Speed.SLOW));
 		
 		sbuttonA.whenPressed(new ScoreCube());
-		sbuttonB.toggleWhenPressed(new CubetakeArmDown());
-		sbuttonX.toggleWhenPressed(new IntakeCube());
-		sbuttonY.toggleWhenPressed(new CubetakeArmUp());
+		sbuttonB.toggleWhenPressed(new ActuateArms());
+		sbuttonX.toggleWhenPressed(new Collect());
+		sbuttonY.toggleWhenPressed(new RetractArms());
 	}
 	
 	public enum Controller {P,S}; //Controller (primary or secondary)

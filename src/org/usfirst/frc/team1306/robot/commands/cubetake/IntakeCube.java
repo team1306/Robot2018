@@ -1,33 +1,18 @@
 package org.usfirst.frc.team1306.robot.commands.cubetake;
 
-import org.usfirst.frc.team1306.robot.commands.CommandBase;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  * @IntakeCube
  * 
- * Command to spin the intake wheels inward; toggled.
+ * CommandGroup that puts the carriage in the "down-position", pulls in a 
+ * power-cube and then raises the carriage to the carrying position.
  * 
- * @author Ethan Dong
+ * @author Jackson Goth
  */
-public class IntakeCube extends CommandBase{
-	
-	@Override
-	protected void execute() {
-		intake.intake();
-	}
+public class IntakeCube extends CommandGroup {
 
-	@Override
-	protected boolean isFinished() {
-		return false; //Toggled so doesn't need to ever return true
-	}
-	
-	@Override
-	protected void end() {
-		intake.stop();
-	}
-
-	@Override
-	protected void interrupted() {
-		end(); //Should stop the intake if toggled again
+	public IntakeCube() {
+		//addSequential(new Elevate(Position.DOWN))
 	}
 }

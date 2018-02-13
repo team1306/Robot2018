@@ -4,27 +4,24 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * @SpitCube
- * 
- * Command to spin the intake wheels outward, toggled or timed.
- * 
+ * @SpitCube - Command to spin the intake wheels outward; toggled or timed.
  * @author Ethan Dong
  */
-public class SpitCube extends CommandBase{
+public class Spit extends CommandBase{
 	
 	private boolean isTimed;
-	private Timer timer;
 	private double runTime;
+	private Timer timer;
 	
-	public SpitCube(double time) {
+	public Spit(double time) { //If double given, spit for this amount of time.
 		isTimed = true;
 		runTime = time;
 		
 		timer = new Timer();
 	}
 	
-	public SpitCube() {
-		isTimed = false;
+	public Spit() {
+		isTimed = false; //Toggled spit
 	}
 	
 	@Override
@@ -37,27 +34,17 @@ public class SpitCube extends CommandBase{
 
 	@Override
 	protected void execute() {
-		intake.spit();
+		cubetake.spit();
 	}
 
 	@Override
 	protected boolean isFinished() {
 		if(isTimed) {
 			if(timer.hasPeriodPassed(runTime)) {
-				intake.stop();
+				cubetake.stop();
 				return true; //End if timer has passed the runTime
 			} return false;
 		} return false; //Toggled so doesn't need to ever return true
-	}
-
-	@Override
-	protected void end() {
-		intake.stop();
-	}
-
-	@Override
-	protected void interrupted() {
-		end(); //Should stop the intake if toggled again
 	}
 }
 

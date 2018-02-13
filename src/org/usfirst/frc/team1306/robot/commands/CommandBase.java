@@ -3,13 +3,14 @@ package org.usfirst.frc.team1306.robot.commands;
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.RobotMap;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings;
-import org.usfirst.frc.team1306.robot.drivetrain.Settings.DriveMode;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.ControllingType;
-import org.usfirst.frc.team1306.robot.subsystems.Drivetrain;
-import org.usfirst.frc.team1306.robot.subsystems.Climber;
+import org.usfirst.frc.team1306.robot.drivetrain.Settings.DriveMode;
 import org.usfirst.frc.team1306.robot.subsystems.Cubetake;
-import org.usfirst.frc.team1306.robot.subsystems.VelocitySubsystem;
+import org.usfirst.frc.team1306.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team1306.robot.subsystems.Elevator;
+
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -24,10 +25,9 @@ public abstract class CommandBase extends Command {
 
 	private static Settings driveConfig;
 	
-	protected static Cubetake intake;
-	protected static VelocitySubsystem shooter;
+	protected static Cubetake cubetake;
 	protected static Drivetrain drivetrain;
-	protected static Climber climber;
+	protected static Elevator elevator;
 	protected static OI oi;
 	
 	public static void init() {
@@ -41,8 +41,9 @@ public abstract class CommandBase extends Command {
 		driveConfig.addEncoders(true);
 		driveConfig.setDriveMode(DriveMode.ARCADE);
 		drivetrain = new Drivetrain(driveConfig);
-
-		intake = new Cubetake();
+		
+		cubetake = new Cubetake();
+		elevator = new Elevator();
 		
 		oi = new OI(); //OI is always initialized last
 	}
