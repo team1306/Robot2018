@@ -27,9 +27,10 @@ public class RobotMap {
 	public static final int LEFT_DRIVETRAIN_TALON = 1;
 	public static final int RIGHT_DRIVETRAIN_TALON = 2;
 	public static final int LEFT_DRIVETRAIN_VICTOR = 3;
-	public static final int RIGHT_VICTOR_PORT = 4;
+	public static final int RIGHT_DRIVETRAIN_VICTOR = 4;
 	
 	/** Elevator Ports */
 	public static final int ELEVATOR_TALON = 5;
+	public static final int ELEVATOR_SOLENOID_CHANNEL = 2;
 
 }

@@ -35,6 +35,13 @@ public class Constants {
 	public final static double IPS_TO_RPM_CONVERSION = (1/WHEEL_CIRCUMFERENCE) * 60; //Converts inch/sec into rot/min
 	public final static double ENCODER_INCHES_CONVERSION = (1 / (ENCODER_CODES_REV*4)) * WHEEL_CIRCUMFERENCE; //Converts encoder position to distance drivetrain has traveled
 	
+	/** Elevator Constants */
+	public final static double ELEVATOR_MAX_POS = 1000; //TODO Calibrate
+	public final static double ELEVATOR_SCALE_HEIGHT = 800;
+	public final static double ELEVATOR_SWITCH_HEIGHT = 400;
+	public final static double ELEVATOR_CARRYING_HEIGHT = 400;
+	public final static double ELEVATOR_PICKUP_HEIGHT = 50;
+	
 	/** Cubetake Constants */
 	public final static double CUBETAKE_SPEED_SLOWER = 0.5;
 	public final static double CUBETAKE_SPEED_FASTER = 0.65;
