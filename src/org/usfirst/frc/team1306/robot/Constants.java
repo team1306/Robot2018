@@ -37,10 +37,11 @@ public class Constants {
 	
 	/** Elevator Constants */
 	public final static double ELEVATOR_MAX_POS = 1000; //TODO Calibrate
+	public final static double ELEVATOR_IN_RANGE_POS = 25;
 	public final static double ELEVATOR_SCALE_HEIGHT = 800;
 	public final static double ELEVATOR_SWITCH_HEIGHT = 400;
 	public final static double ELEVATOR_CARRYING_HEIGHT = 400;
-	public final static double ELEVATOR_PICKUP_HEIGHT = 50;
+	public final static double ELEVATOR_FLOOR_HEIGHT = 50;
 	
 	/** Cubetake Constants */
 	public final static double CUBETAKE_SPEED_SLOWER = 0.5;
