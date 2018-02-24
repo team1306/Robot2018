@@ -1,6 +1,10 @@
 package org.usfirst.frc.team1306.robot.commands.cubetake;
 
+import org.usfirst.frc.team1306.robot.OI;
+import org.usfirst.frc.team1306.robot.OI.Controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
+import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
+
 import edu.wpi.first.wpilibj.Timer;
 
 /**
@@ -39,12 +43,18 @@ public class Spit extends CommandBase{
 
 	@Override
 	protected boolean isFinished() {
-		if(isTimed) {
-			if(timer.hasPeriodPassed(runTime)) {
-				cubetake.stop();
-				return true; //End if timer has passed the runTime
-			} return false;
-		} return false; //Toggled so doesn't need to ever return true
+		if(OI.getButtonStatus(Controller.P,ControllerButton.X)) {
+			return false;
+		} else {
+			cubetake.stop();
+			return true;
+		}
+//		if(isTimed) {
+//			if(timer.hasPeriodPassed(runTime)) {
+//				cubetake.stop();
+//				return true; //End if timer has passed the runTime
+//			} return false;
+//		} return false; //Toggled so doesn't need to ever return true
 	}
 }
 

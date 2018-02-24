@@ -23,6 +23,10 @@ public class Elevator extends Subsystem {
 		elevatorMotor.configVelocityMeasurementWindow(20,0);
 	}
 	
+	public void vbus(double speed) {
+		elevatorMotor.set(ControlMode.PercentOutput,speed);
+	}
+	
 	public void move(Position pos) {
 		double dist = pos.height - getEncoderPos();
 	}

@@ -27,7 +27,8 @@ public class Elevate extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		return elevator.getPosition() - position.height < 10;
+		//return elevator.getPosition() - position.height < 10;
+		return true;
 	}
 
 	@Override
