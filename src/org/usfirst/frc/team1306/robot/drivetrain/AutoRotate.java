@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1306.robot.commands.autonomous;
+package org.usfirst.frc.team1306.robot.drivetrain;
 
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import edu.wpi.first.wpilibj.Timer;

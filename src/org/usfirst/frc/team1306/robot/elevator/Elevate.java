@@ -9,10 +9,10 @@ import org.usfirst.frc.team1306.robot.subsystems.Elevator.Position;
  */
 public class Elevate extends CommandBase {
 
-	private Position position;
+	//private Position position;
 	
 	public Elevate(Position p) {
-		position = p;
+		//position = p;
 	}
 	
 	@Override

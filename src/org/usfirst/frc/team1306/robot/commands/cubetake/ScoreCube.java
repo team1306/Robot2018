@@ -15,6 +15,6 @@ public class ScoreCube extends CommandGroup {
 	public ScoreCube() {
 		addParallel(new Spit(2));
 		addSequential(new ActuateArms());
-		addSequential(new RetractArms(),1);
+		addSequential(new RetractArms(),2);
 	}
 }

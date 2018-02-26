@@ -33,6 +33,8 @@ public class Robot extends IterativeRobot {
 		//CameraServer.getInstance().startAutomaticCapture("usb",0); //Camera 1
 		
 		type.addObject("Switch RP", AutoMode.PLACE_SWITCH_SPLIT);
+		type.addObject("Scale/Switch Left", AutoMode.PLACE_BOTH_LEFT);
+		type.addObject("Scale/Switch Right", AutoMode.PLACE_BOTH_RIGHT);
 		type.addObject("Switch Straight", AutoMode.PLACE_SWITCH_STRAIGHT);
 		type.addObject("Baseline", AutoMode.AUTO_RUN);
 		type.addDefault("Do Nothing", AutoMode.DO_NOTHING);
@@ -42,8 +44,7 @@ public class Robot extends IterativeRobot {
 		position.addObject("Left Portal", StartingPosition.PORTAL_LEFT);
 		position.addDefault("Right Portal", StartingPosition.PORTAL_RIGHT);
 		
-		SmartDashboard.putData("Autonomous-Type:", type);
-		SmartDashboard.putData("Autonomous-Position:", position);
+		SmartDashboard.putString("Auto:","Type: " + type + " Location: " + position);
 		
 		new SmartDashboardUpdate().start();
 	}
@@ -59,7 +60,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = new AutonomousCommand(type.getSelected(),position.getSelected());
-
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
 		}
@@ -75,7 +75,6 @@ public class Robot extends IterativeRobot {
 	/** This function is called once the robot enters the driver controlled period */
 	@Override
 	public void teleopInit() {
-		
 		if (autonomousCommand != null) {
 			autonomousCommand.cancel(); //Stops the autonomous command
 		}

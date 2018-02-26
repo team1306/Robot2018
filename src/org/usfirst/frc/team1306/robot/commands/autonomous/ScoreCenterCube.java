@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
+import org.usfirst.frc.team1306.robot.drivetrain.AutoRotate;
 import org.usfirst.frc.team1306.robot.drivetrain.Follow2DPath;
 import org.usfirst.frc.team1306.robot.drivetrain.Follow2DPath.DriveDirection;
 import org.usfirst.frc.team1306.robot.pathing.FalconPathPlanner;
@@ -7,9 +8,9 @@ import org.usfirst.frc.team1306.robot.pathing.Profile2DParams;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class PlaceAdditionalAutoCube extends CommandGroup {
+public class ScoreCenterCube extends CommandGroup {
 
-	public PlaceAdditionalAutoCube(String switchLocation) {
+	public ScoreCenterCube(String switchLocation) {
 		
 		if(switchLocation.equals("L")) {
 			

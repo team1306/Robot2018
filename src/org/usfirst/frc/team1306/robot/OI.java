@@ -53,8 +53,8 @@ public class OI {
 		//Declares and maps buttons to xbox controller buttons for secondary controller
 		Button sbuttonA = new JoystickButton(secondaryController, ControllerButton.A.value); //Score power-cube
 		Button sbuttonB = new JoystickButton(secondaryController, ControllerButton.B.value); //Lower cubetake
-		Button sbuttonX = new JoystickButton(secondaryController, ControllerButton.X.value); //Intake power-cube
-		Button sbuttonY = new JoystickButton(secondaryController, ControllerButton.Y.value); //Raise cubetake
+//		Button sbuttonX = new JoystickButton(secondaryController, ControllerButton.X.value); //Intake power-cube
+//		Button sbuttonY = new JoystickButton(secondaryController, ControllerButton.Y.value); //Raise cubetake
 //		Button sbuttonLB = new JoystickButton(secondaryController, ControllerButton.LB.value);
 //		Button sbuttonRB = new JoystickButton(secondaryController, ControllerButton.RB.value);
 //		Button sbuttonStart = new JoystickButton(secondaryController,ControllerButton.START.value); //Climber pulley?

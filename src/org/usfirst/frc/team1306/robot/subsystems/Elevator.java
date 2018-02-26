@@ -28,12 +28,12 @@ public class Elevator extends Subsystem {
 	}
 	
 	public void move(Position pos) {
-		double dist = pos.height - getEncoderPos();
+		//double dist = pos.height - getEncoderPos();
 	}
 	
-	private void move(int vel) {
-		elevatorMotor.set(ControlMode.Velocity,vel);
-	}
+//	private void move(int vel) {
+//		elevatorMotor.set(ControlMode.Velocity,vel);
+//	}
 	
 	public double getEncoderPos() {
 		return elevatorMotor.getSensorCollection().getQuadraturePosition();

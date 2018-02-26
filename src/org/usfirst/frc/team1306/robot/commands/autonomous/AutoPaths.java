@@ -6,6 +6,42 @@ package org.usfirst.frc.team1306.robot.commands.autonomous;
  */
 public class AutoPaths {
 
+	/** Scale / Switch Dual Autos */
+	
+	public final static double[][] scaleLeftStartLeft = new double[][] {
+		{0,0},
+		{120/12,0},
+		{198.47/12,-30.4/12},
+		{258.47/12,-30.4/12},
+	};
+	
+	public final static double[][] scaleRightStartRight = new double[][] {
+		{0,0},
+		{120/12,0},
+		{198.47/12,30.4/12},
+		{258.47/12,30.4/12},
+	};
+	
+	public final static double[][] scaleReverse = new double[][] {
+		{0,0},
+		{42/12,0},
+	};
+	
+	public final static double[][] secondCubePickup = new double[][] {
+		{0,0},
+		{16/12,0},
+	};
+	
+	public final static double[][] crossPlatformZone = new double[][] {
+		{0,0},
+		{140/12,0},
+	};
+	
+	public final static double[][] platformZoneAdj = new double[][] {
+		{0,0},
+		{6/12,0},
+	};
+	
 	/** Ranking Point Switch Autos */
 	
 	public final static double[][] switchPathLeft = new double[][]{
