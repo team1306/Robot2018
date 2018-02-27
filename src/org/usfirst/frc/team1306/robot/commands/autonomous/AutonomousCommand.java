@@ -58,7 +58,6 @@ public class AutonomousCommand extends CommandGroup {
 			}
 			
 		} else if(mode.equals(AutoMode.PLACE_BOTH_LEFT)) { 
-			
 			if(scaleLocation.equals("L")) {
 				FalconPathPlanner scalePath = new FalconPathPlanner(AutoPaths.scaleLeftStartLeft);
 				FalconPathPlanner scaleReversePath = new FalconPathPlanner(AutoPaths.scaleReverse);
@@ -90,20 +89,41 @@ public class AutonomousCommand extends CommandGroup {
 					addSequential(new Follow2DPath(platformAdjPath,DriveDirection.FORWARD,1.1));
 					addSequential(new ScoreCube());
 				}
-				
 			} else if(switchLocation.equals("L")) {
 				FalconPathPlanner switchPath = new FalconPathPlanner(AutoPaths.switchLeftStartLeft);
 				FalconPathPlanner footBack = new FalconPathPlanner(AutoPaths.footBack);
+				FalconPathPlanner switchBackUp = new FalconPathPlanner(AutoPaths.switchBackUp);
+				FalconPathPlanner switchLeftScaleRight = new FalconPathPlanner(AutoPaths.switchLeftScaleRight);
 				switchPath.calculate(params);
 				footBack.calculate(new Profile2DParams(1,Constants.PROFILE_STEP_TIME,1.1));
+				switchBackUp.calculate(new Profile2DParams(2,Constants.PROFILE_STEP_TIME,Constants.TRACK_WIDTH/12));
+				switchLeftScaleRight.calculate(params);
 				
 				addSequential(new Follow2DPath(switchPath,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.1));
 				addSequential(new ScoreCube());
 				addSequential(new Follow2DPath(footBack,DriveDirection.BACKWARDS,1.1));
 				addParallel(new IntakeCube());
 				addSequential(new Follow2DPath(footBack,DriveDirection.FORWARD,1.1));
+				addSequential(new Follow2DPath(switchBackUp,DriveDirection.BACKWARDS,2.1));
+				addSequential(new AutoRotate(-25.55));
+				addSequential(new Follow2DPath(switchLeftScaleRight,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.1));
+				addSequential(new ScoreCube());
 			} else {
+				FalconPathPlanner scalePath = new FalconPathPlanner(AutoPaths.scaleRightStartLeft);
+				FalconPathPlanner scaleReversePath = new FalconPathPlanner(AutoPaths.scaleReverse);
+				FalconPathPlanner secondCubePickup = new FalconPathPlanner(AutoPaths.secondCubePickup);
+				scalePath.calculate(new Profile2DParams(8,Constants.PROFILE_STEP_TIME,Constants.TRACK_WIDTH/12));
+				scaleReversePath.calculate(new Profile2DParams(2,Constants.PROFILE_STEP_TIME,Constants.TRACK_WIDTH/12));
+				secondCubePickup.calculate(new Profile2DParams(1,Constants.PROFILE_STEP_TIME,Constants.TRACK_WIDTH/12));
 				
+				addSequential(new Follow2DPath(scalePath,DriveDirection.FORWARD,8.1));
+				addSequential(new ScoreCube());
+				addSequential(new Follow2DPath(scaleReversePath,DriveDirection.BACKWARDS,2.1));
+				addSequential(new AutoRotate(-150));
+				addParallel(new IntakeCube());
+				addSequential(new Follow2DPath(secondCubePickup,DriveDirection.FORWARD,1.1));
+				addSequential(new Skid(SkidSide.LEFT,-25));
+				addSequential(new ScoreCube());
 			}
 			
 		} else if(mode.equals(AutoMode.PLACE_BOTH_RIGHT)) {
@@ -141,9 +161,40 @@ public class AutonomousCommand extends CommandGroup {
 					addSequential(new ScoreCube());
 				}
 			} else if(switchLocation.equals("R")) {
+				FalconPathPlanner switchPath = new FalconPathPlanner(AutoPaths.switchRightStartRight);
+				FalconPathPlanner footBack = new FalconPathPlanner(AutoPaths.footBack);
+				FalconPathPlanner switchBackUp = new FalconPathPlanner(AutoPaths.switchBackUp);
+				FalconPathPlanner switchRightScaleLeft = new FalconPathPlanner(AutoPaths.switchRightScaleLeft);
+				switchPath.calculate(params);
+				footBack.calculate(new Profile2DParams(1,Constants.PROFILE_STEP_TIME,1.1));
+				switchBackUp.calculate(new Profile2DParams(2,Constants.PROFILE_STEP_TIME,Constants.TRACK_WIDTH/12));
+				switchRightScaleLeft.calculate(params);
 				
+				addSequential(new Follow2DPath(switchPath,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.1));
+				addSequential(new ScoreCube());
+				addSequential(new Follow2DPath(footBack,DriveDirection.BACKWARDS,1.1));
+				addParallel(new IntakeCube());
+				addSequential(new Follow2DPath(footBack,DriveDirection.FORWARD,1.1));
+				addSequential(new Follow2DPath(switchBackUp,DriveDirection.BACKWARDS,2.1));
+				addSequential(new AutoRotate(25.55));
+				addSequential(new Follow2DPath(switchRightScaleLeft,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.1));
+				addSequential(new ScoreCube());
 			} else {
+				FalconPathPlanner scalePath = new FalconPathPlanner(AutoPaths.scaleLeftStartRight);
+				FalconPathPlanner scaleReversePath = new FalconPathPlanner(AutoPaths.scaleReverse);
+				FalconPathPlanner secondCubePickup = new FalconPathPlanner(AutoPaths.secondCubePickup);
+				scalePath.calculate(new Profile2DParams(8,Constants.PROFILE_STEP_TIME,Constants.TRACK_WIDTH/12));
+				scaleReversePath.calculate(new Profile2DParams(2,Constants.PROFILE_STEP_TIME,Constants.TRACK_WIDTH/12));
+				secondCubePickup.calculate(new Profile2DParams(1,Constants.PROFILE_STEP_TIME,Constants.TRACK_WIDTH/12));
 				
+				addSequential(new Follow2DPath(scalePath,DriveDirection.FORWARD,8.1));
+				addSequential(new ScoreCube());
+				addSequential(new Follow2DPath(scaleReversePath,DriveDirection.BACKWARDS,2.1));
+				addSequential(new AutoRotate(150));
+				addParallel(new IntakeCube());
+				addSequential(new Follow2DPath(secondCubePickup,DriveDirection.FORWARD,1.1));
+				addSequential(new Skid(SkidSide.RIGHT,25));
+				addSequential(new ScoreCube());
 			}
 			
 		} else if(mode.equals(AutoMode.PLACE_SWITCH_STRAIGHT)) {
