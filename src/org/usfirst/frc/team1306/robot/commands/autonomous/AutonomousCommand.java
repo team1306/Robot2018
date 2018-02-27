@@ -12,7 +12,6 @@ import org.usfirst.frc.team1306.robot.drivetrain.Skid.SkidSide;
 import org.usfirst.frc.team1306.robot.pathing.FalconPathPlanner;
 import org.usfirst.frc.team1306.robot.pathing.Profile;
 import org.usfirst.frc.team1306.robot.pathing.Profile2DParams;
-
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -50,7 +49,7 @@ public class AutonomousCommand extends CommandGroup {
 				path.calculate(params);
 				
 				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.1));	
-			} else if(switchLocation.equals("R")) {
+			} else {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathRight);
 				path.calculate(params);
 				
@@ -78,7 +77,7 @@ public class AutonomousCommand extends CommandGroup {
 				if(switchLocation.equals("L")) {
 					addSequential(new Skid(SkidSide.RIGHT,25));
 					addSequential(new ScoreCube());
-				} else if(switchLocation.equals("R")) {
+				} else {
 					FalconPathPlanner platformZonePath = new FalconPathPlanner(AutoPaths.crossPlatformZone);
 					FalconPathPlanner platformAdjPath = new FalconPathPlanner(AutoPaths.platformZoneAdj);
 					platformZonePath.calculate(new Profile2DParams(2,Constants.PROFILE_STEP_TIME,Constants.TRACK_WIDTH/12));
@@ -91,6 +90,19 @@ public class AutonomousCommand extends CommandGroup {
 					addSequential(new Follow2DPath(platformAdjPath,DriveDirection.FORWARD,1.1));
 					addSequential(new ScoreCube());
 				}
+				
+			} else if(switchLocation.equals("L")) {
+				FalconPathPlanner switchPath = new FalconPathPlanner(AutoPaths.switchLeftStartLeft);
+				FalconPathPlanner footBack = new FalconPathPlanner(AutoPaths.footBack);
+				switchPath.calculate(params);
+				footBack.calculate(new Profile2DParams(1,Constants.PROFILE_STEP_TIME,1.1));
+				
+				addSequential(new Follow2DPath(switchPath,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.1));
+				addSequential(new ScoreCube());
+				addSequential(new Follow2DPath(footBack,DriveDirection.BACKWARDS,1.1));
+				addParallel(new IntakeCube());
+				addSequential(new Follow2DPath(footBack,DriveDirection.FORWARD,1.1));
+			} else {
 				
 			}
 			
@@ -124,16 +136,20 @@ public class AutonomousCommand extends CommandGroup {
 					addSequential(new AutoRotate(-90));
 					addSequential(new Follow2DPath(platformAdjPath,DriveDirection.FORWARD,1.1));
 					addSequential(new ScoreCube());
-				} else if(switchLocation.equals("R")) {
+				} else {
 					addSequential(new Skid(SkidSide.LEFT,-25));
 					addSequential(new ScoreCube());
 				}
+			} else if(switchLocation.equals("R")) {
+				
+			} else {
+				
 			}
 			
 		} else if(mode.equals(AutoMode.PLACE_SWITCH_STRAIGHT)) {
 			if(switchLocation.equals("L") ) {
 				
-			} else if(switchLocation.equals("R")) {
+			} else {
 				
 			}
 			
@@ -141,6 +157,6 @@ public class AutonomousCommand extends CommandGroup {
 			
 			addSequential(new FollowPath(new Profile(120,40,60,120,4.75))); //Distance, Velocity, Accel, Jerk, Max Time
 			
-		} else if(mode.equals(AutoMode.DO_NOTHING)) { SmartDashboard.putString("ERROR:","No auto mode selected!"); }
+		} else { SmartDashboard.putString("ERROR:","No auto mode selected!"); }
 	}
 }

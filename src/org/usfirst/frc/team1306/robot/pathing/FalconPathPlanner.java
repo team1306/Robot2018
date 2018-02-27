@@ -689,7 +689,11 @@ public class FalconPathPlanner
 		double[][] waypoints = new double[][]{
 
 			{0,0},
-			{42/12,0},
+			{40/12,0},
+			{140/12,-23/12},
+			{185/12,-23/12},
+//			{185/12,17/12},
+			{160/12,37.33/12},
 		}; 
 
 		double totalTime = 5; //seconds

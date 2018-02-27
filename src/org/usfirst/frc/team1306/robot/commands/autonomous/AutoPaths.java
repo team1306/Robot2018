@@ -8,6 +8,24 @@ public class AutoPaths {
 
 	/** Scale / Switch Dual Autos */
 	
+	public final static double[][] switchLeftStartLeft = new double[][] {
+		{0,0},
+		{40/12,0},
+		{140/12,23/12},
+		{185/12,23/12},
+//		{185/12,-17/12},
+		{160/12,-37.33/12},
+	};
+	
+	public final static double[][] switchRightStartRight = new double[][] {
+		{0,0},
+		{40/12,0},
+		{140/12,-23/12},
+		{185/12,-23/12},
+//		{185/12,17/12},
+		{160/12,37.33/12},
+	};
+	
 	public final static double[][] scaleLeftStartLeft = new double[][] {
 		{0,0},
 		{120/12,0},
