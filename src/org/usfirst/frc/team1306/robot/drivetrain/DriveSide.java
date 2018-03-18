@@ -64,7 +64,7 @@ public class DriveSide {
 	/** Sets up the PIDF control values */
 	public void setPIDParams(PIDParameters params) {
 		try {
-			//master.config_kF(0,params.f,0);
+			master.config_kF(0,params.f,0);
 			master.config_kP(0,params.p,0);
 			master.config_kI(0,params.i,0);
 			master.config_kD(0,params.d,0);

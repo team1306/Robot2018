@@ -13,20 +13,21 @@ public class Move extends CommandBase {
 	
 	@Override
 	protected void initialize() {
-		
+		elevator.unbrake();
 	}
 
 	@Override
 	protected void execute() {
-		elevator.vbus(0.2);
+		elevator.vbus(0.35);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		if(OI.getButtonStatus(Controller.P,ControllerButton.START)) {
+		if(OI.getButtonStatus(Controller.S,ControllerButton.RB)) {
 			return false;
 		} else {
 			elevator.stop();
+			elevator.brake();
 			return true;
 		}
 	}

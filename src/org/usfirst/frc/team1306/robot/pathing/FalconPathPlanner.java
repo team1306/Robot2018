@@ -689,10 +689,12 @@ public class FalconPathPlanner
 		double[][] waypoints = new double[][]{
 
 			{0,0},
-			{42/12,0},
+			{20.3/12,0},
+			{40.6/12,-64/12},
+			{101.5/12,-62/12},
 		}; 
 
-		double totalTime = 5; //seconds
+		double totalTime = 4; //seconds
 		double timeStep = 0.1; //period of control loop on Rio, seconds
 		double robotTrackWidth = 24.5/12; //distance between left and right wheels, feet
 

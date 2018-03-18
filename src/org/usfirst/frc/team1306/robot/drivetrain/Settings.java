@@ -16,7 +16,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 public class Settings {
 
 	public ArrayList<BaseMotorController> leftSide, rightSide; //Controllers on each side of drivetrain
-	public boolean encodersPresent = false; //If we need to initialize encoders
+	public boolean encodersPresent = true; //If we need to initialize encoders
 	public DriveMode driveMode; //ArcadeDrive, TankDrive, OutreachDrive?
 	
 	public Settings() {

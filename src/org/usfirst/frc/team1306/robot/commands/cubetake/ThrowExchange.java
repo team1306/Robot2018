@@ -11,20 +11,20 @@ import edu.wpi.first.wpilibj.Timer;
  * @SpitCube - Command to spin the intake wheels outward; toggled or timed.
  * @author Ethan Dong
  */
-public class Spit extends CommandBase{
+public class ThrowExchange extends CommandBase{
 	
 	private boolean isTimed;
 	private double runTime;
 	private Timer timer;
 	
-	public Spit(double time) { //If double given, spit for this amount of time.
+	public ThrowExchange(double time) { //If double given, spit for this amount of time.
 		isTimed = true;
 		runTime = time;
 		
 		timer = new Timer();
 	}
 	
-	public Spit() {
+	public ThrowExchange() {
 		isTimed = false; //Toggled spit
 	}
 	
@@ -38,7 +38,7 @@ public class Spit extends CommandBase{
 
 	@Override
 	protected void execute() {
-		cubetake.spit();
+		cubetake.throwExchange();
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class Spit extends CommandBase{
 				cubetake.stop();
 				return true; //End if timer has passed the runTime
 			} return false;
-		} else if(OI.getButtonStatus(Controller.P,ControllerButton.A)) {
+		} else if(OI.getButtonStatus(Controller.P,ControllerButton.B)) {
 			return false;
 		} else {
 			cubetake.stop();
@@ -69,4 +69,3 @@ public class Spit extends CommandBase{
 		end();
 	}
 }
-

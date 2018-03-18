@@ -13,20 +13,21 @@ public MoveDOwn() {
 	
 	@Override
 	protected void initialize() {
-		
+		elevator.unbrake();
 	}
 
 	@Override
 	protected void execute() {
-		elevator.vbus(-0.8);
+		elevator.vbus(-0.95);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		if(OI.getButtonStatus(Controller.P,ControllerButton.BACK)) {
+		if(OI.getButtonStatus(Controller.S,ControllerButton.LB)) {
 			return false;
 		} else {
 			elevator.stop();
+			elevator.brake();
 			return true;
 		}
 	}

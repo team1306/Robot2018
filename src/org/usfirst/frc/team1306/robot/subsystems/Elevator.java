@@ -2,15 +2,19 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.VelocityMeasPeriod;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Elevator extends Subsystem {
 
 	private TalonSRX elevatorMotor;
+	private DoubleSolenoid brake;
 	
 	public Elevator() {
 		elevatorMotor = new TalonSRX(RobotMap.ELEVATOR_TALON);
@@ -21,6 +25,17 @@ public class Elevator extends Subsystem {
 		elevatorMotor.configPeakOutputReverse(-1,0);
 		elevatorMotor.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_10Ms,0);
 		elevatorMotor.configVelocityMeasurementWindow(20,0);
+		
+		brake = new DoubleSolenoid(2,3);
+		brake();
+	}
+	
+	public void brake() {
+		brake.set(DoubleSolenoid.Value.kForward);
+	}
+	
+	public void unbrake() {
+		brake.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 	public void vbus(double speed) {

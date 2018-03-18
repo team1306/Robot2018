@@ -47,15 +47,15 @@ public class AutoPaths {
 	public final static double[][] switchPathLeft = new double[][]{
 		{0,0},
 		{20.3/12,0},
-		{40.6/12,64/12},
-		{101.5/12,62/12},
+		{40.6/12,116/12},
+		{144.5/12,115/12},
 	};
 	
 	public final static double[][] switchPathRight = new double[][] {
 		{0,0},
 		{20.3/12,0},
-		{40.6/12,-64/12},
-		{101.5/12,-62/12},
+		{40.6/12,-79/12},
+		{153.5/12,-75/12},
 	};
 	
 	public final static double[][] footBack = new double[][] {

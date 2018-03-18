@@ -3,6 +3,7 @@ package org.usfirst.frc.team1306.robot.commands.autonomous;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.cubetake.IntakeCube;
 import org.usfirst.frc.team1306.robot.commands.cubetake.ScoreCube;
+import org.usfirst.frc.team1306.robot.commands.cubetake.Spit;
 import org.usfirst.frc.team1306.robot.drivetrain.AutoRotate;
 import org.usfirst.frc.team1306.robot.drivetrain.Follow2DPath;
 import org.usfirst.frc.team1306.robot.drivetrain.Follow2DPath.DriveDirection;
@@ -49,13 +50,15 @@ public class AutonomousCommand extends CommandGroup {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathLeft);
 				path.calculate(params);
 				
-				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.1));	
+				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.25));
+				addSequential(new Spit(2));
 			} else if(switchLocation.equals("R")) {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathRight);
 				path.calculate(params);
 				
-				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.1));	
-				addSequential(new ScoreCenterCube(switchLocation));
+				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.25));
+				addSequential(new Spit(2));
+//				addSequential(new ScoreCenterCube(switchLocation));
 			}
 			
 		} else if(mode.equals(AutoMode.PLACE_BOTH_LEFT)) { 

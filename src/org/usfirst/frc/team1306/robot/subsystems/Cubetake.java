@@ -27,8 +27,8 @@ public class Cubetake extends Subsystem{
 	
 	public void intake() {
 		if(Constants.CUBETAKE_ENABLED) {
-			leftIntakeMotor.set(Constants.CUBETAKE_SPEED_SLOWER);
-			rightIntakeMotor.set(-Constants.CUBETAKE_SPEED_FASTER);
+			leftIntakeMotor.set(Constants.CUBETAKE_SPEED_SLOWER+.15);
+			rightIntakeMotor.set(-Constants.CUBETAKE_SPEED_FASTER-.15);
 		}
 	}
 	
@@ -36,6 +36,13 @@ public class Cubetake extends Subsystem{
 		if(Constants.CUBETAKE_ENABLED) {
 			leftIntakeMotor.set(-Constants.CUBETAKE_SPEED_SLOWER);
 			rightIntakeMotor.set(Constants.CUBETAKE_SPEED_FASTER);
+		}
+	}
+	
+	public void throwExchange() {
+		if(Constants.CUBETAKE_ENABLED) {
+			leftIntakeMotor.set(-Constants.CUBETAKE_THROUGH);
+			rightIntakeMotor.set(Constants.CUBETAKE_THROUGH);
 		}
 	}
 	
