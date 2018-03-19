@@ -48,21 +48,15 @@ public class AutonomousCommand extends CommandGroup {
 			if(switchLocation.equals("L")) {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathLeft);
 				path.calculate(params);
-				
-<<<<<<< HEAD
+		
 				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.25));
 				addSequential(new Spit(2));
-			} else if(switchLocation.equals("R")) {
-=======
-				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.1));	
 			} else {
->>>>>>> a64bed4485858e5574e6cddda4c13e42a9faee33
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathRight);
 				path.calculate(params);
 				
 				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.25));
 				addSequential(new Spit(2));
-//				addSequential(new ScoreCenterCube(switchLocation));
 			}
 			
 		} else if(mode.equals(AutoMode.PLACE_BOTH_LEFT)) { 
