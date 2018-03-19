@@ -44,9 +44,9 @@ public class Constants {
 	public final static double ELEVATOR_FLOOR_HEIGHT = 50;
 	
 	/** Cubetake Constants */
-	public final static double CUBETAKE_SPEED_SLOWER = 0.35;
-	public final static double CUBETAKE_SPEED_FASTER = 0.5;
-	public final static double CUBETAKE_THROUGH = 0.95;
+	public final static double CUBETAKE_SPEED_SLOWER = -0.55;
+	public final static double CUBETAKE_SPEED_FASTER = -0.7;
+	public final static double CUBETAKE_THROUGH = -0.95;
 	
 	/** VelocitySubsystem Constants */
 	public final static double RS7_VEL_ADJ = 1.0;

@@ -8,6 +8,59 @@ public class AutoPaths {
 
 	/** Scale / Switch Dual Autos */
 	
+	public final static double[][] switchLeftStartLeft = new double[][] {
+		{0,0},
+		{40/12,0},
+		{140/12,23/12},
+		{187/12,23/12},
+//		{185/12,17/12},
+		{158/12,-37.39/12},
+	};
+	
+	public final static double[][] switchRightStartRight = new double[][] {
+		{0,0},
+		{40/12,0},
+		{140/12,-23/12},
+		{187/12,-23/12},
+//		{185/12,17/12},
+		{158/12,37.39/12},
+	};
+	
+	public final static double[][] switchBackUp = new double[][] {
+		{0,0},
+		{36.288/12,0},
+	};
+	
+	public final static double[][] switchLeftScaleRight = new double[][] {
+		{0,0},
+		{45/12,0},
+		{90.797/12,11.40/12},
+		{195.138/12,11.40/12},
+		{195.138/12,76.406/12},
+	};
+	
+	public final static double[][] switchRightScaleLeft = new double[][] {
+		{0,0},
+		{45/12,0},
+		{90.797/12,-11.40/12},
+		{195.138/12,-11.40/12},
+		{195.138/12,-76.406/12},
+	};
+	
+	public final static double[][] scaleRightStartLeft = new double[][] {
+		{0,0},
+		{192/12,0},
+		{192/12,-201.97/12},
+		{258.47/12,-201.97/12},
+	};
+	
+	public final static double[][] scaleLeftStartRight = new double[][] {
+		{0,0},
+		{192/12,0},
+		{192/12,201.97/12},
+		{258.47/12,201.97/12},
+	};
+	
 	public final static double[][] scaleLeftStartLeft = new double[][] {
 		{0,0},
 		{120/12,0},
