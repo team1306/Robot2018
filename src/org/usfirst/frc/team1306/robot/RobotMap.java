@@ -20,8 +20,8 @@ public class RobotMap {
 	/** Cubetake Ports */
 	public static final int RIGHT_CUBETAKE_SPARK = 0;
 	public static final int LEFT_CUBETAKE_SPARK = 1;
-	public static final int CUBETAKE_SOLENOID_CHANNEL_ONE = 0;
-	public static final int CUBETAKE_SOLENOID_CHANNEL_TWO = 1;
+	public static final int CUBETAKE_SOLENOID_CHANNEL_ONE = 6;
+	public static final int CUBETAKE_SOLENOID_CHANNEL_TWO = 7;
 	
 	/** Drivetrain Ports */
 	public static final int LEFT_DRIVETRAIN_TALON = 1;

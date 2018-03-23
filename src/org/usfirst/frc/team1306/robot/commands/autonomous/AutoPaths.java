@@ -98,22 +98,37 @@ public class AutoPaths {
 	/** Ranking Point Switch Autos */
 	
 	public final static double[][] switchPathLeft = new double[][]{
+//		{0,0},
+//		{20.3/12,0},
+//		{40.6/12,116/12},
+//		{144.5/12,115/12},
+		
 		{0,0},
-		{20.3/12,0},
-		{40.6/12,116/12},
-		{144.5/12,115/12},
+ 		{20.3/12,0},
+		{40.6/12,113/12},
+		{111.5/12,111/12},
 	};
 	
 	public final static double[][] switchPathRight = new double[][] {
+//		{0,0},
+//		{20.3/12,0},
+//		{40.6/12,-79/12},
+//		{153.5/12,-75/12},
+		
 		{0,0},
-		{20.3/12,0},
-		{40.6/12,-79/12},
-		{153.5/12,-75/12},
+ 		{20.3/12,0},
+		{40.6/12,-73/12},
+		{130.5/12,-71/12},
 	};
 	
 	public final static double[][] footBack = new double[][] {
 		{0,0},
 		{12/12,0},
 		{24/12,0},
+	};
+	
+	public final static double[][] autolinePath = new double[][] {
+		{0,0},
+		{140/12,0},
 	};
 }

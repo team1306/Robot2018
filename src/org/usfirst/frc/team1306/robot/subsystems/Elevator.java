@@ -26,7 +26,7 @@ public class Elevator extends Subsystem {
 		elevatorMotor.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_10Ms,0);
 		elevatorMotor.configVelocityMeasurementWindow(20,0);
 		
-		brake = new DoubleSolenoid(2,3);
+		brake = new DoubleSolenoid(4,5);
 		brake();
 	}
 	

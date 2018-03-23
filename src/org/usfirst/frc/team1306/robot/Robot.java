@@ -33,6 +33,7 @@ public class Robot extends IterativeRobot {
 		
 		CommandBase.init(); //Initializes all Subsystems
 		CameraServer.getInstance().startAutomaticCapture("usb",0); //Camera 1
+		CameraServer.getInstance().startAutomaticCapture("usb1",1);
 		
 		type.addObject("Switch RP", AutoMode.PLACE_SWITCH_SPLIT);
 		type.addObject("Scale/Switch Left", AutoMode.PLACE_BOTH_LEFT);

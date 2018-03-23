@@ -65,7 +65,7 @@ public class Follow2DPath extends CommandBase {
 			double initCorrection = (path.heading[counter][1] + drivetrain.getGyroAngle() - initAngle);
 			SmartDashboard.putNumber("Heading:",path.heading[counter][1]);
 			if(direction.equals(DriveDirection.BACKWARDS)) { gyroCorrection = initCorrection; }   
-			else { gyroCorrection = -(initCorrection*4); }
+			else { gyroCorrection = -(initCorrection*5); }
 			SmartDashboard.putNumber("2DPath-GyroCorrection:",gyroCorrection);
 			
 		} catch(Exception e) { SmartDashboard.putString("ERROR:","2DPath array is out of bounds"); }

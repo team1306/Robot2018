@@ -208,7 +208,11 @@ public class AutonomousCommand extends CommandGroup {
 			
 		} else if(mode.equals(AutoMode.AUTO_RUN)) {
 			
-			addSequential(new FollowPath(new Profile(120,40,60,120,4.75))); //Distance, Velocity, Accel, Jerk, Max Time
+			FalconPathPlanner path = new FalconPathPlanner(AutoPaths.autolinePath);
+			path.calculate(params);
+			addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME+.25));
+			
+			//addSequential(new FollowPath(new Profile(120,40,60,120,4.75))); //Distance, Velocity, Accel, Jerk, Max Time
 			
 		} else { SmartDashboard.putString("ERROR:","No auto mode selected!"); }
 	}
