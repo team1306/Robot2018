@@ -200,10 +200,22 @@ public class AutonomousCommand extends CommandGroup {
 			}
 			
 		} else if(mode.equals(AutoMode.PLACE_SWITCH_STRAIGHT)) {
-			if(switchLocation.equals("L") ) {
+			if(switchLocation.equals("L") && pos.equals(StartingPosition.PORTAL_LEFT)) {
 				
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.leftPortalSwitchPath);
+				path.calculate(params);
+				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME+.25));
+				addSequential(new Spit(2));
+			} else if(switchLocation.equals("R") && pos.equals(StartingPosition.PORTAL_RIGHT)) {
+				
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.rightPortalSwitchPath);
+				path.calculate(params);
+				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME+.25));
+				addSequential(new Spit(2));
 			} else {
-				
+				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.autolinePath);
+				path.calculate(params);
+				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME+.25));
 			}
 			
 		} else if(mode.equals(AutoMode.AUTO_RUN)) {

@@ -131,4 +131,16 @@ public class AutoPaths {
 		{0,0},
 		{140/12,0},
 	};
+	
+	public final static double[][] leftPortalSwitchPath = new double[][] {
+		{0,0},
+		{127/12,0},
+		{127/12,-39/12},
+	};
+	
+	public final static double[][] rightPortalSwitchPath = new double[][] {
+		{0,0},
+		{127/12,0},
+		{127/12,39/12},
+	};
 }
