@@ -7,11 +7,9 @@ import org.usfirst.frc.team1306.robot.commands.cubetake.Spit;
 import org.usfirst.frc.team1306.robot.drivetrain.AutoRotate;
 import org.usfirst.frc.team1306.robot.drivetrain.Follow2DPath;
 import org.usfirst.frc.team1306.robot.drivetrain.Follow2DPath.DriveDirection;
-import org.usfirst.frc.team1306.robot.drivetrain.FollowPath;
 import org.usfirst.frc.team1306.robot.drivetrain.Skid;
 import org.usfirst.frc.team1306.robot.drivetrain.Skid.SkidSide;
 import org.usfirst.frc.team1306.robot.pathing.FalconPathPlanner;
-import org.usfirst.frc.team1306.robot.pathing.Profile;
 import org.usfirst.frc.team1306.robot.pathing.Profile2DParams;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -27,9 +25,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class AutonomousCommand extends CommandGroup {
 
-	public enum AutoMode {PLACE_SWITCH_SPLIT, PLACE_BOTH_LEFT, PLACE_BOTH_RIGHT, PLACE_SWITCH_STRAIGHT, AUTO_RUN, DO_NOTHING};
+	public enum AutoMode {PLACE_SWITCH_SPLIT, PLACE_BOTH_LEFT, PLACE_BOTH_RIGHT, PLACE_SWITCH_PORTALS, AUTO_RUN, DO_NOTHING};
 	public enum StartingPosition {PORTAL_LEFT, PORTAL_RIGHT, EXCHANGE_LEFT, EXCHANGE_RIGHT};
-	public enum Plate {SWITCH_CLOSE, SWITCH_FAR, SCALE_CLOSE, SCALE_FAR}; //Note: close and far refers to our switch and whether we own the closer side of our starting position
 
 	public AutonomousCommand(AutoMode mode, StartingPosition pos) {
 
@@ -37,9 +34,6 @@ public class AutonomousCommand extends CommandGroup {
 		while(gameMessage.length() < 3) { gameMessage = DriverStation.getInstance().getGameSpecificMessage(); }
 		String switchLocation = gameMessage.substring(0,1);
 		String scaleLocation = gameMessage.substring(1,2);
-//		SmartDashboard.putString("SecretMessage:",gameMessage);
-//		SmartDashboard.putString("SwitchLocation:",switchLocation);
-//		SmartDashboard.putString("ScaleLocation:",scaleLocation);
 		
 		Profile2DParams params = new Profile2DParams(Constants.AUTO_PROFILE_TIME,Constants.PROFILE_STEP_TIME,Constants.TRACK_WIDTH/12); //Max profile time, time in-between steps, and track width in feet
 
@@ -51,6 +45,7 @@ public class AutonomousCommand extends CommandGroup {
 		
 				addSequential(new Follow2DPath(path,DriveDirection.FORWARD,Constants.AUTO_PROFILE_TIME + 0.25));
 				addSequential(new Spit(2));
+				
 			} else {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathRight);
 				path.calculate(params);
@@ -199,7 +194,7 @@ public class AutonomousCommand extends CommandGroup {
 				addSequential(new ScoreCube());
 			}
 			
-		} else if(mode.equals(AutoMode.PLACE_SWITCH_STRAIGHT)) {
+		} else if(mode.equals(AutoMode.PLACE_SWITCH_PORTALS)) {
 			if(switchLocation.equals("L") && pos.equals(StartingPosition.PORTAL_LEFT)) {
 				
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.leftPortalSwitchPath);

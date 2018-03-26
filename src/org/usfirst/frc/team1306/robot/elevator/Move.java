@@ -18,7 +18,7 @@ public class Move extends CommandBase {
 
 	@Override
 	protected void execute() {
-		elevator.vbus(0.35);
+		elevator.vbus(0.5);
 	}
 
 	@Override

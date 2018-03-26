@@ -103,10 +103,15 @@ public class AutoPaths {
 //		{40.6/12,116/12},
 //		{144.5/12,115/12},
 		
+//		{0,0},
+// 		{20.3/12,0},
+//		{40.6/12,113/12},
+//		{111.5/12,111/12},
+		
 		{0,0},
  		{20.3/12,0},
-		{40.6/12,113/12},
-		{111.5/12,111/12},
+		{40.6/12,89/12},
+		{139.5/12,87/12},
 	};
 	
 	public final static double[][] switchPathRight = new double[][] {
@@ -117,8 +122,8 @@ public class AutoPaths {
 		
 		{0,0},
  		{20.3/12,0},
-		{40.6/12,-73/12},
-		{130.5/12,-71/12},
+		{40.6/12,-85/12},
+		{138.5/12,-88/12},
 	};
 	
 	public final static double[][] footBack = new double[][] {
@@ -129,7 +134,7 @@ public class AutoPaths {
 	
 	public final static double[][] autolinePath = new double[][] {
 		{0,0},
-		{140/12,0},
+		{160/12,0},
 	};
 	
 	public final static double[][] leftPortalSwitchPath = new double[][] {

@@ -2,18 +2,15 @@ package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.cubetake.ActuateArms;
 import org.usfirst.frc.team1306.robot.commands.cubetake.Collect;
+import org.usfirst.frc.team1306.robot.commands.cubetake.IntakeBoomFuntime;
 import org.usfirst.frc.team1306.robot.commands.cubetake.RetractArms;
 import org.usfirst.frc.team1306.robot.commands.cubetake.Spit;
 import org.usfirst.frc.team1306.robot.commands.cubetake.ThrowExchange;
 import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed;
 import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed.Speed;
-import org.usfirst.frc.team1306.robot.drivetrain.AutoRotate;
 import org.usfirst.frc.team1306.robot.elevator.Move;
 import org.usfirst.frc.team1306.robot.elevator.MoveDOwn;
 import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
-import org.usfirst.frc.team1306.robot.triggers.DPadDirection;
-import org.usfirst.frc.team1306.robot.triggers.DPadPress;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -40,28 +37,28 @@ public class OI {
 		secondaryController = new XboxController(RobotMap.SECONDARY_PORT);
 		
 		//Declares and maps buttons to xbox controller buttons for primary controller
-		Button pbuttonA = new JoystickButton(primaryController, ControllerButton.A.value); //Score power-cube
+		Button pbuttonA = new JoystickButton(primaryController, ControllerButton.A.value); 
 		Button pbuttonB = new JoystickButton(primaryController, ControllerButton.B.value); 
-		Button pbuttonX = new JoystickButton(primaryController, ControllerButton.X.value); //Intake power-cube
+		Button pbuttonX = new JoystickButton(primaryController, ControllerButton.X.value);
 		Button pbuttonY = new JoystickButton(primaryController, ControllerButton.Y.value);
-		Button pbuttonLB = new JoystickButton(primaryController, ControllerButton.LB.value); //"Shift" down to low-speed
-		Button pbuttonRB = new JoystickButton(primaryController, ControllerButton.RB.value); //"Shift" up to high-speed
-		Button pbuttonStart = new JoystickButton(primaryController, ControllerButton.START.value); //Climber pulley?
-		Button pbuttonBack = new JoystickButton(primaryController, ControllerButton.BACK.value);
+		Button pbuttonLB = new JoystickButton(primaryController, ControllerButton.LB.value);
+		Button pbuttonRB = new JoystickButton(primaryController, ControllerButton.RB.value); 
+//		Button pbuttonStart = new JoystickButton(primaryController, ControllerButton.START.value);
+//		Button pbuttonBack = new JoystickButton(primaryController, ControllerButton.BACK.value);
 //		Button primaryDPadUp = new DPadPress(primaryController, DPadDirection.UP); 
-		DPadPress primaryDPadRight = new DPadPress(primaryController, DPadDirection.RIGHT);
+//		DPadPress primaryDPadRight = new DPadPress(primaryController, DPadDirection.RIGHT);
 //		Button primaryDPadLeft = new DPadPress(primaryController, DPadDirection.LEFT);
 //		Button primaryDPadDown = new DPadPress(primaryController, DPadDirection.DOWN);
 		
 		//Declares and maps buttons to xbox controller buttons for secondary controller
-		Button sbuttonA = new JoystickButton(secondaryController, ControllerButton.A.value); //Score power-cube
-		Button sbuttonB = new JoystickButton(secondaryController, ControllerButton.B.value); //Lower cubetake
-//		Button sbuttonX = new JoystickButton(secondaryController, ControllerButton.X.value); //Intake power-cube
-		Button sbuttonY = new JoystickButton(secondaryController, ControllerButton.Y.value); //Raise cubetake
+//		Button sbuttonA = new JoystickButton(secondaryController, ControllerButton.A.value); 
+		Button sbuttonB = new JoystickButton(secondaryController, ControllerButton.B.value);
+//		Button sbuttonX = new JoystickButton(secondaryController, ControllerButton.X.value); 
+		Button sbuttonY = new JoystickButton(secondaryController, ControllerButton.Y.value);
 		Button sbuttonLB = new JoystickButton(secondaryController, ControllerButton.LB.value);
 		Button sbuttonRB = new JoystickButton(secondaryController, ControllerButton.RB.value);
-		Button sbuttonStart = new JoystickButton(secondaryController,ControllerButton.START.value); //Climber pulley?
-		Button sbuttonBack = new JoystickButton(secondaryController, ControllerButton.BACK.value);
+//		Button sbuttonStart = new JoystickButton(secondaryController,ControllerButton.START.value);
+//		Button sbuttonBack = new JoystickButton(secondaryController, ControllerButton.BACK.value);
 //		Button secondaryDPadUp = new DPadPress(secondaryControlsler, DPadDirection.UP);
 //		Button secondaryDPadRight = new DPadPress(secondaryController, DPadDirection.RIGHT);
 //		Button secondaryDPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
@@ -72,6 +69,7 @@ public class OI {
 		pbuttonB.whenPressed(new ThrowExchange());
 //		pbuttonA.whenPressed(new ScoreCube());
 //		pbuttonX.toggleWhenPressed(new Collect());
+		pbuttonY.whenPressed(new IntakeBoomFuntime());
 		
 		pbuttonRB.whenPressed(new AdjustSpeed(Speed.FAST));
 		pbuttonLB.whenPressed(new AdjustSpeed(Speed.SLOW));

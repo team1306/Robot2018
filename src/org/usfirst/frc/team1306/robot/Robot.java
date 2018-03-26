@@ -5,7 +5,6 @@ import org.usfirst.frc.team1306.robot.commands.SmartDashboardUpdate;
 import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand;
 import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand.AutoMode;
 import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand.StartingPosition;
-
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -32,13 +31,13 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		
 		CommandBase.init(); //Initializes all Subsystems
-		CameraServer.getInstance().startAutomaticCapture("usb",0); //Camera 1
+		CameraServer.getInstance().startAutomaticCapture("usb",0);
 		CameraServer.getInstance().startAutomaticCapture("usb1",1);
 		
 		type.addObject("Switch RP", AutoMode.PLACE_SWITCH_SPLIT);
 		type.addObject("Scale/Switch Left", AutoMode.PLACE_BOTH_LEFT);
 		type.addObject("Scale/Switch Right", AutoMode.PLACE_BOTH_RIGHT);
-		type.addObject("Switch Straight", AutoMode.PLACE_SWITCH_STRAIGHT);
+		type.addObject("Switch Straight", AutoMode.PLACE_SWITCH_PORTALS);
 		type.addObject("Baseline", AutoMode.AUTO_RUN);
 		type.addDefault("Do Nothing", AutoMode.DO_NOTHING);
 		
@@ -64,6 +63,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 //		autonomousCommand = new AutonomousCommand(type.getSelected(),position.getSelected());
 		autonomousCommand = new AutonomousCommand(AutoMode.PLACE_SWITCH_SPLIT,StartingPosition.EXCHANGE_RIGHT);
+//		autonomousCommand = new AutonomousCommand(AutoMode.AUTO_RUN,StartingPosition.PORTAL_LEFT);
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
 		}
