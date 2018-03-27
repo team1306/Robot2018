@@ -1,16 +1,17 @@
 package org.usfirst.frc.team1306.robot.elevator;
 
+import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.OI.Controller;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
 
-public class Move extends CommandBase {
+/**
+ * @DropDown - Command that drops the elevator down at a constant speed when a button is pressed, triggers brake when done.
+ * @author Jackson Goth
+ */
+public class DropDown extends CommandBase {
 
-	public Move() {
-		
-	}
-	
 	@Override
 	protected void initialize() {
 		elevator.unbrake();
@@ -18,7 +19,7 @@ public class Move extends CommandBase {
 
 	@Override
 	protected void execute() {
-		elevator.vbus(0.5);
+		elevator.movePercentOutput(Constants.ELEVATOR_POUTPUT_DOWN);
 	}
 
 	@Override
@@ -30,15 +31,5 @@ public class Move extends CommandBase {
 			elevator.brake();
 			return true;
 		}
-	}
-
-	@Override
-	protected void end() {
-		
-	}
-
-	@Override
-	protected void interrupted() {
-		
 	}
 }

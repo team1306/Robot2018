@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands;
 
+import java.util.ArrayList;
 import org.usfirst.frc.team1306.robot.OI;
 import org.usfirst.frc.team1306.robot.RobotMap;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings;
@@ -8,10 +9,9 @@ import org.usfirst.frc.team1306.robot.drivetrain.Settings.DriveMode;
 import org.usfirst.frc.team1306.robot.subsystems.Cubetake;
 import org.usfirst.frc.team1306.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1306.robot.subsystems.Elevator;
-
+import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -43,8 +43,11 @@ public abstract class CommandBase extends Command {
 		driveConfig.setDriveMode(DriveMode.ARCADE);
 		drivetrain = new Drivetrain(driveConfig);
 		
+		ArrayList<BaseMotorController> elevatorMotors = new ArrayList<BaseMotorController>();
+		elevatorMotors.add(new TalonSRX(RobotMap.ELEVATOR_TALON));
+		elevator = new Elevator(elevatorMotors);
+		
 		cubetake = new Cubetake();
-		elevator = new Elevator();
 		
 		oi = new OI(); //OI is always initialized last
 	}

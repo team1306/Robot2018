@@ -25,8 +25,10 @@ public class Constants {
 	
 	/** Drivetrain Constants */
 	public final static double TRACK_WIDTH = 24.5; //Inches
+	public final static double TRACK_WIDTH_FT = TRACK_WIDTH / 2;
 	public final static double WHEEL_DIAMETER = 6; //Inches
 	public final static double PROFILE_STEP_TIME = 0.1;
+	public final static double PROFILE_TIME_ADJ = 0.25; //To ensure the Follow2DPath command gets through the entire velocity profile.
 	public final static double ENCODER_CODES_REV = 256; //256 for grayhill encoders
 	public final static double GYRO_ERROR_MULTIPLIER = 9;
 	public final static double ENCODER_ERROR_MULTIPLIER = 2.25;
@@ -42,11 +44,14 @@ public class Constants {
 	public final static double ELEVATOR_SWITCH_HEIGHT = 400;
 	public final static double ELEVATOR_CARRYING_HEIGHT = 400;
 	public final static double ELEVATOR_FLOOR_HEIGHT = 50;
+	public final static double ELEVATOR_POUTPUT_UP = -0.95;
+	public final static double ELEVATOR_POUTPUT_DOWN = 0.6;
 	
 	/** Cubetake Constants */
 	public final static double CUBETAKE_SPEED_SLOWER = -0.55;
 	public final static double CUBETAKE_SPEED_FASTER = -0.7;
 	public final static double CUBETAKE_THROUGH = -0.95;
+	public final static double CUBETAKE_SPIT_TIME = 2; //Time it takes to autonomously spit cube, with extra just to be sure...
 	
 	/** VelocitySubsystem Constants */
 	public final static double RS7_VEL_ADJ = 1.0;

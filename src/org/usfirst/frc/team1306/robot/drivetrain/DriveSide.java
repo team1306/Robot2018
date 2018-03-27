@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveSide {
 
-	private BaseMotorController master; //The 'Master' controller that all others will imitate
+	private BaseMotorController master; //The 'master' controller that all others will imitate.
 	
 	/** Initializes the new DriveSide using a given array filled with this side's corresponding controllers */
 	public DriveSide(ArrayList<BaseMotorController> c) {
@@ -27,10 +27,10 @@ public class DriveSide {
 		controllers = c;  //All controllers for this side of the drivetrain
 		
 		if(controllers.size() > 0) {
-			master = controllers.get(0); //First controller in array is the master controller
+			master = controllers.get(0); //First controller in array is the master controller.
 			master.set(ControlMode.PercentOutput,0.0);
 			
-			for(int i = 1; i < controllers.size(); i++) { //Sets every other controller as a follower of the master controller
+			for(int i = 1; i < controllers.size(); i++) { //Sets every other controller as a follower of the master controller.
 				controllers.get(i).follow(master);
 			}
 		}

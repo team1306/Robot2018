@@ -8,8 +8,8 @@ import org.usfirst.frc.team1306.robot.commands.cubetake.Spit;
 import org.usfirst.frc.team1306.robot.commands.cubetake.ThrowExchange;
 import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed;
 import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed.Speed;
-import org.usfirst.frc.team1306.robot.elevator.Move;
-import org.usfirst.frc.team1306.robot.elevator.MoveDOwn;
+import org.usfirst.frc.team1306.robot.elevator.DropDown;
+import org.usfirst.frc.team1306.robot.elevator.LiftUp;
 import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -74,8 +74,8 @@ public class OI {
 		pbuttonRB.whenPressed(new AdjustSpeed(Speed.FAST));
 		pbuttonLB.whenPressed(new AdjustSpeed(Speed.SLOW));
 		
-		sbuttonRB.whenPressed(new Move());
-		sbuttonLB.whenPressed(new MoveDOwn());
+		sbuttonRB.whenPressed(new DropDown());
+		sbuttonLB.whenPressed(new LiftUp());
 		
 //		pbuttonStart.whenPressed(new AutoRotate(-90));
 		

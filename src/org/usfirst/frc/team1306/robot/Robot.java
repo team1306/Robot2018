@@ -34,14 +34,13 @@ public class Robot extends IterativeRobot {
 		CameraServer.getInstance().startAutomaticCapture("usb",0);
 		CameraServer.getInstance().startAutomaticCapture("usb1",1);
 		
-		type.addObject("Switch RP", AutoMode.PLACE_SWITCH_SPLIT);
-		type.addObject("Scale/Switch Left", AutoMode.PLACE_BOTH_LEFT);
-		type.addObject("Scale/Switch Right", AutoMode.PLACE_BOTH_RIGHT);
-		type.addObject("Switch Straight", AutoMode.PLACE_SWITCH_PORTALS);
+		type.addObject("Switch RP", AutoMode.CENTER_SWITCH_RP);
+		type.addObject("Switch Straight", AutoMode.PORTAL_SCALE_GAMBLE);
+		type.addObject("Switch Straight", AutoMode.PORTAL_SWITCH_GAMBLE);
+		type.addObject("Switch Straight", AutoMode.COMBO_GAMBLE);
 		type.addObject("Baseline", AutoMode.AUTO_RUN);
 		type.addDefault("Do Nothing", AutoMode.DO_NOTHING);
 		
-		position.addObject("Left of Exchange", StartingPosition.EXCHANGE_LEFT);
 		position.addObject("Right of Exchange", StartingPosition.EXCHANGE_RIGHT);
 		position.addObject("Left Portal", StartingPosition.PORTAL_LEFT);
 		position.addDefault("Right Portal", StartingPosition.PORTAL_RIGHT);
@@ -62,7 +61,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 //		autonomousCommand = new AutonomousCommand(type.getSelected(),position.getSelected());
-		autonomousCommand = new AutonomousCommand(AutoMode.PLACE_SWITCH_SPLIT,StartingPosition.EXCHANGE_RIGHT);
+		autonomousCommand = new AutonomousCommand(AutoMode.CENTER_SWITCH_RP,StartingPosition.EXCHANGE_RIGHT);
 //		autonomousCommand = new AutonomousCommand(AutoMode.AUTO_RUN,StartingPosition.PORTAL_LEFT);
 		if (autonomousCommand != null) {
 			autonomousCommand.start();

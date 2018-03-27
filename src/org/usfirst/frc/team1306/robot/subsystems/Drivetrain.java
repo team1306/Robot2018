@@ -52,7 +52,7 @@ public class Drivetrain extends Subsystem {
 		} catch(RuntimeException ex) { SmartDashboard.putString("ERROR:","Cannot initialize the NavX"); }
 	}
 
-	/** Drives the robot in 'PercentVBus' mode (-1.0-1.0) by giving the left and right motors potentially different speeds */
+	/** Drives the robot in 'PercentOutput' mode (-1.0 -> 1.0) by giving the left and right motors potentially different speeds */
 	public void drivePercentOutput(double leftVal, double rightVal) {
 		if(Constants.DRIVETRAIN_ENABLED) {
 			if(speed.equals(Speed.SLOW)) { leftVal *= 0.6; rightVal *= 0.6; }

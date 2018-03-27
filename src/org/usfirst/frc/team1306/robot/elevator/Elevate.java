@@ -4,20 +4,15 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.subsystems.Elevator.Position;
 
 /**
- * @Elevate
+ * @Elevate - Lifts / drops the elevator to a given setpoint using motion profiling.
  * @author Jackson Goth
  */
 public class Elevate extends CommandBase {
 
-	//private Position position;
+	private Position position;
 	
 	public Elevate(Position p) {
-		//position = p;
-	}
-	
-	@Override
-	protected void initialize() {
-		
+		position = p;
 	}
 
 	@Override
@@ -27,17 +22,6 @@ public class Elevate extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		//return elevator.getPosition() - position.height < 10;
-		return true;
-	}
-
-	@Override
-	protected void end() {
-		elevator.stop();
-	}
-
-	@Override
-	protected void interrupted() {
-		end();
+		return elevator.checkInRange(position);
 	}
 }

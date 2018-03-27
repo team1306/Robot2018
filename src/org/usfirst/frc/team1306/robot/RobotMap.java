@@ -31,5 +31,6 @@ public class RobotMap {
 	
 	/** Elevator Ports */
 	public static final int ELEVATOR_TALON = 5;
-	public static final int ELEVATOR_SOLENOID_CHANNEL = 2;
+	public static final int ELEVATOR_SOLENOID_CHANNEL_ONE = 4;
+	public static final int ELEVATOR_SOLENOID_CHANNEL_TWO = 5;
 }

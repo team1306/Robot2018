@@ -1,84 +1,106 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
+import java.util.ArrayList;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.RobotMap;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.VelocityMeasPeriod;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
+import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/**
+ * @Elevator
+ * 
+ * Subsystem powering our two-stage cascading elevator, featuring a pneumatic brake for when we aren't lifting and motion profiling for lifting
+ * cubes during auto / tele-op to the correct height with setpoints.
+ * 
+ * @author Jackson Goth
+ */
 public class Elevator extends Subsystem {
 
-	private TalonSRX elevatorMotor;
-	private DoubleSolenoid brake;
+	private BaseMotorController master; //The 'master' motor-controller which others will imitate.
+	private DoubleSolenoid brake; //DoubleSolenoid controlling our pneumatic disc brake.
 	
-	public Elevator() {
-		elevatorMotor = new TalonSRX(RobotMap.ELEVATOR_TALON);
-		elevatorMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
-		elevatorMotor.configNominalOutputForward(0,0);
-		elevatorMotor.configNominalOutputReverse(0,0);
-		elevatorMotor.configPeakOutputForward(1,0);
-		elevatorMotor.configPeakOutputReverse(-1,0);
-		elevatorMotor.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_10Ms,0);
-		elevatorMotor.configVelocityMeasurementWindow(20,0);
+	public Elevator(ArrayList<BaseMotorController> c) {
+		ArrayList<BaseMotorController> controllers = new ArrayList<BaseMotorController>();
+		controllers = c; //All motor-controllers for the elevator.
 		
-		brake = new DoubleSolenoid(4,5);
-		brake();
+		if(controllers.size() > 0) {
+			master = controllers.get(0); //First controller in array is the master controller.
+			master.set(ControlMode.PercentOutput,0.0);
+			
+			/** Setting up the encoder... */
+			master.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
+			master.configNominalOutputForward(0,0);
+			master.configNominalOutputReverse(0,0);
+			master.configPeakOutputForward(1,0);
+			master.configPeakOutputReverse(-1,0);
+			master.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_10Ms,0);
+			master.configVelocityMeasurementWindow(20,0);
+			
+			for(int i = 1; i < controllers.size(); i++) { //Sets every other controller as a follower of the master controller.
+				controllers.get(i).follow(master);
+			}
+		}
+		
+		brake = new DoubleSolenoid(RobotMap.ELEVATOR_SOLENOID_CHANNEL_ONE,RobotMap.ELEVATOR_SOLENOID_CHANNEL_TWO);
+		brake(); //Should auto-brake when robot enables.
 	}
 	
+	/** Clamp down with the pneumatic brake to stop the elevator */
 	public void brake() {
 		brake.set(DoubleSolenoid.Value.kForward);
 	}
 	
+	/** Un-clamp the pneumatic brake so the elevator drive up or down */
 	public void unbrake() {
 		brake.set(DoubleSolenoid.Value.kReverse);
 	}
 	
-	public void vbus(double speed) {
-		elevatorMotor.set(ControlMode.PercentOutput,speed);
+	/** Drives the elevator up or down using a desired 'PercentOutput' speed (-1.0 -> 1.0) */
+	public void movePercentOutput(double speed) {
+		try { master.set(ControlMode.PercentOutput,speed); }
+		catch(Exception e) { SmartDashboard.putString("ERROR:","Elevator unable to drive the motor(s) in percentoutput mode"); }
 	}
 	
-	public void move(Position pos) {
-		//double dist = pos.height - getEncoderPos();
-	}
-	
-//	private void move(int vel) {
-//		elevatorMotor.set(ControlMode.Velocity,vel);
-//	}
-	
+	/** Returns the encoder position given by the elevator gearbox */
 	public double getEncoderPos() {
-		return elevatorMotor.getSensorCollection().getQuadraturePosition();
+		try { return master.getSensorCollection().getQuadraturePosition(); }
+		catch(Exception e) { SmartDashboard.putString("ERROR:","Unable to get the encoder position of the elevator"); return 0; }
 	}
 	
+	/** Returns which setpoint the elevator is in or if it's in-between setpoints */
 	public Position getPosition() {
 		if(checkInRange(Position.FLOOR)) { return Position.FLOOR; }
 		else if(checkInRange(Position.SWITCH)) { return Position.SWITCH; }
 		else if(checkInRange(Position.CARRYING)) { return Position.CARRYING; }
 		else if(checkInRange(Position.SCALE)) { return Position.SCALE; }
-		else { return Position.UNKNOWN; }
+		else { return Position.IN_BETWEEN; }
 	}
 	
-	private boolean checkInRange(Position pos) {
+	/** Checks to see if the elevator is in range of a given setpoint (if it's at that setpoint */
+	public boolean checkInRange(Position pos) {
 		return Math.abs(getEncoderPos() - pos.height) < Constants.ELEVATOR_IN_RANGE_POS;
 	}
 	
+	/** Stops driving the elevator motor */
 	public void stop() {
-		elevatorMotor.set(ControlMode.PercentOutput,0);
+		master.set(ControlMode.PercentOutput,0);
 	}
 	
 	@Override
 	protected void initDefaultCommand() { }
 
+	/** Enum containing all elevator setpoints */
 	public enum Position {
 		FLOOR(Constants.ELEVATOR_FLOOR_HEIGHT),
 		SWITCH(Constants.ELEVATOR_SWITCH_HEIGHT),
 		CARRYING(Constants.ELEVATOR_CARRYING_HEIGHT),
 		SCALE(Constants.ELEVATOR_SCALE_HEIGHT),
-		UNKNOWN;
+		IN_BETWEEN;
 		
 		public double height;
 		private Position(double height) { this.height = height; }
