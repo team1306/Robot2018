@@ -4,10 +4,10 @@ import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.cubetake.Spit;
 import org.usfirst.frc.team1306.robot.drivetrain.Follow2DPath;
 import org.usfirst.frc.team1306.robot.drivetrain.Follow2DPath.DriveDirection;
-import org.usfirst.frc.team1306.robot.elevator.Elevate;
+import org.usfirst.frc.team1306.robot.elevator.TimedLift;
+import org.usfirst.frc.team1306.robot.elevator.TimedLift.ElevatorAction;
 import org.usfirst.frc.team1306.robot.pathing.FalconPathPlanner;
 import org.usfirst.frc.team1306.robot.pathing.Profile2DParams;
-import org.usfirst.frc.team1306.robot.subsystems.Elevator.Position;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -61,17 +61,17 @@ public class AutonomousCommand extends CommandGroup {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.leftPortalLeftScale);
 				path.calculate(startingPathParams);
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(scaleGamblePathTime)));
-				addSequential(new Elevate(Position.SCALE));
+				addSequential(new TimedLift(ElevatorAction.LIFT, 1));
 				addSequential(new Spit(Constants.CUBETAKE_SPIT_TIME));
-				addSequential(new Elevate(Position.FLOOR));
+				addSequential(new TimedLift(ElevatorAction.DROP, 0.75));
 				
 			} else if(pos.equals(StartingPosition.PORTAL_RIGHT) && scaleLocation.equals("R")) {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.rightPortalRightScale);
 				path.calculate(startingPathParams);
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(scaleGamblePathTime)));
-				addSequential(new Elevate(Position.SCALE));
+				addSequential(new TimedLift(ElevatorAction.LIFT, 1));
 				addSequential(new Spit(Constants.CUBETAKE_SPIT_TIME));
-				addSequential(new Elevate(Position.FLOOR));
+				addSequential(new TimedLift(ElevatorAction.DROP, 0.75));
 				
 			} else {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.autoLinePath);

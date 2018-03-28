@@ -7,10 +7,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team1306.robot.Constants;
 
 /**
- * @Cubetake
- * 
- * Subsystem controlling our power-cube intake, which features two pneumatically actuated arms that are 4 wheels long.
- * 
+ * @Cubetake -  Subsystem controlling our power-cube intake, which features two pneumatically actuated arms that each contain 4 green compliant wheels.
  * @author Ethan Dong
  */
 public class Cubetake extends Subsystem{
@@ -27,24 +24,22 @@ public class Cubetake extends Subsystem{
 	
 	public void intake() {
 		if(Constants.CUBETAKE_ENABLED) {
-//			leftIntakeMotor.set(Constants.CUBETAKE_SPEED_SLOWER);
-//			rightIntakeMotor.set(-Constants.CUBETAKE_SPEED_FASTER);
-			leftIntakeMotor.set(-.95);
-			rightIntakeMotor.set(0.75);
+			leftIntakeMotor.set(-Constants.CUBETAKE_INTAKE);
+			rightIntakeMotor.set(Constants.CUBETAKE_INTAKE - Constants.CUBETAKE_INTAKE_ADJ);
 		}
 	}
 	
-	public void spit() {
+	public void spitSlow() {
 		if(Constants.CUBETAKE_ENABLED) {
-			leftIntakeMotor.set(-Constants.CUBETAKE_SPEED_SLOWER);
-			rightIntakeMotor.set(Constants.CUBETAKE_SPEED_FASTER);
+			leftIntakeMotor.set(Constants.CUBETAKE_SPIT_SLOW);
+			rightIntakeMotor.set(-Constants.CUBETAKE_SPIT_SLOW);
 		}
 	}
 	
-	public void throwExchange() {
+	public void spitFast() {
 		if(Constants.CUBETAKE_ENABLED) {
-			leftIntakeMotor.set(-Constants.CUBETAKE_THROUGH);
-			rightIntakeMotor.set(Constants.CUBETAKE_THROUGH);
+			leftIntakeMotor.set(Constants.CUBETAKE_SPIT_FAST);
+			rightIntakeMotor.set(-Constants.CUBETAKE_SPIT_FAST);
 		}
 	}
 	
@@ -57,8 +52,8 @@ public class Cubetake extends Subsystem{
 	}
 
 	public void stop() {
-		leftIntakeMotor.set(0);
-		rightIntakeMotor.set(0);
+		leftIntakeMotor.set(0.0);
+		rightIntakeMotor.set(0.0);
 	}
 	
 	@Override

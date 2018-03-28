@@ -18,16 +18,21 @@ public class SmartDashboardUpdate extends CommandBase {
 	protected void execute() {
 		
 		if(Constants.GYRO_DEBUG) {
-			SmartDashboard.putNumber("Gyro-Yaw",drivetrain.getGyroAngle());
+			SmartDashboard.putNumber("Gyro-Yaw", drivetrain.getGyroAngle());
 		}
 		
 		if(Constants.DRIVETRAIN_DEBUG) {
-			SmartDashboard.putNumber("LeftSide-Position:",drivetrain.getEncoderPos(Side.LEFT));
-			SmartDashboard.putNumber("RightSide-Position:",drivetrain.getEncoderPos(Side.RIGHT));
-//			SmartDashboard.putNumber("LeftSide-AdjustPos:",Math.abs(drivetrain.getEncoderPos(Side.LEFT)/1024)*12.5663);
-//			SmartDashboard.putNumber("RightSide-AdjustPos:",Math.abs(drivetrain.getEncoderPos(Side.RIGHT)/1024)*12.5663);
-			SmartDashboard.putNumber("LeftSide-Velocity:",drivetrain.getEncoderVel(Side.LEFT));
-			SmartDashboard.putNumber("RightSide-Velocity:",drivetrain.getEncoderVel(Side.RIGHT));
+			SmartDashboard.putNumber("LeftSide-Position:", drivetrain.getEncoderPos(Side.LEFT));
+			SmartDashboard.putNumber("RightSide-Position:", drivetrain.getEncoderPos(Side.RIGHT));
+//			SmartDashboard.putNumber("LeftSide-AdjustPos:", Math.abs(drivetrain.getEncoderPos(Side.LEFT)/1024)*12.5663);
+//			SmartDashboard.putNumber("RightSide-AdjustPos:", Math.abs(drivetrain.getEncoderPos(Side.RIGHT)/1024)*12.5663);
+			SmartDashboard.putNumber("LeftSide-Velocity:", drivetrain.getEncoderVel(Side.LEFT));
+			SmartDashboard.putNumber("RightSide-Velocity:", drivetrain.getEncoderVel(Side.RIGHT));
+		}
+		
+		if(Constants.ELEVATOR_DEBUG) {
+			SmartDashboard.putNumber("Elevator-Position", elevator.getEncoderPos());
+			SmartDashboard.putNumber("Elevator-Velocity", elevator.getEncoderVel());
 		}
 	}
 

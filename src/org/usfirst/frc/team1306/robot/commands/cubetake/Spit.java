@@ -38,7 +38,7 @@ public class Spit extends CommandBase{
 
 	@Override
 	protected void execute() {
-		cubetake.spit();
+		cubetake.spitSlow();
 	}
 
 	@Override

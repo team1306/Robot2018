@@ -39,10 +39,10 @@ public class Drivetrain extends Subsystem {
 		/* If encoders are present, initialized them in appropriate driveside */
 		if(settings.encodersPresent) {
 			leftMotors.initEncoders();
-			leftMotors.setPIDParams(new PIDParameters(1.074,0.0,0.0,0.0));
+			leftMotors.setPIDParams(new PIDParameters(1.074, 0.0, 0.0, 0.0));
 			rightMotors.initEncoders();
 			rightMotors.reverseSensor();
-			rightMotors.setPIDParams(new PIDParameters(1.074,0.0,0.0,0.0));
+			rightMotors.setPIDParams(new PIDParameters(1.074, 0.0, 0.0, 0.0));
 		}
 		
 		try {
@@ -56,20 +56,20 @@ public class Drivetrain extends Subsystem {
 	public void drivePercentOutput(double leftVal, double rightVal) {
 		if(Constants.DRIVETRAIN_ENABLED) {
 			if(speed.equals(Speed.SLOW)) { leftVal *= 0.6; rightVal *= 0.6; }
-			SmartDashboard.putNumber("leftOutput",leftVal);
-			SmartDashboard.putNumber("rightOutput",rightVal);
-			leftMotors.set(ControlMode.PercentOutput,leftVal);
-			rightMotors.set(ControlMode.PercentOutput,-rightVal); 
+			SmartDashboard.putNumber("leftOutput", leftVal);
+			SmartDashboard.putNumber("rightOutput", rightVal);
+			leftMotors.set(ControlMode.PercentOutput, leftVal);
+			rightMotors.set(ControlMode.PercentOutput, -rightVal); 
 		}
 	}
 	
 	/** Drives the robot in 'Velocity' mode by giving left and right side motors potentially different speeds */
 	public void driveVelocity(double leftVal, double rightVal) {
 		if(Constants.DRIVETRAIN_ENABLED) {
-			SmartDashboard.putNumber("leftOutput",leftVal);
-			SmartDashboard.putNumber("rightOutput",rightVal);
-			leftMotors.set(ControlMode.Velocity,leftVal);
-			rightMotors.set(ControlMode.Velocity,-rightVal); 
+			SmartDashboard.putNumber("leftOutput", leftVal);
+			SmartDashboard.putNumber("rightOutput", rightVal);
+			leftMotors.set(ControlMode.Velocity, leftVal);
+			rightMotors.set(ControlMode.Velocity, -rightVal); 
 		}
 	}
 	
@@ -80,8 +80,8 @@ public class Drivetrain extends Subsystem {
 	
 	/** Stops turning all drive-motors */
 	public void stop() {
-		leftMotors.set(ControlMode.PercentOutput,0);
-		rightMotors.set(ControlMode.PercentOutput,0);
+		leftMotors.set(ControlMode.PercentOutput, 0.0);
+		rightMotors.set(ControlMode.PercentOutput, 0.0);
 	}
 	
 	/** Set's position of both encoders back to zero */
@@ -112,19 +112,7 @@ public class Drivetrain extends Subsystem {
 		return navx.getYaw();
 	}
 	
-	/** Returns displacement from navx along a given axis */
-	public double getGyroDisplacement(Axis axis) {
-		if(axis.equals(Axis.X)) {
-			return navx.getDisplacementX();
-		} else if(axis.equals(Axis.Y)) {
-			return navx.getDisplacementY();
-		} else {
-			return navx.getDisplacementZ();
-		}
-	}
-	
 	public enum Side {LEFT,RIGHT}; //Enum used to differentiate between left and right wheels for accessing encoder data
-	public enum Axis {X,Y,Z}; //Enum used to store possible axis to access displacement values
 	
 	/** Starts the manual driving command in a specified drive-mode */
 	@Override

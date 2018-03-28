@@ -28,7 +28,7 @@ public class DriveSide {
 		
 		if(controllers.size() > 0) {
 			master = controllers.get(0); //First controller in array is the master controller.
-			master.set(ControlMode.PercentOutput,0.0);
+			master.set(ControlMode.PercentOutput, 0.0);
 			
 			for(int i = 1; i < controllers.size(); i++) { //Sets every other controller as a follower of the master controller.
 				controllers.get(i).follow(master);
@@ -38,20 +38,20 @@ public class DriveSide {
 	
 	/** Has this side of the drivetrain spin at the given speed */
 	public void set(ControlMode mode, double speed) {
-		try { master.set(mode,speed); }
+		try { master.set(mode, speed); }
 		catch(Exception e) { SmartDashboard.putString("ERROR:","Drivetrain setting controller to invalid controlmode"); }
 	}
 
 	/** Initializes the drivetrain encoders */
 	public void initEncoders() {
 		try {
-			master.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder,0,0);
+			master.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 			master.setSensorPhase(false);
-			master.configNominalOutputForward(0,0);
-			master.configNominalOutputReverse(0,0);
-			master.configPeakOutputForward(1,0);
-			master.configPeakOutputReverse(-1,0);
-			master.getSensorCollection().setQuadraturePosition(0,0);
+			master.configNominalOutputForward(0, 0);
+			master.configNominalOutputReverse(0, 0);
+			master.configPeakOutputForward(1, 0);
+			master.configPeakOutputReverse(-1, 0);
+			master.getSensorCollection().setQuadraturePosition(0, 0);
 		} catch(Exception e) {
 			SmartDashboard.putString("ERROR:","Drivetrain configuring settings on invalid controller");
 		}
@@ -64,10 +64,10 @@ public class DriveSide {
 	/** Sets up the PIDF control values */
 	public void setPIDParams(PIDParameters params) {
 		try {
-			master.config_kF(0,params.f,0);
-			master.config_kP(0,params.p,0);
-			master.config_kI(0,params.i,0);
-			master.config_kD(0,params.d,0);
+			master.config_kF(0, params.f, 0);
+			master.config_kP(0, params.p, 0);
+			master.config_kI(0, params.i, 0);
+			master.config_kD(0, params.d, 0);
 		} catch(Exception e) {
 			SmartDashboard.putString("ERROR:","Drivetrain configuring settings on invalid controller");
 		}
@@ -75,7 +75,7 @@ public class DriveSide {
 	
 	/** Resets the encoder reading back to zero */
 	public void resetEncoderPos() {
-		try { master.getSensorCollection().setQuadraturePosition(0,0); }
+		try { master.getSensorCollection().setQuadraturePosition(0, 0); }
 		catch(Exception e) { SmartDashboard.putString("ERROR:","Drivetrain unable to reset encoder"); }
 	}
 	

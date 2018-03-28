@@ -38,7 +38,7 @@ public class ThrowExchange extends CommandBase{
 
 	@Override
 	protected void execute() {
-		cubetake.throwExchange();
+		cubetake.spitFast();
 	}
 
 	@Override

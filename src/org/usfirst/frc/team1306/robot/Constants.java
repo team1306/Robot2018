@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1306.robot;
 
 /**
- * @Constants - To store finalized variables all in one place
+ * @Constants - To store finalized variables all in one place.
  * @authors Jackson Goth, Sam Roquitte, and Ethan Dong
  */
 public class Constants {
@@ -9,12 +9,13 @@ public class Constants {
 	/** Subsystem Control (Switching to false will disable all output for that subsystem) */
 	public final static boolean DRIVETRAIN_ENABLED = true;
 	public final static boolean CUBETAKE_ENABLED = true;
-	public final static boolean ELEVATOR_ENABLED = false;
+	public final static boolean ELEVATOR_ENABLED = true; //If false, brake will still clamp down.
 	
 	/** SmartDashboard Debug Modes */
-	public static final boolean DRIVETRAIN_DEBUG = true;
+	public static final boolean DRIVETRAIN_DEBUG = false;
 	public static final boolean GYRO_DEBUG = true;
 	public static final boolean CUBETAKE_DEBUG = false;
+	public static final boolean ELEVATOR_DEBUG =  true;
 	
 	/** OI Constants */
 	public final static double DEADBAND = 0.15; //Joystick and trigger deadband
@@ -25,7 +26,7 @@ public class Constants {
 	
 	/** Drivetrain Constants */
 	public final static double TRACK_WIDTH = 24.5; //Inches
-	public final static double TRACK_WIDTH_FT = TRACK_WIDTH / 2;
+	public final static double TRACK_WIDTH_FT = TRACK_WIDTH / 12;
 	public final static double WHEEL_DIAMETER = 6; //Inches
 	public final static double PROFILE_STEP_TIME = 0.1;
 	public final static double PROFILE_TIME_ADJ = 0.25; //To ensure the Follow2DPath command gets through the entire velocity profile.
@@ -40,18 +41,24 @@ public class Constants {
 	/** Elevator Constants */
 	public final static double ELEVATOR_MAX_POS = 1000; //TODO Calibrate
 	public final static double ELEVATOR_IN_RANGE_POS = 25;
-	public final static double ELEVATOR_SCALE_HEIGHT = 800;
-	public final static double ELEVATOR_SWITCH_HEIGHT = 400;
-	public final static double ELEVATOR_CARRYING_HEIGHT = 400;
-	public final static double ELEVATOR_FLOOR_HEIGHT = 50;
+	public final static double ELEVATOR_SCALE_HEIGHT = 0;
+	public final static double ELEVATOR_SWITCH_HEIGHT = 0;
+	public final static double ELEVATOR_CARRYING_HEIGHT = 0;
+	public final static double ELEVATOR_FLOOR_HEIGHT = 0;
+	public final static double ELEVATOR_F = 0.0;
+	public final static double ELEVATOR_P = 0.0;
+	public final static double ELEVATOR_I = 0.0;
+	public final static double ELEVATOR_D = 0.0;
+	
 	public final static double ELEVATOR_POUTPUT_UP = -0.95;
 	public final static double ELEVATOR_POUTPUT_DOWN = 0.6;
 	
 	/** Cubetake Constants */
-	public final static double CUBETAKE_SPEED_SLOWER = -0.55;
-	public final static double CUBETAKE_SPEED_FASTER = -0.7;
-	public final static double CUBETAKE_THROUGH = -0.95;
-	public final static double CUBETAKE_SPIT_TIME = 2; //Time it takes to autonomously spit cube, with extra just to be sure...
+	public final static double CUBETAKE_SPIT_FAST = 0.95;
+	public final static double CUBETAKE_SPIT_SLOW = 0.65;
+	public final static double CUBETAKE_INTAKE = 0.95;
+	public final static double CUBETAKE_INTAKE_ADJ = 0.20;
+	public final static double CUBETAKE_SPIT_TIME = 2.0; //Time it takes to autonomously spit cube, with extra just to be sure...
 	
 	/** VelocitySubsystem Constants */
 	public final static double RS7_VEL_ADJ = 1.0;
