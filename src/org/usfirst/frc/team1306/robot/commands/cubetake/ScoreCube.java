@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands.cubetake;
 
+import org.usfirst.frc.team1306.robot.Constants;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -13,8 +14,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ScoreCube extends CommandGroup {
 	
 	public ScoreCube() {
-		addParallel(new Spit(2));
+		addParallel(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
 		addSequential(new ActuateArms());
-		addSequential(new RetractArms(),2);
+		addSequential(new RetractArms(), 2);
 	}
 }

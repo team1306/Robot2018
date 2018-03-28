@@ -20,12 +20,11 @@ public class Follow2DPath extends CommandBase {
 	
 	public Follow2DPath(FalconPathPlanner p, DriveDirection dir, double t) {
 		requires(drivetrain);
+		timer = new Timer();
+		
 		direction = dir;
 		path = p;
 		time = t;
-		
-		initAngle = 0;drivetrain.getGyroAngle();
-		timer = new Timer();
 	}
 	
 	@Override
@@ -35,7 +34,6 @@ public class Follow2DPath extends CommandBase {
 		timer.start();
 		
 		initAngle = drivetrain.getGyroAngle();
-		
 		drivetrain.resetEncoders();
 		counter = 0; //Resets counter that's used to determine position in profile
 	}
@@ -56,22 +54,17 @@ public class Follow2DPath extends CommandBase {
 		
 		leftSpeed *= conversion;
 		rightSpeed *= conversion;
-		
-		//SmartDashboard.putNumber("Heading:",path.heading[counter][1]);
-		
+
 		/** Calculating heading correction, to keep robot properly oriented along path */
 		double gyroCorrection = 0;
 		try {
 			double initCorrection = (path.heading[counter][1] + drivetrain.getGyroAngle() - initAngle);
-			SmartDashboard.putNumber("Heading:",path.heading[counter][1]);
-			if(direction.equals(DriveDirection.BACKWARDS)) { gyroCorrection = initCorrection; }   
-			else { gyroCorrection = -(initCorrection*5); }
-			SmartDashboard.putNumber("2DPath-GyroCorrection:",gyroCorrection);
-			
+			if(Constants.GYRO_DEBUG) { SmartDashboard.putNumber("Heading:",path.heading[counter][1]); }
+			if(direction.equals(DriveDirection.BACKWARDS)) { gyroCorrection = initCorrection * Constants.GYRO_ERROR_MULTIPLIER; }   
+			else { gyroCorrection = -(initCorrection * Constants.GYRO_ERROR_MULTIPLIER); }
+			if(Constants.GYRO_DEBUG) { SmartDashboard.putNumber("2DPath-GyroCorrection:",gyroCorrection); }
 		} catch(Exception e) { SmartDashboard.putString("ERROR:","2DPath array is out of bounds"); }
 
-		//gyroCorrection = 0;
-		
 		/** Drives the robot backwards or forwards along path */
 		if(direction.equals(DriveDirection.BACKWARDS)) { drivetrain.driveVelocity(-(leftSpeed - gyroCorrection),-(rightSpeed + gyroCorrection)); }
 		else { drivetrain.driveVelocity(leftSpeed + gyroCorrection, rightSpeed - gyroCorrection); }
@@ -79,17 +72,18 @@ public class Follow2DPath extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		return timer.hasPeriodPassed(time);
+		if(timer.hasPeriodPassed(time)) { drivetrain.stop(); return true; }
+		else { return false; }
 	}
 
 	@Override
 	protected void end() {
-		//drivetrain.stop();
+		drivetrain.stop();
 	}
 
 	@Override
 	protected void interrupted() {
-		//end();
+		end();
 	}
 
 	public enum DriveDirection {FORWARD,BACKWARDS};

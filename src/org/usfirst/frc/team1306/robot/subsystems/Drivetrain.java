@@ -2,7 +2,7 @@ package org.usfirst.frc.team1306.robot.subsystems;
 
 import org.usfirst.frc.team1306.lib.util.PIDParameters;
 import org.usfirst.frc.team1306.robot.Constants;
-import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed.Speed;
+import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeedMode.Speed;
 import org.usfirst.frc.team1306.robot.drivetrain.DriveCommand;
 import org.usfirst.frc.team1306.robot.drivetrain.DriveSide;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings;

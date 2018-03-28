@@ -26,7 +26,6 @@ public class DriveCommand extends CommandBase {
 	protected void execute() {
 
 		if(driveMode.equals(DriveMode.TANK_DRIVE)) {
-			
 			/**
 			 * If Trigger pressed it will figure out which one and either go forward or backward based on the values from them.
 			 * Otherwise it assumes it is being controlled by joysticks and will drive robot based on their respective inputs.
@@ -41,7 +40,6 @@ public class DriveCommand extends CommandBase {
 				drivetrain.drivePercentOutput(OI.getJoyVal(Controller.P, Joystick.L, Axis.Y), OI.getJoyVal(Controller.P, Joystick.R, Axis.Y));
 			}
 		} else if(driveMode.equals(DriveMode.ARCADE)) {
-			
 			/**
 			 * Each time this runs it checks to see if either trigger is pulled past the deadband.
 			 * It subtracts the inputs from the left side of controller from the right to find whether the driver wants to go forward or backward.
@@ -54,9 +52,7 @@ public class DriveCommand extends CommandBase {
 			} else {
 				if (OI.getJoyVal(Controller.P, Joystick.L, Axis.X) >= Constants.DEADBAND || OI.getJoyVal(Controller.P, Joystick.L, Axis.X) <= -Constants.DEADBAND) {
 					drivetrain.drivePercentOutput(OI.getJoyVal(Controller.P, Joystick.L, Axis.X), -OI.getJoyVal(Controller.P, Joystick.L, Axis.X));
-				} else {
-					drivetrain.stop();
-				}
+				} else { drivetrain.stop(); }
 			}
 		}
 	}

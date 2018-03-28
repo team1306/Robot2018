@@ -59,7 +59,7 @@ public class Robot extends IterativeRobot {
 
 	/** This function is called once each time the robot enters autonomous */
 	@Override
-	public void autonomousInit() {
+	public void autonomousInit() { //TODO Make the selector actually work
 //		autonomousCommand = new AutonomousCommand(type.getSelected(),position.getSelected());
 		autonomousCommand = new AutonomousCommand(AutoMode.CENTER_SWITCH_RP,StartingPosition.EXCHANGE_RIGHT);
 //		autonomousCommand = new AutonomousCommand(AutoMode.AUTO_RUN,StartingPosition.PORTAL_LEFT);

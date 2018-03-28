@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
 import org.usfirst.frc.team1306.robot.Constants;
-import org.usfirst.frc.team1306.robot.commands.cubetake.Spit;
+import org.usfirst.frc.team1306.robot.commands.cubetake.SpitSlow;
 import org.usfirst.frc.team1306.robot.drivetrain.Follow2DPath;
 import org.usfirst.frc.team1306.robot.drivetrain.Follow2DPath.DriveDirection;
 import org.usfirst.frc.team1306.robot.elevator.TimedLift;
@@ -41,13 +41,13 @@ public class AutonomousCommand extends CommandGroup {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathLeft);
 				path.calculate(startingPathParams); //Calculates the velocity / heading profiles.
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(switchRPPathTime)));
-				addSequential(new Spit(Constants.CUBETAKE_SPIT_TIME));
+				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
 				
 			} else { //Our switch must be to our robot's right so...
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathRight);
 				path.calculate(startingPathParams); //Calculates the velocity / heading profiles.
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(switchRPPathTime)));
-				addSequential(new Spit(Constants.CUBETAKE_SPIT_TIME));
+				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
 			}
 			
 		} else if(mode.equals(AutoMode.PORTAL_SCALE_GAMBLE)) {
@@ -62,7 +62,7 @@ public class AutonomousCommand extends CommandGroup {
 				path.calculate(startingPathParams);
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(scaleGamblePathTime)));
 				addSequential(new TimedLift(ElevatorAction.LIFT, 1));
-				addSequential(new Spit(Constants.CUBETAKE_SPIT_TIME));
+				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
 				addSequential(new TimedLift(ElevatorAction.DROP, 0.75));
 				
 			} else if(pos.equals(StartingPosition.PORTAL_RIGHT) && scaleLocation.equals("R")) {
@@ -70,7 +70,7 @@ public class AutonomousCommand extends CommandGroup {
 				path.calculate(startingPathParams);
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(scaleGamblePathTime)));
 				addSequential(new TimedLift(ElevatorAction.LIFT, 1));
-				addSequential(new Spit(Constants.CUBETAKE_SPIT_TIME));
+				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
 				addSequential(new TimedLift(ElevatorAction.DROP, 0.75));
 				
 			} else {
@@ -90,13 +90,13 @@ public class AutonomousCommand extends CommandGroup {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.leftPortalSwitchPath);
 				path.calculate(switchGambleParams);
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(switchGamblePathTime)));
-				addSequential(new Spit(Constants.CUBETAKE_SPIT_TIME));
+				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
 				
 			} else if(switchLocation.equals("R") && pos.equals(StartingPosition.PORTAL_RIGHT)) {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.rightPortalSwitchPath);
 				path.calculate(switchGambleParams);
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(switchGamblePathTime)));
-				addSequential(new Spit(Constants.CUBETAKE_SPIT_TIME));
+				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
 				
 			} else {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.autoLinePath);

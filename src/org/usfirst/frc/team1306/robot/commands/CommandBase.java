@@ -25,7 +25,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public abstract class CommandBase extends Command {
 
 	private static Settings driveConfig;
-	
 	protected static Cubetake cubetake;
 	protected static Drivetrain drivetrain;
 	protected static Elevator elevator;

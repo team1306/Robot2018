@@ -2,12 +2,11 @@ package org.usfirst.frc.team1306.robot;
 
 import org.usfirst.frc.team1306.robot.commands.cubetake.ActuateArms;
 import org.usfirst.frc.team1306.robot.commands.cubetake.Collect;
-import org.usfirst.frc.team1306.robot.commands.cubetake.IntakeBoomFuntime;
 import org.usfirst.frc.team1306.robot.commands.cubetake.RetractArms;
-import org.usfirst.frc.team1306.robot.commands.cubetake.Spit;
-import org.usfirst.frc.team1306.robot.commands.cubetake.ThrowExchange;
-import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed;
-import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeed.Speed;
+import org.usfirst.frc.team1306.robot.commands.cubetake.SpitSlow;
+import org.usfirst.frc.team1306.robot.commands.cubetake.SpitFast;
+import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeedMode;
+import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeedMode.Speed;
 import org.usfirst.frc.team1306.robot.elevator.DropDown;
 import org.usfirst.frc.team1306.robot.elevator.LiftUp;
 import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
@@ -40,7 +39,7 @@ public class OI {
 		Button pbuttonA = new JoystickButton(primaryController, ControllerButton.A.value); 
 		Button pbuttonB = new JoystickButton(primaryController, ControllerButton.B.value); 
 		Button pbuttonX = new JoystickButton(primaryController, ControllerButton.X.value);
-		Button pbuttonY = new JoystickButton(primaryController, ControllerButton.Y.value);
+//		Button pbuttonY = new JoystickButton(primaryController, ControllerButton.Y.value);
 		Button pbuttonLB = new JoystickButton(primaryController, ControllerButton.LB.value);
 		Button pbuttonRB = new JoystickButton(primaryController, ControllerButton.RB.value); 
 //		Button pbuttonStart = new JoystickButton(primaryController, ControllerButton.START.value);
@@ -64,25 +63,20 @@ public class OI {
 //		Button secondaryDPadLeft = new DPadPress(secondaryController, DPadDirection.LEFT);
 //		Button secondaryDPadDown = new DPadPress(secondaryController, DPadDirection.DOWN);
 		
-		pbuttonA.whenPressed(new Spit());
-//		pbuttonStart.whenPressed(new ThrowExchange());
-		pbuttonB.whenPressed(new ThrowExchange());
-//		pbuttonA.whenPressed(new ScoreCube());
-//		pbuttonX.toggleWhenPressed(new Collect());
-		pbuttonY.whenPressed(new IntakeBoomFuntime());
+		/** @Primary_Controls */
+		pbuttonA.whenPressed(new SpitSlow());
+		pbuttonB.whenPressed(new SpitFast());
+		pbuttonX.whenPressed(new Collect());
 		
-		pbuttonRB.whenPressed(new AdjustSpeed(Speed.FAST));
-		pbuttonLB.whenPressed(new AdjustSpeed(Speed.SLOW));
+		pbuttonRB.whenPressed(new AdjustSpeedMode(Speed.FAST));
+		pbuttonLB.whenPressed(new AdjustSpeedMode(Speed.SLOW));
+		
+		/** @Secondary_Controls */
+		sbuttonB.toggleWhenPressed(new ActuateArms());
+		sbuttonY.toggleWhenPressed(new RetractArms());
 		
 		sbuttonRB.whenPressed(new DropDown());
 		sbuttonLB.whenPressed(new LiftUp());
-		
-//		pbuttonStart.whenPressed(new AutoRotate(-90));
-		
-//		sbuttonA.whenPressed(new ScoreCube());
-		sbuttonB.toggleWhenPressed(new ActuateArms());
-		pbuttonX.whenPressed(new Collect());
-		sbuttonY.toggleWhenPressed(new RetractArms());
 	}
 	
 	public enum Controller {P,S}; //Controller (primary or secondary)
