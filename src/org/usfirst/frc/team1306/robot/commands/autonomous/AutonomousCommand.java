@@ -66,7 +66,12 @@ public class AutonomousCommand extends CommandGroup {
 //				addSequential(new Follow2DPath(pickupPath, DriveDirection.FORWARD, getFollowTime(pickupPathTime)));
 //				addSequential(new Collect(Constants.CUBETAKE_COLLECT_TIME));
 //				addSequential(new RetractArms());
+				
 //				addSequential(new Follow2DPath(scalePath, DriveDirection.BACKWARDS, getFollowTime(scalePathTime)));
+				
+//				addSequential(new Follow2DPath(pickupPath, DriveDirection.BACKWARDS, getFollowTime(pickupPathTime)));
+//				addSequential(new Follow2DPath(backupPath, DriveDirection.FORWARD, getFollowTime(backupPathTime)));
+//				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
 				
 			} else { //Our switch must be to our robot's right so...
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathRight);
@@ -85,7 +90,12 @@ public class AutonomousCommand extends CommandGroup {
 //				addSequential(new Follow2DPath(pickupPath, DriveDirection.FORWARD, getFollowTime(pickupPathTime)));
 //				addSequential(new Collect(Constants.CUBETAKE_COLLECT_TIME));
 //				addSequential(new RetractArms());
+				
 //				addSequential(new Follow2DPath(scalePath, DriveDirection.BACKWARDS, getFollowTime(scalePathTime)));
+				
+//				addSequential(new Follow2DPath(pickupPath, DriveDirection.BACKWARDS, getFollowTime(pickupPathTime)));
+//				addSequential(new Follow2DPath(backupPath, DriveDirection.FORWARD, getFollowTime(backupPathTime)));
+//				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
 			}
 			
 		} else if(mode.equals(AutoMode.PORTAL_SCALE_GAMBLE)) {
