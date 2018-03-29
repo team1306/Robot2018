@@ -78,6 +78,34 @@ public class AutoPaths {
 		{258.47/12,30.4/12},
 	};
 	
+	/** Path backing up from the right scale-plate after placing */
+	public final static double[][] rightScaleBackup = new double[][] {
+		{0,0},
+		{29/12,0},
+		{29/12,62.57/12},
+	};
+	
+	/** Path backing up from the left scale-plate after placing */
+	public final static double[][] leftScaleBackup = new double[][] {
+		{0,0},
+		{29/12,0},
+		{29/12,-62.57/12},
+	};
+	
+	/** Path that approaches another cube after backing up from the right scale-plate */
+	public final static double[][] rightScaleApproachCube = new double[][] {
+		{0,0},
+		{23.57/12,0},
+		{32.61/12,20.47/12},
+	};
+	
+	/** Path that approaches another cube after backing up from the left scale-plate */
+	public final static double[][] leftScaleApproachCube = new double[][] {
+		{0,0},
+		{23.57/12,0},
+		{32.61/12,-20.47/12},
+	};
+	
 	/**----------------------------*/
 	/** Ranking Point Switch Autos */
 	/**----------------------------*/

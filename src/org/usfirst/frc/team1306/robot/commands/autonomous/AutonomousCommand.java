@@ -112,26 +112,48 @@ public class AutonomousCommand extends CommandGroup {
 			Profile2DParams scalePathParams = new Profile2DParams(scaleGamblePathTime);
 			double autoLinePathTime = 3.0;
 			Profile2DParams autoLineParams = new Profile2DParams(autoLinePathTime);
+//			double scaleBackupTime = 2.0;
+//			Profile2DParams scaleBackupParams = new Profile2DParams(scaleBackupTime);
+//			double scaleApproachCubeTime = 2.0;
+//			Profile2DParams scaleApproachCubeParams = new Profile2DParams(scaleApproachCubeTime);
 			
 			if(scaleLocation.equals("L") && pos.equals(StartingPosition.PORTAL_LEFT)) {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.leftPortalLeftScale);
 				path.calculate(scalePathParams);
-				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(scaleGamblePathTime)));
+//				FalconPathPlanner backupPath = new FalconPathPlanner(AutoPaths.leftScaleBackup);
+//				backupPath.calculate(scaleBackupParams);
+//				FalconPathPlanner approachPath = new FalconPathPlanner(AutoPaths.leftScaleApproachCube);
+//				approachPath.calculate(scaleApproachCubeParams);
+//				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(scaleGamblePathTime)));
 //				addSequential(new TimedLift(ElevatorAction.LIFT, 1.0));
 //				addSequential(new ActuateArms());
 //				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
 //				addSequential(new RetractArms());
 //				addSequential(new TimedLift(ElevatorAction.DROP, 0.75));
 				
+//				addSequential(new Follow2DPath(backupPath, DriveDirection.BACKWARDS, getFollowTime(scaleBackupTime)));
+//				addSequential(new ActuateArms());
+//				addSequential(new Follow2DPath(approachPath, DriveDirection.FORWARD, getFollowTime(scaleApproachCubeTime)));
+//				addSequential(new Collect(Constants.CUBETAKE_COLLECT_TIME));
+				
 			} else if(scaleLocation.equals("R") && pos.equals(StartingPosition.PORTAL_RIGHT)) {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.rightPortalRightScale);
 				path.calculate(scalePathParams);
-				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(scaleGamblePathTime)));
+//				FalconPathPlanner backupPath = new FalconPathPlanner(AutoPaths.leftScaleBackup);
+//				backupPath.calculate(scaleBackupParams);
+//				FalconPathPlanner approachPath = new FalconPathPlanner(AutoPaths.leftScaleApproachCube);
+//				approachPath.calculate(scaleApproachCubeParams);
+//				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(scaleGamblePathTime)));
 //				addSequential(new TimedLift(ElevatorAction.LIFT, 1.0));
 //				addSequential(new ActuateArms());
 //				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
 //				addSequential(new RetractArms());
 //				addSequential(new TimedLift(ElevatorAction.DROP, 0.75));
+				
+//				addSequential(new Follow2DPath(backupPath, DriveDirection.BACKWARDS, getFollowTime(scaleBackupTime)));
+//				addSequential(new ActuateArms());
+//				addSequential(new Follow2DPath(approachPath, DriveDirection.FORWARD, getFollowTime(scaleApproachCubeTime)));
+//				addSequential(new Collect(Constants.CUBETAKE_COLLECT_TIME));
 				
 			} else {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.autoLinePath);
@@ -172,10 +194,18 @@ public class AutonomousCommand extends CommandGroup {
 			Profile2DParams switchGamblePathParams = new Profile2DParams(scaleGamblePathTime);
 			double autoLinePathTime = 3.0;
 			Profile2DParams autoLineParams = new Profile2DParams(autoLinePathTime);
+//			double scaleBackupTime = 2.0;
+//			Profile2DParams scaleBackupParams = new Profile2DParams(scaleBackupTime);
+//			double scaleApproachCubeTime = 2.0;
+//			Profile2DParams scaleApproachCubeParams = new Profile2DParams(scaleApproachCubeTime);
 			
 			if(scaleLocation.equals("L") && pos.equals(StartingPosition.PORTAL_LEFT)) {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.leftPortalLeftScale);
 				path.calculate(scaleGamblePathParams);
+//				FalconPathPlanner backupPath = new FalconPathPlanner(AutoPaths.leftScaleBackup);
+//				backupPath.calculate(scaleBackupParams);
+//				FalconPathPlanner approachPath = new FalconPathPlanner(AutoPaths.leftScaleApproachCube);
+//				approachPath.calculate(scaleApproachCubeParams);
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(scaleGamblePathTime)));
 //				addSequential(new TimedLift(ElevatorAction.LIFT, 1.0));
 //				addSequential(new ActuateArms());
@@ -183,15 +213,29 @@ public class AutonomousCommand extends CommandGroup {
 //				addSequential(new RetractArms());
 //				addSequential(new TimedLift(ElevatorAction.DROP, 0.75));
 				
+//				addSequential(new Follow2DPath(backupPath, DriveDirection.BACKWARDS, getFollowTime(scaleBackupTime)));
+//				addSequential(new ActuateArms());
+//				addSequential(new Follow2DPath(approachPath, DriveDirection.FORWARD, getFollowTime(scaleApproachCubeTime)));
+//				addSequential(new Collect(Constants.CUBETAKE_COLLECT_TIME));
+				
 			} else if(scaleLocation.equals("R") && pos.equals(StartingPosition.PORTAL_RIGHT)) {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.rightPortalRightScale);
 				path.calculate(scaleGamblePathParams);
+//				FalconPathPlanner backupPath = new FalconPathPlanner(AutoPaths.leftScaleBackup);
+//				backupPath.calculate(scaleBackupParams);
+//				FalconPathPlanner approachPath = new FalconPathPlanner(AutoPaths.leftScaleApproachCube);
+//				approachPath.calculate(scaleApproachCubeParams);
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(scaleGamblePathTime)));
 //				addSequential(new TimedLift(ElevatorAction.LIFT, 1.0));
 //				addSequential(new ActuateArms());
 //				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
 //				addSequential(new RetractArms());
 //				addSequential(new TimedLift(ElevatorAction.DROP, 0.75));
+				
+//				addSequential(new Follow2DPath(backupPath, DriveDirection.BACKWARDS, getFollowTime(scaleBackupTime)));
+//				addSequential(new ActuateArms());
+//				addSequential(new Follow2DPath(approachPath, DriveDirection.FORWARD, getFollowTime(scaleApproachCubeTime)));
+//				addSequential(new Collect(Constants.CUBETAKE_COLLECT_TIME));
 				
 			} else if(switchLocation.equals("L") && pos.equals(StartingPosition.PORTAL_LEFT)) {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.leftPortalLeftSwitch);
