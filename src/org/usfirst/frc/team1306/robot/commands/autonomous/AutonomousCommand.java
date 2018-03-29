@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1306.robot.commands.autonomous;
 
+import org.usfirst.frc.team1306.lib.util.Wait;
 import org.usfirst.frc.team1306.robot.Constants;
 import org.usfirst.frc.team1306.robot.commands.cubetake.ActuateArms;
 import org.usfirst.frc.team1306.robot.commands.cubetake.RetractArms;
@@ -11,7 +12,6 @@ import org.usfirst.frc.team1306.robot.elevator.TimedLift;
 import org.usfirst.frc.team1306.robot.elevator.TimedLift.ElevatorAction;
 import org.usfirst.frc.team1306.robot.pathing.FalconPathPlanner;
 import org.usfirst.frc.team1306.robot.pathing.Profile2DParams;
-
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -29,12 +29,14 @@ public class AutonomousCommand extends CommandGroup {
 	public enum AutoMode {CENTER_SWITCH_RP, PORTAL_SCALE_GAMBLE, PORTAL_SWITCH_GAMBLE, COMBO_GAMBLE, AUTO_RUN, DO_NOTHING};
 	public enum StartingPosition {PORTAL_LEFT, PORTAL_RIGHT, EXCHANGE_RIGHT};
 
-	public AutonomousCommand(AutoMode mode, StartingPosition pos) {
+	public AutonomousCommand(AutoMode mode, StartingPosition pos, double delay) {
 
 		String gameMessage = DriverStation.getInstance().getGameSpecificMessage(); //Pulls the game message into a string (ex. LLL or LRL)
 		while(gameMessage.length() < 3) { gameMessage = DriverStation.getInstance().getGameSpecificMessage(); } //Loop to ensure we get the full game message and not a portion of it.
 		String switchLocation = gameMessage.substring(0, 1); //Extracting which side our switch is on.
 		String scaleLocation = gameMessage.substring(1, 2); //Extracting which side our scale is on.
+		
+		if(delay > 0) { addSequential(new Wait(delay)); }
 		
 		if(mode.equals(AutoMode.CENTER_SWITCH_RP)) {
 			
