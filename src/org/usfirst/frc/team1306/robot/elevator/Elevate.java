@@ -1,27 +1,31 @@
 package org.usfirst.frc.team1306.robot.elevator;
 
+import org.usfirst.frc.team1306.robot.Constants;
+import org.usfirst.frc.team1306.robot.OI;
+import org.usfirst.frc.team1306.robot.OI.Axis;
+import org.usfirst.frc.team1306.robot.OI.Controller;
+import org.usfirst.frc.team1306.robot.OI.Joystick;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-import org.usfirst.frc.team1306.robot.subsystems.Elevator.Position;
 
 /**
- * @Elevate - Lifts / drops the elevator to a given setpoint using motion profiling.
+ * @Elevate - Lifts / drops the elevator using joystick-control.
  * @author Jackson Goth
  */
 public class Elevate extends CommandBase {
 
-	private Position position;
-	
-	public Elevate(Position p) {
-		position = p;
-	}
-
 	@Override
 	protected void execute() {
-		
+		double currentJoyVal = OI.getJoyVal(Controller.S, Joystick.L, Axis.Y);
+		if(currentJoyVal >= Constants.DEADBAND || currentJoyVal <= Constants.DEADBAND) {
+			elevator.movePercentOutput(-currentJoyVal);
+		} else {
+			elevator.stop();
+			elevator.brake();
+		}
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return elevator.checkInRange(position);
+		return false;
 	}
 }

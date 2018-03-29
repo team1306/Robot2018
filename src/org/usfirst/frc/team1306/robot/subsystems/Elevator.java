@@ -108,7 +108,9 @@ public class Elevator extends Subsystem {
 	}
 	
 	@Override
-	protected void initDefaultCommand() { }
+	protected void initDefaultCommand() {
+		//setDefaultCommand(new Elevate());
+	}
 
 	/** Enum containing all elevator setpoints */
 	public enum Position {
