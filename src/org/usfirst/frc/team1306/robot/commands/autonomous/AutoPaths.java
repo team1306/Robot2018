@@ -125,4 +125,44 @@ public class AutoPaths {
 		{127/12,0},
 		{127/12,39/12},
 	};
+	
+	/**-------------------------------------------*/
+	/** Ranking Point Switch Auto Additonal Paths */
+	/**-------------------------------------------*/
+	
+	/** Path for backing up after we place the first switch cube */
+	public final static double[][] backupSwitchPath = new double[][] {
+		{0,0},
+		{94/12,0},
+	};
+	
+	/** Path for turning left into the stack of cubes after backing up */
+	public final static double[][] stackTurnLeftPath = new double[][] {
+		{0,0},
+		{6.75/12,0},
+		{56/12,49.25/12},
+	};
+	
+	/** Path for turning right into the stack of cubes after backing up */
+	public final static double[][] stackTurnRightPath = new double[][] {
+		{0,0},
+		{6.75/12,0},
+		{56/12,-49.25/12},
+	};
+	
+	/** Path for heading left towards the scale to be ready for tele-op */
+	public final static double[][] scaleTurnLeftPath = new double[][] {
+		{0,0},
+		{30.65/12,0},
+		{61.76/12,31.11/12},
+		{-96.43/12,189.30/12},
+	};
+	
+	/** Path for heading right towards the scale to be ready for tele-op */
+	public final static double[][] scaleTurnRightPath = new double[][] {
+		{0,0},
+		{30.65/12,0},
+		{61.76/12,-31.11/12},
+		{-96.43/12,-189.30/12},
+	};
 }

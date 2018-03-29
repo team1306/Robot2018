@@ -60,7 +60,8 @@ public class Constants {
 	public final static double CUBETAKE_SPIT_SLOW = 0.65;
 	public final static double CUBETAKE_INTAKE = 0.95;
 	public final static double CUBETAKE_INTAKE_ADJ = 0.20;
-	public final static double CUBETAKE_SPIT_TIME = 2.0; //Time it takes to autonomously spit cube, with extra just to be sure...
+	public final static double CUBETAKE_SPIT_TIME = 1.0; //Time it takes to autonomously spit cube, with extra just to be sure...
+	public final static double CUBETAKE_COLLECT_TIME = 1.0; //Time it takes to autonomously collect cube, with extra just to be sure...
 	
 	/** VelocitySubsystem Constants */
 	public final static double RS7_VEL_ADJ = 1.0;

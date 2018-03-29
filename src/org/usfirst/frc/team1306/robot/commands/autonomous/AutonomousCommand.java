@@ -40,8 +40,14 @@ public class AutonomousCommand extends CommandGroup {
 		
 		if(mode.equals(AutoMode.CENTER_SWITCH_RP)) {
 			
-			double switchRPPathTime = 5.0;
+			double switchRPPathTime = 3.0;
 			Profile2DParams switchRPPathParams = new Profile2DParams(switchRPPathTime);
+//			double backupPathTime = 2.0;
+//			Profile2DParams backupPathParams = new Profile2DParams(backupPathTime);
+//			double pickupPathTime = 2.0;
+//			Profile2DParams pickupPathParams = new Profile2DParams(pickupPathTime);
+//			double scalePathTime = 9.0;
+//			Profile2DParams scalePathParams = new Profile2DParams(scalePathTime);
 			
 			if(switchLocation.equals("L")) { //If our switch is to the robot's left...
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathLeft);
@@ -49,11 +55,37 @@ public class AutonomousCommand extends CommandGroup {
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(switchRPPathTime)));
 				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
 				
+//				FalconPathPlanner backupPath = new FalconPathPlanner(AutoPaths.backupSwitchPath);
+//				backupPath.calculate(backupPathParams);
+//				FalconPathPlanner pickupPath = new FalconPathPlanner(AutoPaths.stackTurnRightPath);
+//				pickupPath.calculate(pickupPathParams);
+//				FalconPathPlanner scalePath = new FalconPathPlanner(AutoPaths.scaleTurnRightPath);
+//				scalePath.calculate(scalePathParams);
+//				addSequential(new Follow2DPath(backupPath, DriveDirection.BACKWARDS, getFollowTime(backupPathTime)));
+//				addSequential(new ActuateArms());
+//				addSequential(new Follow2DPath(pickupPath, DriveDirection.FORWARD, getFollowTime(pickupPathTime)));
+//				addSequential(new Collect(Constants.CUBETAKE_COLLECT_TIME));
+//				addSequential(new RetractArms());
+//				addSequential(new Follow2DPath(scalePath, DriveDirection.BACKWARDS, getFollowTime(scalePathTime)));
+				
 			} else { //Our switch must be to our robot's right so...
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.switchPathRight);
 				path.calculate(switchRPPathParams); //Calculates the velocity / heading profiles.
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(switchRPPathTime)));
 				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
+				
+//				FalconPathPlanner backupPath = new FalconPathPlanner(AutoPaths.backupSwitchPath);
+//				backupPath.calculate(backupPathParams);
+//				FalconPathPlanner pickupPath = new FalconPathPlanner(AutoPaths.stackTurnLeftPath);
+//				pickupPath.calculate(pickupPathParams);
+//				FalconPathPlanner scalePath = new FalconPathPlanner(AutoPaths.scaleTurnLeftPath);
+//				scalePath.calculate(scalePathParams);
+//				addSequential(new Follow2DPath(backupPath, DriveDirection.BACKWARDS, getFollowTime(backupPathTime)));
+//				addSequential(new ActuateArms());
+//				addSequential(new Follow2DPath(pickupPath, DriveDirection.FORWARD, getFollowTime(pickupPathTime)));
+//				addSequential(new Collect(Constants.CUBETAKE_COLLECT_TIME));
+//				addSequential(new RetractArms());
+//				addSequential(new Follow2DPath(scalePath, DriveDirection.BACKWARDS, getFollowTime(scalePathTime)));
 			}
 			
 		} else if(mode.equals(AutoMode.PORTAL_SCALE_GAMBLE)) {

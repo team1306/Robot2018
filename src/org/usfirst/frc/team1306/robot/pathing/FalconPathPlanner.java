@@ -689,13 +689,12 @@ public class FalconPathPlanner
 		double[][] waypoints = new double[][]{
 
 			{0,0},
-			{45/12,0},
-			{90.797/12,11.40/12},
-			{195.138/12,11.40/12},
-			{195.138/12,76.406/12},
+			{30.65/12,0},
+			{61.76/12,-31.11/12},
+			{-96.43/12,-189.30/12},
 		}; 
 
-		double totalTime = 5; //seconds
+		double totalTime = 8; //seconds
 		double timeStep = 0.1; //period of control loop on Rio, seconds
 		double robotTrackWidth = 24.5/12; //distance between left and right wheels, feet
 
@@ -806,12 +805,8 @@ public class FalconPathPlanner
 
 
 		double[][] CheesyPath = new double[][]{
-//				{7,16},
-//				{11,16},
-//				{17,28},
-//				{23,28},
 			{0,0},
-			{140,0},
+			{94/12},
 		};
 
 		long start = System.currentTimeMillis();

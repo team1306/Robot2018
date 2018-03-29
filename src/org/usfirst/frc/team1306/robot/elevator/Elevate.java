@@ -16,8 +16,10 @@ public class Elevate extends CommandBase {
 	@Override
 	protected void execute() {
 		double currentJoyVal = OI.getJoyVal(Controller.S, Joystick.L, Axis.Y);
-		if(currentJoyVal >= Constants.DEADBAND || currentJoyVal <= Constants.DEADBAND) {
+		if(currentJoyVal >= Constants.DEADBAND) {
 			elevator.movePercentOutput(-currentJoyVal);
+		} else if(currentJoyVal <= Constants.DEADBAND) {
+			elevator.movePercentOutput(-(currentJoyVal / 2));
 		} else {
 			elevator.stop();
 			elevator.brake();
