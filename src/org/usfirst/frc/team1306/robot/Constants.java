@@ -47,6 +47,9 @@ public class Constants {
 	public final static double ELEVATOR_SWITCH_HEIGHT = 0;
 	public final static double ELEVATOR_CARRYING_HEIGHT = 0;
 	public final static double ELEVATOR_FLOOR_HEIGHT = 0;
+	public final static double ELEVATOR_RAMP_RATE = 0.01;
+	public final static double ELEVATOR_DECELERATE_TIME = 0.10;
+	public final static double ELEVATOR_MINIMUM_OUTPUT = 0.10;
 	public final static double ELEVATOR_F = 0.0;
 	public final static double ELEVATOR_P = 0.0;
 	public final static double ELEVATOR_I = 0.0;

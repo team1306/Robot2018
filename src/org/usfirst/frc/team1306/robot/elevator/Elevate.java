@@ -12,7 +12,7 @@ import org.usfirst.frc.team1306.robot.commands.CommandBase;
  * @author Jackson Goth
  */
 public class Elevate extends CommandBase {
-
+	
 	@Override
 	protected void execute() {
 		double currentJoyVal = OI.getJoyVal(Controller.S, Joystick.L, Axis.Y);

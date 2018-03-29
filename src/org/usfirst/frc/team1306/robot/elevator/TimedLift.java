@@ -12,7 +12,8 @@ public class TimedLift extends CommandBase {
 
 	private Timer timer;
 	private ElevatorAction action;
-	private double time;
+	private double time, prevOutput;
+	private boolean decelerate;
 	
 	public TimedLift(ElevatorAction a, double t) {
 		timer = new Timer();
@@ -24,17 +25,44 @@ public class TimedLift extends CommandBase {
 	protected void initialize() {
 		timer.reset();
 		timer.start();
+		prevOutput = 0.0;
+		decelerate = false;
 	}
 
 	@Override
 	protected void execute() {
-		if(action.equals(ElevatorAction.LIFT)) { elevator.movePercentOutput(Constants.ELEVATOR_POUTPUT_UP); }
-		else { elevator.movePercentOutput(Constants.ELEVATOR_POUTPUT_DOWN); }
+		double output;
+		if(!decelerate) {
+			if(action.equals(ElevatorAction.LIFT)) { 
+				output = Constants.ELEVATOR_POUTPUT_UP;
+				if(output <= prevOutput - Constants.ELEVATOR_RAMP_RATE) { output = prevOutput - Constants.ELEVATOR_RAMP_RATE; }
+				else { output = Constants.ELEVATOR_POUTPUT_UP; }
+			}
+			else {
+				output = Constants.ELEVATOR_POUTPUT_DOWN; 
+				if(output >= prevOutput + Constants.ELEVATOR_RAMP_RATE) { output = prevOutput + Constants.ELEVATOR_RAMP_RATE; }
+				else { output = Constants.ELEVATOR_POUTPUT_DOWN; }
+			}
+			prevOutput = output;
+			elevator.movePercentOutput(output);
+		} else if(prevOutput < -Constants.ELEVATOR_MINIMUM_OUTPUT) {
+			prevOutput += Constants.ELEVATOR_RAMP_RATE;
+			elevator.movePercentOutput(prevOutput);
+		} else if(prevOutput > Constants.ELEVATOR_MINIMUM_OUTPUT) {
+			prevOutput -= Constants.ELEVATOR_RAMP_RATE;
+			elevator.movePercentOutput(prevOutput);
+		} else {
+			elevator.stop();
+			elevator.brake();
+		}
 	}
 
 	@Override
 	protected boolean isFinished() {
-		if(timer.hasPeriodPassed(time)) {
+		if(timer.hasPeriodPassed(time - Constants.ELEVATOR_DECELERATE_TIME)) {
+			decelerate = true;
+			return false;
+		} else if(timer.hasPeriodPassed(time)) {
 			elevator.stop();
 			elevator.brake();
 			return true;
