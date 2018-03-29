@@ -22,7 +22,9 @@ public class Constants {
 	public final static double JOYSTICK_MULTIPLIER = 1.0; //Joystick inputs raised to this power
 	
 	/** Autonomous Constants*/
-	public final static double AUTO_PROFILE_TIME = 5; //Seconds
+	public final static boolean FMS_TRICK = false; //Whether or not we should use false game-message (practice matches)
+	public final static String FMS_TRICK_SWITCH_LOCATION = "L"; //What side do we own if we're using false game-message
+	public final static String FMS_TRICK_SCALE_LOCATION = "L"; //What side do we own if we're using false game-message
 	
 	/** Drivetrain Constants */
 	public final static double TRACK_WIDTH = 24.5; //Inches

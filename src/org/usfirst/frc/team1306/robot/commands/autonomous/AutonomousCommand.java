@@ -8,8 +8,6 @@ import org.usfirst.frc.team1306.robot.commands.cubetake.SpitSlow;
 import org.usfirst.frc.team1306.robot.drivetrain.Follow2DPath;
 import org.usfirst.frc.team1306.robot.drivetrain.Follow2DPath.DriveDirection;
 import org.usfirst.frc.team1306.robot.drivetrain.TimedDrive;
-import org.usfirst.frc.team1306.robot.elevator.TimedLift;
-import org.usfirst.frc.team1306.robot.elevator.TimedLift.ElevatorAction;
 import org.usfirst.frc.team1306.robot.pathing.FalconPathPlanner;
 import org.usfirst.frc.team1306.robot.pathing.Profile2DParams;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -33,9 +31,19 @@ public class AutonomousCommand extends CommandGroup {
 
 		String gameMessage = DriverStation.getInstance().getGameSpecificMessage(); //Pulls the game message into a string (ex. LLL or LRL)
 		while(gameMessage.length() < 3) { gameMessage = DriverStation.getInstance().getGameSpecificMessage(); } //Loop to ensure we get the full game message and not a portion of it.
-		String switchLocation = gameMessage.substring(0, 1); //Extracting which side our switch is on.
-		String scaleLocation = gameMessage.substring(1, 2); //Extracting which side our scale is on.
-		
+		String switchLocation, scaleLocation;
+		if(Constants.FMS_TRICK) {
+			if(Constants.FMS_TRICK_SWITCH_LOCATION.equals("L") || Constants.FMS_TRICK_SWITCH_LOCATION.equals("R")) {
+				switchLocation = Constants.FMS_TRICK_SWITCH_LOCATION;
+			} else { switchLocation = gameMessage.substring(0, 1); }
+			if(Constants.FMS_TRICK_SCALE_LOCATION.equals("L") || Constants.FMS_TRICK_SCALE_LOCATION.equals("R")) {
+				scaleLocation = Constants.FMS_TRICK_SCALE_LOCATION;
+			} else { scaleLocation = gameMessage.substring(1, 2);  }
+		} else { 
+			switchLocation = gameMessage.substring(0, 1); //Extracting which side our switch is on.
+			scaleLocation = gameMessage.substring(1, 2); //Extracting which side our scale is on.
+		}
+
 		if(delay > 0) { addSequential(new Wait(delay)); }
 		
 		if(mode.equals(AutoMode.CENTER_SWITCH_RP)) {
@@ -109,21 +117,21 @@ public class AutonomousCommand extends CommandGroup {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.leftPortalLeftScale);
 				path.calculate(scalePathParams);
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(scaleGamblePathTime)));
-				addSequential(new TimedLift(ElevatorAction.LIFT, 1.0));
-				addSequential(new ActuateArms());
-				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
-				addSequential(new RetractArms());
-				addSequential(new TimedLift(ElevatorAction.DROP, 0.75));
+//				addSequential(new TimedLift(ElevatorAction.LIFT, 1.0));
+//				addSequential(new ActuateArms());
+//				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
+//				addSequential(new RetractArms());
+//				addSequential(new TimedLift(ElevatorAction.DROP, 0.75));
 				
 			} else if(scaleLocation.equals("R") && pos.equals(StartingPosition.PORTAL_RIGHT)) {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.rightPortalRightScale);
 				path.calculate(scalePathParams);
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(scaleGamblePathTime)));
-				addSequential(new TimedLift(ElevatorAction.LIFT, 1.0));
-				addSequential(new ActuateArms());
-				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
-				addSequential(new RetractArms());
-				addSequential(new TimedLift(ElevatorAction.DROP, 0.75));
+//				addSequential(new TimedLift(ElevatorAction.LIFT, 1.0));
+//				addSequential(new ActuateArms());
+//				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
+//				addSequential(new RetractArms());
+//				addSequential(new TimedLift(ElevatorAction.DROP, 0.75));
 				
 			} else {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.autoLinePath);
@@ -169,21 +177,21 @@ public class AutonomousCommand extends CommandGroup {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.leftPortalLeftScale);
 				path.calculate(scaleGamblePathParams);
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(scaleGamblePathTime)));
-				addSequential(new TimedLift(ElevatorAction.LIFT, 1.0));
-				addSequential(new ActuateArms());
-				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
-				addSequential(new RetractArms());
-				addSequential(new TimedLift(ElevatorAction.DROP, 0.75));
+//				addSequential(new TimedLift(ElevatorAction.LIFT, 1.0));
+//				addSequential(new ActuateArms());
+//				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
+//				addSequential(new RetractArms());
+//				addSequential(new TimedLift(ElevatorAction.DROP, 0.75));
 				
 			} else if(scaleLocation.equals("R") && pos.equals(StartingPosition.PORTAL_RIGHT)) {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.rightPortalRightScale);
 				path.calculate(scaleGamblePathParams);
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(scaleGamblePathTime)));
-				addSequential(new TimedLift(ElevatorAction.LIFT, 1.0));
-				addSequential(new ActuateArms());
-				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
-				addSequential(new RetractArms());
-				addSequential(new TimedLift(ElevatorAction.DROP, 0.75));
+//				addSequential(new TimedLift(ElevatorAction.LIFT, 1.0));
+//				addSequential(new ActuateArms());
+//				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
+//				addSequential(new RetractArms());
+//				addSequential(new TimedLift(ElevatorAction.DROP, 0.75));
 				
 			} else if(switchLocation.equals("L") && pos.equals(StartingPosition.PORTAL_LEFT)) {
 				FalconPathPlanner path = new FalconPathPlanner(AutoPaths.leftPortalLeftSwitch);
