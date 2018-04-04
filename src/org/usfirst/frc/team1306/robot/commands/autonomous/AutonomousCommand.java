@@ -201,7 +201,7 @@ public class AutonomousCommand extends CommandGroup {
 			
 			FalconPathPlanner path = new FalconPathPlanner(AutoPaths.autoLinePath);
 			path.calculate(autoLineParams);
-			addSequential(new Follow2DPath(path, DriveDirection.FORWARD, autoLinePathTime + Constants.PROFILE_TIME_ADJ));
+			addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(autoLinePathTime)));
 		} else { SmartDashboard.putString("ERROR:","No auto mode selected!"); }
 		
 	}
