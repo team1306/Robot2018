@@ -3,18 +3,19 @@ package org.usfirst.frc.team1306.robot.drivetrain;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 
 /**
- * @SpeedAdjust
+ * @AdjustSpeedMode
  * 
- * Adjusts the speed of the drivetrain so we can have faster modes (for driving across the field)
+ * Adjusts the speed-mode of the drivetrain so we can have faster modes (for driving across the field)
  * and slower modes (for placing power cubes).  Basically fast for speed, slow for precision.
+ * This is done through the use of a multiplier on the 'percentoutput' speeds.
  * 
  * @author Jackson Goth
  */
-public class AdjustSpeed extends CommandBase {
+public class AdjustSpeedMode extends CommandBase {
 
-	private Speed speed; //Speed to adjust to
+	private Speed speed; //Speed-mode the drivetrain will be adjusted to.
 	
-	public AdjustSpeed(Speed s) {
+	public AdjustSpeedMode(Speed s) {
 		speed = s;
 	}
 	
@@ -25,7 +26,7 @@ public class AdjustSpeed extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		return true; //Can end immediately
+		return true;
 	}
 	
 	public enum Speed {SLOW,FAST};

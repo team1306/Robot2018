@@ -1,43 +1,39 @@
 package org.usfirst.frc.team1306.robot.elevator;
 
+import org.usfirst.frc.team1306.robot.Constants;
+import org.usfirst.frc.team1306.robot.OI;
+import org.usfirst.frc.team1306.robot.OI.Axis;
+import org.usfirst.frc.team1306.robot.OI.Controller;
+import org.usfirst.frc.team1306.robot.OI.Joystick;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
-import org.usfirst.frc.team1306.robot.subsystems.Elevator.Position;
 
 /**
- * @Elevate
+ * @Elevate - Lifts / drops the elevator using joystick-control.
  * @author Jackson Goth
  */
 public class Elevate extends CommandBase {
-
-	//private Position position;
 	
-	public Elevate(Position p) {
-		//position = p;
+	public Elevate() {
+		requires(elevator);
 	}
 	
-	@Override
-	protected void initialize() {
-		
-	}
-
 	@Override
 	protected void execute() {
-		
+		double currentJoyVal = OI.getJoyVal(Controller.S, Joystick.L, Axis.Y);
+		if(currentJoyVal >= Constants.DEADBAND) {
+			elevator.unbrake();
+			elevator.movePercentOutput(-currentJoyVal);
+		} else if(currentJoyVal <= -Constants.DEADBAND) {
+			elevator.unbrake();
+			elevator.movePercentOutput(-(currentJoyVal / 2));
+		} else {
+			elevator.stop();
+			elevator.brake();
+		}
 	}
 
 	@Override
 	protected boolean isFinished() {
-		//return elevator.getPosition() - position.height < 10;
-		return true;
-	}
-
-	@Override
-	protected void end() {
-		elevator.stop();
-	}
-
-	@Override
-	protected void interrupted() {
-		end();
+		return false;
 	}
 }

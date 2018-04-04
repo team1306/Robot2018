@@ -29,11 +29,11 @@ public class Settings {
 	/** Adds a new talon to a specified driveside with a specified type (master or slave) */
 	public void add(TalonSRX talon, ControllingType type) {
 		if(type.equals(ControllingType.LEFT_MASTER)) {
-			leftSide.add(0,talon);
+			leftSide.add(0, talon);
 		} else if(type.equals(ControllingType.LEFT_SLAVE)) {
 			leftSide.add(talon);
 		} else if(type.equals(ControllingType.RIGHT_MASTER)) {
-			rightSide.add(0,talon);
+			rightSide.add(0, talon);
 		} else if(type.equals(ControllingType.RIGHT_SLAVE)) {
 			rightSide.add(talon);
 		}
@@ -42,11 +42,11 @@ public class Settings {
 	/** Adds a new victor to a specified driveside with a specified type (master or slave) */
 	public void add(VictorSPX victor, ControllingType type) {
 		if(type.equals(ControllingType.LEFT_MASTER)) {
-			leftSide.add(0,victor);
+			leftSide.add(0, victor);
 		} else if(type.equals(ControllingType.LEFT_SLAVE)) {
 			leftSide.add(victor);
 		} else if(type.equals(ControllingType.RIGHT_MASTER)) {
-			rightSide.add(0,victor);
+			rightSide.add(0, victor);
 		} else if(type.equals(ControllingType.RIGHT_SLAVE)) {
 			rightSide.add(victor);
 		}

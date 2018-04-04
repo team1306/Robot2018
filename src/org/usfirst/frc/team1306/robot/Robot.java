@@ -3,9 +3,9 @@ package org.usfirst.frc.team1306.robot;
 import org.usfirst.frc.team1306.robot.commands.CommandBase;
 import org.usfirst.frc.team1306.robot.commands.SmartDashboardUpdate;
 import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand;
-import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand.AutoMode;
+import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand.AutoRoutine;
 import org.usfirst.frc.team1306.robot.commands.autonomous.AutonomousCommand.StartingPosition;
-
+import org.usfirst.frc.team1306.robot.elevator.Elevate;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	private Command autonomousCommand;
-	private SendableChooser<AutoMode> type = new SendableChooser<>();
+	private SendableChooser<AutoRoutine> type = new SendableChooser<>();
 	private SendableChooser<StartingPosition> position = new SendableChooser<>();
 	
 	/**
@@ -32,17 +32,16 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		
 		CommandBase.init(); //Initializes all Subsystems
-		CameraServer.getInstance().startAutomaticCapture("usb",0); //Camera 1
+		CameraServer.getInstance().startAutomaticCapture("usb",0);
 		CameraServer.getInstance().startAutomaticCapture("usb1",1);
 		
-		type.addObject("Switch RP", AutoMode.PLACE_SWITCH_SPLIT);
-		type.addObject("Scale/Switch Left", AutoMode.PLACE_BOTH_LEFT);
-		type.addObject("Scale/Switch Right", AutoMode.PLACE_BOTH_RIGHT);
-		type.addObject("Switch Straight", AutoMode.PLACE_SWITCH_STRAIGHT);
-		type.addObject("Baseline", AutoMode.AUTO_RUN);
-		type.addDefault("Do Nothing", AutoMode.DO_NOTHING);
+		type.addObject("Two-Cube Center", AutoRoutine.CENTER_SWITCH_RP);
+		type.addObject("Scale - Portal Right", AutoRoutine.SCALE_AUTO);
+		type.addObject("Switch Auto - Portal Left", AutoRoutine.PORTAL_SWITCH);
+		type.addObject("Switch Auto - Portal Right", AutoRoutine.PORTAL_SWITCH);
+		type.addObject("Auto-Run", AutoRoutine.AUTO_RUN);
+		type.addDefault("Do Nothing", AutoRoutine.DO_NOTHING);
 		
-		position.addObject("Left of Exchange", StartingPosition.EXCHANGE_LEFT);
 		position.addObject("Right of Exchange", StartingPosition.EXCHANGE_RIGHT);
 		position.addObject("Left Portal", StartingPosition.PORTAL_LEFT);
 		position.addDefault("Right Portal", StartingPosition.PORTAL_RIGHT);
@@ -61,9 +60,16 @@ public class Robot extends IterativeRobot {
 
 	/** This function is called once each time the robot enters autonomous */
 	@Override
-	public void autonomousInit() {
-//		autonomousCommand = new AutonomousCommand(type.getSelected(),position.getSelected());
-		autonomousCommand = new AutonomousCommand(AutoMode.PLACE_SWITCH_SPLIT,StartingPosition.EXCHANGE_RIGHT);
+	public void autonomousInit() { //TODO Make the selector actually work
+		
+		double delay = 0.0;
+//		autonomousCommand = new AutonomousCommand(AutoRoutine.CENTER_SWITCH_RP, StartingPosition.EXCHANGE_RIGHT, delay); //Two-Cube Center Auto
+		autonomousCommand = new AutonomousCommand(AutoRoutine.SCALE_AUTO, StartingPosition.PORTAL_RIGHT, delay); //Close or Far Scale Auto
+//		autonomousCommand = new AutonomousCommand(AutoRoutine.PORTAL_SWITCH, StartingPosition.PORTAL_LEFT, delay); //Left Portal Switch Auto
+//		autonomousCommand = new AutonomousCommand(AutoRoutine.PORTAL_SWITCH, StartingPosition.PORTAL_RIGHT, delay); //Right Portal Switch Auto
+//		autonomousCommand = new AutonomousCommand(AutoRoutine.AUTO_RUN, StartingPosition.PORTAL_LEFT, delay); //Auto-Run
+//		autonomousCommand = new AutonomousCommand(AutoRoutine.DO_NOTHING, StartingPosition.PORTAL_LEFT, delay); //Sit
+
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
 		}
@@ -81,6 +87,7 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		if (autonomousCommand != null) {
 			autonomousCommand.cancel(); //Stops the autonomous command
+			new Elevate().start();
 		}
 	}
 

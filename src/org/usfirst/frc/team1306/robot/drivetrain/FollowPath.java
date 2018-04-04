@@ -14,14 +14,14 @@ public class FollowPath extends CommandBase {
 
 	private Profile profile;
 	private Timer timer;
-	private int counter;
 	private double initAngle;
+	private int counter;
 	
 	public FollowPath(Profile p) {
 		requires(drivetrain);
-		profile = p;
-		
 		timer = new Timer();
+		
+		profile = p;
 	}
 	
 	@Override
@@ -55,7 +55,8 @@ public class FollowPath extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		return timer.hasPeriodPassed(profile.maxTime);
+		if(timer.hasPeriodPassed(profile.maxTime)) { drivetrain.stop(); return true; }
+		else { return false; }
 	}
 
 	@Override

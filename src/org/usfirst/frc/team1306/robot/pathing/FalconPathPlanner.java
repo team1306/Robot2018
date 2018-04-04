@@ -689,8 +689,8 @@ public class FalconPathPlanner
 		double[][] waypoints = new double[][]{
 
 			{0,0},
-			{127/12,0},
-			{127/12,39/12},
+			{23.57/12,0},
+			{32.61/12,20.47/12},
 		}; 
 
 		double totalTime = 4; //seconds
@@ -804,12 +804,8 @@ public class FalconPathPlanner
 
 
 		double[][] CheesyPath = new double[][]{
-//				{7,16},
-//				{11,16},
-//				{17,28},
-//				{23,28},
 			{0,0},
-			{140,0},
+			{94/12},
 		};
 
 		long start = System.currentTimeMillis();
