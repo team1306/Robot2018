@@ -25,7 +25,7 @@ public class Elevate extends CommandBase {
 			elevator.movePercentOutput(-currentJoyVal);
 		} else if(currentJoyVal <= -Constants.DEADBAND) {
 			elevator.unbrake();
-			elevator.movePercentOutput(-(currentJoyVal / 2));
+			elevator.movePercentOutput(-(currentJoyVal));
 		} else {
 			elevator.stop();
 			elevator.brake();

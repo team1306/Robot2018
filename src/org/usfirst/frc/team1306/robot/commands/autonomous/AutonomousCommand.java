@@ -133,11 +133,11 @@ public class AutonomousCommand extends CommandGroup {
 				approachPath.calculate(scaleApproachCubeParams);
 				
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(farScalePathTime)));
-				addSequential(new TimedLift(ElevatorAction.LIFT, 2.1));
+				addSequential(new TimedLift(ElevatorAction.LIFT, 2.15));
 				addSequential(new ActuateArms());
 				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
 				addSequential(new RetractArms());
-				addSequential(new TimedLift(ElevatorAction.DROP, 1.0));
+				addSequential(new TimedLift(ElevatorAction.DROP, 1.9));
 				addSequential(new ActuateArms());
 				
 				addSequential(new Follow2DPath(backupPath, DriveDirection.BACKWARDS, getFollowTime(scaleBackupTime)));
@@ -157,11 +157,11 @@ public class AutonomousCommand extends CommandGroup {
 				approachPath.calculate(scaleApproachCubeParams);
 				
 				addSequential(new Follow2DPath(path, DriveDirection.FORWARD, getFollowTime(closeScalePathTime)));
-				addSequential(new TimedLift(ElevatorAction.LIFT, 2.1));
+				addSequential(new TimedLift(ElevatorAction.LIFT, 2.15));
 				addSequential(new ActuateArms());
 				addSequential(new SpitSlow(Constants.CUBETAKE_SPIT_TIME));
 				addSequential(new RetractArms());
-				addSequential(new TimedLift(ElevatorAction.DROP, 1.0));
+				addSequential(new TimedLift(ElevatorAction.DROP, 1.9));
 				addSequential(new ActuateArms());
 				
 				addSequential(new Follow2DPath(backupPath, DriveDirection.BACKWARDS, getFollowTime(scaleBackupTime)));

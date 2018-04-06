@@ -57,9 +57,9 @@ public class AutoPaths {
 	/** Path going around the back of the switch to place in the left scale */
 	public final static double[][] rightPortalLeftScale = new double[][] {
 		{0,0},
-		{259/12,0},
-		{276/12,198.97/12},
-		{295.47/12,195.97/12},
+		{264/12,0},
+		{276/12,194.97/12},
+		{295.47/12,188.97/12},
 	};
 	
 	/** Fastest scale placment path, for driving straight into our left scale if we own it */
@@ -76,10 +76,14 @@ public class AutoPaths {
 //		{120/12,0},
 //		{198.47/12,30.4/12},
 //		{258.47/12,30.4/12},
+//		{0,0},
+//		{185/12,0},
+//		{239.47/12,32.4/12},
+//		{274.47/12,38.4/12},
 		{0,0},
 		{185/12,0},
-		{239.47/12,32.4/12},
-		{274.47/12,38.4/12},
+		{239.47/12,20.4/12},
+		{285.47/12,26.4/12},
 	};
 	
 	/** Path backing up from the right scale-plate after placing */
@@ -118,8 +122,8 @@ public class AutoPaths {
 		/** Below is the path we had tuned for comp bot at MKE */
 		{0,0},
  		{20.3/12,0},
-		{40.6/12,89/12},
-		{139.5/12,87/12},
+		{40.6/12,83/12},
+		{133.5/12,81/12},
 	};
 	
 	public final static double[][] switchPathRight = new double[][] {
@@ -129,10 +133,14 @@ public class AutoPaths {
 //		{40.6/12,-85/12},
 //		{138.5/12,-88/12},
 		/** Below is the path we had tuned on practice bot before 7R */
+//		{0,0},
+// 		{20.3/12,0},
+//		{40.6/12,-37/12},
+//		{128.5/12,-40/12},
 		{0,0},
  		{20.3/12,0},
-		{40.6/12,-37/12},
-		{128.5/12,-40/12},
+		{40.6/12,-57/12},
+		{128.5/12,-60/12},
 	};
 	
 	/** Path that just goes one foot back */
