@@ -56,10 +56,14 @@ public class AutoPaths {
 	
 	/** Path going around the back of the switch to place in the left scale */
 	public final static double[][] rightPortalLeftScale = new double[][] {
+//		{0,0},
+//		{264/12,0},
+//		{276/12,194.97/12},
+//		{295.47/12,188.97/12},
 		{0,0},
-		{264/12,0},
-		{276/12,194.97/12},
-		{295.47/12,188.97/12},
+		{284/12,0},
+		{276/12,203.97/12},
+		{293.47/12,290.97/12},
 	};
 	
 	/** Fastest scale placment path, for driving straight into our left scale if we own it */
@@ -81,9 +85,9 @@ public class AutoPaths {
 //		{239.47/12,32.4/12},
 //		{274.47/12,38.4/12},
 		{0,0},
-		{185/12,0},
-		{239.47/12,20.4/12},
-		{285.47/12,26.4/12},
+		{210/12,0},
+		{245.47/12,10.4/12},
+		{272.47/12,16.4/12}, //280
 	};
 	
 	/** Path backing up from the right scale-plate after placing */
@@ -139,8 +143,8 @@ public class AutoPaths {
 //		{128.5/12,-40/12},
 		{0,0},
  		{20.3/12,0},
-		{40.6/12,-57/12},
-		{128.5/12,-60/12},
+		{40.6/12,-73/12},
+		{128.5/12,-76/12},
 	};
 	
 	/** Path that just goes one foot back */
@@ -205,7 +209,7 @@ public class AutoPaths {
 	public final static double[][] stackTurnRightPath = new double[][] {
 		{0,0},
 		{12.75/12,-35/12},
-		{65/12,-65.25/12},
+		{70/12,-70.25/12},
 	};
 	
 	/** Path that reverses the @stackTurnRightPath to put us in line with the switch again */
