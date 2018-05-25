@@ -76,7 +76,7 @@ public class OI {
 		pbuttonLB.whenPressed(new AdjustSpeedMode(Speed.SLOW));
 		
 		/** @Secondary_Controls */
-		sbuttonA.whenPressed(new TimedLift(ElevatorAction.LIFT, 2.1)); //TODO Remove at 7R
+		//sbuttonA.whenPressed(new TimedLift(ElevatorAction.LIFT, 2.1)); //TODO Remove at 7R
 		sbuttonB.toggleWhenPressed(new ActuateArms());
 		sbuttonY.toggleWhenPressed(new RetractArms());
 		sbuttonX.whenPressed(new Elevate());
