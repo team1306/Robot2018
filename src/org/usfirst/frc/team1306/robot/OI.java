@@ -76,6 +76,18 @@ public class OI {
 		pbuttonLB.whenPressed(new AdjustSpeedMode(Speed.SLOW));
 		
 		/** @Secondary_Controls */
+		
+		//Testing code
+			//sbuttonY.whenPressed(new TimedLift(ElevatorAction.LIFT, 2.1)); //TODO Remove at 7R
+			sbuttonLB.toggleWhenPressed(new ActuateArms());
+			sbuttonX.toggleWhenPressed(new RetractArms());
+//			sbuttonY.whenPressed(new Elevate());
+
+			sbuttonB.whenPressed(new DropDown());
+			sbuttonA.whenPressed(new LiftUp());
+		//end of testing code
+		
+		//Normal Code
 		//sbuttonA.whenPressed(new TimedLift(ElevatorAction.LIFT, 2.1)); //TODO Remove at 7R
 		sbuttonB.toggleWhenPressed(new ActuateArms());
 		sbuttonY.toggleWhenPressed(new RetractArms());
@@ -83,6 +95,7 @@ public class OI {
 		
 		sbuttonRB.whenPressed(new DropDown());
 		sbuttonLB.whenPressed(new LiftUp());
+		//end of Normal code
 	}
 	
 	public enum Controller {P,S}; //Controller (primary or secondary)
