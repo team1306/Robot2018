@@ -8,10 +8,7 @@ import org.usfirst.frc.team1306.robot.commands.cubetake.SpitSlow;
 import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeedMode;
 import org.usfirst.frc.team1306.robot.drivetrain.AdjustSpeedMode.Speed;
 import org.usfirst.frc.team1306.robot.elevator.DropDown;
-import org.usfirst.frc.team1306.robot.elevator.Elevate;
 import org.usfirst.frc.team1306.robot.elevator.LiftUp;
-import org.usfirst.frc.team1306.robot.elevator.TimedLift;
-import org.usfirst.frc.team1306.robot.elevator.TimedLift.ElevatorAction;
 import org.usfirst.frc.team1306.robot.triggers.ControllerButton;
 
 import edu.wpi.first.wpilibj.GenericHID;
@@ -57,9 +54,9 @@ public class OI {
 		Button sbuttonA = new JoystickButton(secondaryController, ControllerButton.A.value); 
 		Button sbuttonB = new JoystickButton(secondaryController, ControllerButton.B.value);
 		Button sbuttonX = new JoystickButton(secondaryController, ControllerButton.X.value); 
-		Button sbuttonY = new JoystickButton(secondaryController, ControllerButton.Y.value);
+//		Button sbuttonY = new JoystickButton(secondaryController, ControllerButton.Y.value);
 		Button sbuttonLB = new JoystickButton(secondaryController, ControllerButton.LB.value);
-		Button sbuttonRB = new JoystickButton(secondaryController, ControllerButton.RB.value);
+//		Button sbuttonRB = new JoystickButton(secondaryController, ControllerButton.RB.value);
 //		Button sbuttonStart = new JoystickButton(secondaryController,ControllerButton.START.value);
 //		Button sbuttonBack = new JoystickButton(secondaryController, ControllerButton.BACK.value);
 //		Button secondaryDPadUp = new DPadPress(secondaryControlsler, DPadDirection.UP);
