@@ -24,7 +24,7 @@ public class DropDown extends CommandBase {
 
 	@Override
 	protected boolean isFinished() {
-		if(OI.getButtonStatus(Controller.S,ControllerButton.RB)) {
+		if(OI.getButtonStatus(Controller.S,ControllerButton.X)) {
 			return false;
 		} else {
 			elevator.stop();
