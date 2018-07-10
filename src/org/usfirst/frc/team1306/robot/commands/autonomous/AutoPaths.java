@@ -9,6 +9,7 @@ public class AutoPaths {
 	/**-----------------------------------------------*/
 	/** Scale / Switch Gamble Autos - TODO Tune these */
 	/**-----------------------------------------------*/
+	//(y,-x)
 	
 	/** Path that places in the corner of the left switch from the left portal */
 	public final static double[][] leftPortalLeftSwitch = new double[][] {
