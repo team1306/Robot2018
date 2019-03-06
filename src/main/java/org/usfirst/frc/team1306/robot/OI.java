@@ -51,12 +51,12 @@ public class OI {
 //		Button primaryDPadDown = new DPadPress(primaryController, DPadDirection.DOWN);
 		
 		//Declares and maps buttons to xbox controller buttons for secondary controller
-		Button sbuttonA = new JoystickButton(secondaryController, ControllerButton.A.value); 
+//		Button sbuttonA = new JoystickButton(secondaryController, ControllerButton.A.value); 
 		Button sbuttonB = new JoystickButton(secondaryController, ControllerButton.B.value);
-		Button sbuttonX = new JoystickButton(secondaryController, ControllerButton.X.value); 
-//		Button sbuttonY = new JoystickButton(secondaryController, ControllerButton.Y.value);
+//		Button sbuttonX = new JoystickButton(secondaryController, ControllerButton.X.value); 
+		Button sbuttonY = new JoystickButton(secondaryController, ControllerButton.Y.value);
 		Button sbuttonLB = new JoystickButton(secondaryController, ControllerButton.LB.value);
-//		Button sbuttonRB = new JoystickButton(secondaryController, ControllerButton.RB.value);
+		Button sbuttonRB = new JoystickButton(secondaryController, ControllerButton.RB.value);
 //		Button sbuttonStart = new JoystickButton(secondaryController,ControllerButton.START.value);
 //		Button sbuttonBack = new JoystickButton(secondaryController, ControllerButton.BACK.value);
 //		Button secondaryDPadUp = new DPadPress(secondaryControlsler, DPadDirection.UP);
@@ -76,22 +76,22 @@ public class OI {
 		
 		//Testing code
 			//sbuttonY.whenPressed(new TimedLift(ElevatorAction.LIFT, 2.1)); //TODO Remove at 7R
-			sbuttonA.toggleWhenPressed(new ActuateArms());
-			sbuttonB.toggleWhenPressed(new RetractArms());
+			//sbuttonA.toggleWhenPressed(new ActuateArms());
+			//sbuttonB.toggleWhenPressed(new RetractArms());
 //			sbuttonY.whenPressed(new Elevate());
 //
-			sbuttonX.whenPressed(new DropDown());
-			sbuttonLB.whenPressed(new LiftUp());
+			//sbuttonX.whenPressed(new DropDown());
+			//sbuttonLB.whenPressed(new LiftUp());
 		//end of testing code
 		
 		//Normal Code
-		//sbuttonA.whenPressed(new TimedLift(ElevatorAction.LIFT, 2.1)); //TODO Remove at 7R
-//		sbuttonB.toggleWhenPressed(new ActuateArms());
-//		sbuttonY.toggleWhenPressed(new RetractArms());
-//		//sbuttonX.whenPressed(new Elevate());
-//		
-//		sbuttonRB.whenPressed(new DropDown());  //Command was changed for Guitar controller
-//		sbuttonLB.whenPressed(new LiftUp());
+//		sbuttonA.whenPressed(new TimedLift(ElevatorAction.LIFT, 2.1)); //TODO Remove at 7R
+		sbuttonB.toggleWhenPressed(new ActuateArms());
+		sbuttonY.toggleWhenPressed(new RetractArms());
+		//sbuttonX.whenPressed(new Elevate());
+		
+		sbuttonRB.whenPressed(new DropDown());  //Command was changed for Guitar controller
+		sbuttonLB.whenPressed(new LiftUp());
 		//end of Normal code
 	}
 	

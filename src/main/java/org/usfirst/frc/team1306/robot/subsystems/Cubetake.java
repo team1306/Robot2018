@@ -24,21 +24,21 @@ public class Cubetake extends Subsystem{
 	
 	public void intake() {
 		if(Constants.CUBETAKE_ENABLED) {
-			leftIntakeMotor.set(-Constants.CUBETAKE_INTAKE);
+			leftIntakeMotor.set(Constants.CUBETAKE_INTAKE);
 			rightIntakeMotor.set(Constants.CUBETAKE_INTAKE - Constants.CUBETAKE_INTAKE_ADJ);
 		}
 	}
 	
 	public void spitSlow() {
 		if(Constants.CUBETAKE_ENABLED) {
-			leftIntakeMotor.set(Constants.CUBETAKE_SPIT_SLOW);
+			leftIntakeMotor.set(-Constants.CUBETAKE_SPIT_SLOW);
 			rightIntakeMotor.set(-Constants.CUBETAKE_SPIT_SLOW);
 		}
 	}
 	
 	public void spitFast() {
 		if(Constants.CUBETAKE_ENABLED) {
-			leftIntakeMotor.set(Constants.CUBETAKE_SPIT_FAST);
+			leftIntakeMotor.set(-Constants.CUBETAKE_SPIT_FAST);
 			rightIntakeMotor.set(-Constants.CUBETAKE_SPIT_FAST);
 		}
 	}

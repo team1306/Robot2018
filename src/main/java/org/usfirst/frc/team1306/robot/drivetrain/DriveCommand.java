@@ -32,12 +32,12 @@ public class DriveCommand extends CommandBase {
 			 */
 			if(OI.getTriggerVal(Controller.P, Trigger.L) >= Constants.DEADBAND || OI.getTriggerVal(Controller.P, Trigger.R) >= Constants.DEADBAND) {
 				if(OI.getTriggerVal(Controller.P, Trigger.R) >= Constants.DEADBAND) {
-					drivetrain.drivePercentOutput(OI.getTriggerVal(Controller.P, Trigger.R), OI.getTriggerVal(Controller.P, Trigger.R));
+					drivetrain.drivePercentOutput(0.75*OI.getTriggerVal(Controller.P, Trigger.R), 0.75*OI.getTriggerVal(Controller.P, Trigger.R));
 				} else if(OI.getTriggerVal(Controller.P, Trigger.L) >= Constants.DEADBAND) {
-					drivetrain.drivePercentOutput(-OI.getTriggerVal(Controller.P, Trigger.L), -OI.getTriggerVal(Controller.P, Trigger.L));
+					drivetrain.drivePercentOutput(-0.75*OI.getTriggerVal(Controller.P, Trigger.L), -0.75*OI.getTriggerVal(Controller.P, Trigger.L));
 				}
 			} else {
-				drivetrain.drivePercentOutput(OI.getJoyVal(Controller.P, Joystick.L, Axis.Y), OI.getJoyVal(Controller.P, Joystick.R, Axis.Y));
+				drivetrain.drivePercentOutput(0.75*OI.getJoyVal(Controller.P, Joystick.L, Axis.Y), 0.75*OI.getJoyVal(Controller.P, Joystick.R, Axis.Y));
 			}
 		} else if(driveMode.equals(DriveMode.ARCADE)) {
 			/**
@@ -48,10 +48,10 @@ public class DriveCommand extends CommandBase {
 			 */
 			if (OI.getTriggerVal(Controller.P, Trigger.R) >= Constants.DEADBAND || OI.getTriggerVal(Controller.P, Trigger.L) >= Constants.DEADBAND) {
 				double triggerVal = OI.getTriggerVal(Controller.P, Trigger.R) - OI.getTriggerVal(Controller.P, Trigger.L);
-				drivetrain.drivePercentOutput(triggerVal+OI.getJoyVal(Controller.P, Joystick.L, Axis.X), triggerVal-OI.getJoyVal(Controller.P, Joystick.L, Axis.X));
+				drivetrain.drivePercentOutput(0.90*(triggerVal+OI.getJoyVal(Controller.P, Joystick.L, Axis.X)), 0.90*(triggerVal-OI.getJoyVal(Controller.P, Joystick.L, Axis.X)));
 			} else {
 				if (OI.getJoyVal(Controller.P, Joystick.L, Axis.X) >= Constants.DEADBAND || OI.getJoyVal(Controller.P, Joystick.L, Axis.X) <= -Constants.DEADBAND) {
-					drivetrain.drivePercentOutput(OI.getJoyVal(Controller.P, Joystick.L, Axis.X), -OI.getJoyVal(Controller.P, Joystick.L, Axis.X));
+					drivetrain.drivePercentOutput(0.90*(OI.getJoyVal(Controller.P, Joystick.L, Axis.X)), -0.90*(OI.getJoyVal(Controller.P, Joystick.L, Axis.X)));
 				} else { drivetrain.stop(); }
 			}
 		}
@@ -62,3 +62,5 @@ public class DriveCommand extends CommandBase {
 		return false; //Should never end
 	}
 }
+
+//testcode

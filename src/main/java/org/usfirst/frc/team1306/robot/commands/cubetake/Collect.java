@@ -23,6 +23,7 @@ public class Collect extends CommandBase{
 		time = t;
 	}
 	
+	
 	public Collect() { //Command must be while-held.
 		requires(cubetake);
 		timed = false; 
