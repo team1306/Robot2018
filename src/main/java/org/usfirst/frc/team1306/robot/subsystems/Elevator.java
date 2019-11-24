@@ -1,12 +1,17 @@
 package org.usfirst.frc.team1306.robot.subsystems;
 
 import java.util.ArrayList;
-import org.usfirst.frc.team1306.robot.Constants;
-import org.usfirst.frc.team1306.robot.RobotMap;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.IMotorControllerEnhanced;
 import com.ctre.phoenix.motorcontrol.VelocityMeasPeriod;
 import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
+
+import org.usfirst.frc.team1306.robot.Constants;
+import org.usfirst.frc.team1306.robot.RobotMap;
+import org.usfirst.frc.team1306.robot.elevator.Elevate;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -78,13 +83,13 @@ public class Elevator extends Subsystem {
 	
 	/** Returns the encoder position given by the elevator gearbox */
 	public double getEncoderPos() {
-		try { return master.getSensorCollection().getQuadraturePosition(); }
+		try { return ((IMotorControllerEnhanced)(master)).getSensorCollection().getQuadraturePosition(); }
 		catch(Exception e) { SmartDashboard.putString("ERROR:","Unable to get the encoder position of the elevator"); return 0; }
 	}
 	
 	/** Returns the encoder velocity given by the elevator gearbox */
 	public double getEncoderVel() {
-		try { return master.getSensorCollection().getQuadratureVelocity(); }
+		try { return ((IMotorControllerEnhanced)(master)).getSensorCollection().getQuadratureVelocity(); }
 		catch(Exception e) { SmartDashboard.putString("ERROR:","Unable to get the encoder velocity of the elevator"); return 0; }
 	}
 	
@@ -109,7 +114,7 @@ public class Elevator extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-//		setDefaultCommand(new Elevate());
+		setDefaultCommand(new Elevate());
 	}
 
 	/** Enum containing all elevator setpoints */

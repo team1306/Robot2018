@@ -9,7 +9,6 @@ import org.usfirst.frc.team1306.robot.drivetrain.Settings;
 import org.usfirst.frc.team1306.robot.drivetrain.Settings.DriveMode;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -29,7 +28,6 @@ public class Drivetrain extends Subsystem {
 	private DriveSide leftMotors, rightMotors; //Sides of the drivetrain (each behaves like a TalonSRX)
 	private Speed speed = Speed.FAST; //Default adjustment is 100% of input
 	private DriveMode mode; //Initial manual drive-mode to use (Tank-drive, arcade, etc.)
-	public AHRS navx; //NavX mxp, the gyroscope we use
 	
 	public Drivetrain(Settings settings) {
 		leftMotors = new DriveSide(settings.leftSide);
@@ -44,12 +42,6 @@ public class Drivetrain extends Subsystem {
 			rightMotors.reverseSensor();
 			rightMotors.setPIDParams(new PIDParameters(1.074, 0.0, 0.0, 0.0));
 		}
-		
-		try {
-			navx = new AHRS(SPI.Port.kMXP);
-			navx.zeroYaw();
-			navx.reset(); //Resets yaw
-		} catch(RuntimeException ex) { SmartDashboard.putString("ERROR:","Cannot initialize the NavX"); }
 	}
 
 	/** Drives the robot in 'PercentOutput' mode (-1.0 -> 1.0) by giving the left and right motors potentially different speeds */
@@ -63,15 +55,15 @@ public class Drivetrain extends Subsystem {
 		}
 	}
 	
-	/** Drives the robot in 'Velocity' mode by giving left and right side motors potentially different speeds */
-	public void driveVelocity(double leftVal, double rightVal) {
-		if(Constants.DRIVETRAIN_ENABLED) {
-			SmartDashboard.putNumber("leftOutput", leftVal);
-			SmartDashboard.putNumber("rightOutput", rightVal);
-			leftMotors.set(ControlMode.Velocity, leftVal);
-			rightMotors.set(ControlMode.Velocity, -rightVal); 
-		}
-	}
+	// /** Drives the robot in 'Velocity' mode by giving left and right side motors potentially different speeds */
+	// public void driveVelocity(double leftVal, double rightVal) {
+	// 	if(Constants.DRIVETRAIN_ENABLED) {
+	// 		SmartDashboard.putNumber("leftOutput", leftVal);
+	// 		SmartDashboard.putNumber("rightOutput", rightVal);
+	// 		leftMotors.set(ControlMode.Velocity, leftVal);
+	// 		rightMotors.set(ControlMode.Velocity, -rightVal); 
+	// 	}
+	// }
 	
 	/** Adjusts speed up or down for various tasks (up for long dist, down for precision) */
 	public void adjust(Speed s) {
@@ -100,16 +92,6 @@ public class Drivetrain extends Subsystem {
 	public double getEncoderVel(Side side) {
 		if(side.equals(Side.LEFT)) { return leftMotors.getEncoderVel(); }
 		else { return rightMotors.getEncoderVel(); }
-	}
-	
-	/** Returns total accumulated yaw value in degrees */
-	public double getGyroAngle() {
-		return navx.getAngle();
-	}
-	
-	/**  Returns current yaw value (-180 to 180 degrees only) */
-	public double getGyroYaw() {
-		return navx.getYaw();
 	}
 	
 	public enum Side {LEFT,RIGHT}; //Enum used to differentiate between left and right wheels for accessing encoder data

@@ -19,7 +19,7 @@ public class Elevate extends CommandBase {
 	
 	@Override
 	protected void execute() {
-		double currentJoyVal = OI.getJoyVal(Controller.S, Joystick.L, Axis.Y);
+		double currentJoyVal = OI.getJoyVal(Controller.P, Joystick.R, Axis.Y);
 		if(currentJoyVal >= Constants.DEADBAND) {
 			elevator.unbrake();
 			elevator.movePercentOutput(-currentJoyVal);

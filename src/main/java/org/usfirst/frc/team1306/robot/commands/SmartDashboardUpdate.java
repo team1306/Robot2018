@@ -17,9 +17,9 @@ public class SmartDashboardUpdate extends CommandBase {
 	@Override
 	protected void execute() {
 		
-		if(Constants.GYRO_DEBUG) {
-			SmartDashboard.putNumber("Gyro-Yaw", drivetrain.getGyroAngle());
-		}
+		// if(Constants.GYRO_DEBUG) {
+		// 	SmartDashboard.putNumber("Gyro-Yaw", drivetrain.getGyroAngle());
+		// }
 		
 		if(Constants.DRIVETRAIN_DEBUG) {
 			SmartDashboard.putNumber("LeftSide-Position:", drivetrain.getEncoderPos(Side.LEFT));

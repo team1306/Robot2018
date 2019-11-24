@@ -1,9 +1,10 @@
 package org.usfirst.frc.team1306.robot.drivetrain;
 
 import java.util.ArrayList;
+
 import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 /**
  * @Settings
@@ -27,7 +28,7 @@ public class Settings {
 	}
 	
 	/** Adds a new talon to a specified driveside with a specified type (master or slave) */
-	public void add(TalonSRX talon, ControllingType type) {
+	public void add(WPI_TalonSRX talon, ControllingType type) {
 		if(type.equals(ControllingType.LEFT_MASTER)) {
 			leftSide.add(0, talon);
 		} else if(type.equals(ControllingType.LEFT_SLAVE)) {
@@ -40,7 +41,7 @@ public class Settings {
 	}
 	
 	/** Adds a new victor to a specified driveside with a specified type (master or slave) */
-	public void add(VictorSPX victor, ControllingType type) {
+	public void add(WPI_VictorSPX victor, ControllingType type) {
 		if(type.equals(ControllingType.LEFT_MASTER)) {
 			leftSide.add(0, victor);
 		} else if(type.equals(ControllingType.LEFT_SLAVE)) {

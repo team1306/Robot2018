@@ -1,13 +1,14 @@
 package org.usfirst.frc.team1306.robot.triggers;
 
 import org.usfirst.frc.team1306.robot.XboxController;
-import edu.wpi.first.wpilibj.buttons.Trigger;
+
+import edu.wpi.first.wpilibj.buttons.Button;
 
 /**
  * @DPadPress - A trigger used to start commands when something on the D-Pad is pressed.
  * @author Finn Voichick
  */
-public class DPadPress extends Trigger {
+public class DPadPress extends Button {
 
 	/** The Xbox controller to check. */
 	private final XboxController xbox;
